@@ -12,7 +12,8 @@ function Register() {
         data.firstName,
         data.lastName,
         data.email,
-        data.password
+        data.password,
+        data.role
       );
       navigate("/login");
       toast.success("Регистрация успешно выполнена!");

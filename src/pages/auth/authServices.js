@@ -12,11 +12,11 @@ export const login = async (email, password) => {
     } return response.json();
 };
 
-export const register = async (firstName, lastName, email, password) => {
+export const register = async (firstName, lastName, email, password, role) => {
     const response = await fetch(`${BASE_URL}/register`, {
         method : 'POST',
         headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify({firstName, lastName, email, password}),
+        body: JSON.stringify({firstName, lastName, email, password, role}),
     });
 
     if (!response.ok) {
