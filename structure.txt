@@ -1,0 +1,64 @@
+src/
+│
+├── assets/                  # Статические ресурсы
+│   ├── images/              # Все изображения
+│   │   ├── logos/           # Логотипы (платформы, университета)
+│   │   ├── avatars/         # Аватарки пользователей
+│   │   ├── icons/           # Иконки (svg, png)
+│   │   └── backgrounds/     # Фоновые изображения
+│   ├── styles/              # Глобальные стили
+│   │   ├── base.css         # Сброс стилей, базовые элементы (body, h1)
+│   │   ├── variables.css    # CSS-переменные (цвета, шрифты)
+│   │   └── fonts.css        # Подключение шрифтов
+│   └── ...                  
+│
+├── components/              # Переиспользуемые UI-компоненты
+│   ├── ui/                  # Базовые элементы
+│   │   ├── Button/          # Кастомная кнопка
+│   │   │   ├── Button.jsx
+│   │   │   └── Button.module.css
+│   │   ├── Input/           # Поле ввода
+│   │   └── Modal/           # Модальное окно
+│   ├── layout/              # Компоненты макета
+│   │   ├── Header/
+│   │   ├── Footer/
+│   │   └── Sidebar/
+│   └── mentors/             # Специфичные компоненты (карточки менторов)
+│
+├── pages/                   # Страницы приложения
+│   ├── Home/                # Главная страница
+│   │   ├── Home.jsx
+│   │   ├── Home.module.css
+│   │   └── components/      # Локальные компоненты (только для Home)
+│   ├── Auth/
+│       ├── AuthForm.jsx          # Форма (управляемые компоненты)
+│       ├── Login.jsx             # Страница входа
+│       └── Register.jsx 
+│       └── authService.js
+│
+│
+│   ├── Dashboard/           # Личный кабинет
+│   │   ├── StudentDashboard/
+│   │   └── MentorDashboard/
+│   ├── Mentors/             # Список менторов
+│   ├── Profile/             # Профиль пользователя
+│   └── Chat/               # Чат с ментором/студентом
+│
+│
+├── services/                # Работа с API
+│   ├── api.js               # Базовый axios-клиент
+│   ├── authService.js       # Методы auth/login/register
+│   └── mentorService.js     # Запросы к менторам
+│
+├── utils/                   # Вспомогательные функции
+│   ├── helpers.js           # Форматирование дат, текста
+│   ├── validation.js        # Валидация форм
+│   └── constants.js         # Константы (роли, URL API)
+│
+├── routes/                  # Роутинг
+│   ├── AppRouter.jsx        # Основные маршруты
+│   └── PrivateRoute.jsx     # Защищённые маршруты
+│
+│
+├── App.jsx                  # Корневой компонент
+├── main.jsx                 # Точка входа (рендер)
