@@ -5,6 +5,7 @@ const AuthForm = ({ isLogin, onSubmit }) => {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [role, setRole] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +30,7 @@ const AuthForm = ({ isLogin, onSubmit }) => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          minLength="6"
+          minLength="5"
           required
         />
       </div>
