@@ -8,7 +8,7 @@ export const login = async (email, password) => {
     });
 
     if (!response.ok) {
-        throw new Error('Ошибка при входе')
+        throw new Error(errorData.message || 'Ошибка при входе')
     } return response.json();
 };
 
@@ -20,6 +20,6 @@ export const register = async (firstName, lastName, email, password, role) => {
     });
 
     if (!response.ok) {
-        throw new Error('Ошибка при регистрации')
+        throw new Error(errorData.message || 'Ошибка при регистрации')
     } return response.json();
 }
