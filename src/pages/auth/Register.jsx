@@ -11,7 +11,7 @@ function Register() {
   const handleSubmit = async (data) => {
     try {
       setIsLoading(true);
-      const response = await register(
+      await register(
         data.firstName,
         data.lastName,
         data.email,
@@ -21,7 +21,7 @@ function Register() {
       navigate("/login");
       toast.success("Регистрация успешно выполнена!");
     } catch (error) {
-      toast.error("Ошибка при регистрации!");
+      toast.error(`${error}`);
     } finally {
       setIsLoading(false);
     }

@@ -1,7 +1,8 @@
 import { useState } from "react";
-import AuthForm from "./AuthForm";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import AuthForm from "./AuthForm";
+import { login } from "./authServices";
 
 function Login() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function Login() {
       navigate("/home");
       toast.success("Вход в аккаунт успешно выполнен!");
     } catch (error) {
-      toast.error("Ошибка при входе в аккаунт!");
+      toast.error(`${error}`);
     } finally {
       setIsLoading(false);
     }

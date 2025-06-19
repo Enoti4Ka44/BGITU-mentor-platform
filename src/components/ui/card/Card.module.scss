@@ -1,0 +1,28 @@
+@import "../../../assets/styles/variables.scss";
+
+.card {
+    width: 300px;
+
+    .imgWrapper {
+        width: 300px;
+        overflow: hidden;
+        border-radius: 8px;
+    
+        img {
+        object-fit: cover;
+        width: 100%;
+        height: auto;
+        }   
+    }
+
+    h5 {
+        margin: 12px 0 3px 0;
+    }
+
+    p {
+        color: $grey;
+        
+    }
+}
+
+

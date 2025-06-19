@@ -1,25 +1,48 @@
 import {BASE_URL} from '../../config'
 
 export const login = async (email, password) => {
-    const response = await fetch(`${BASE_URL}/login`, {
-        method: 'POST',
-        headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify({email, password}),
-    });
+    try {
+        const response = await fetch(`${BASE_URL}/api/auth/login`, {
+            method: 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({email, password}),
+        });
 
-    if (!response.ok) {
-        throw new Error(errorData.message || 'Ошибка при входе')
-    } return response.json();
+        const data = await response.json()
+        console.log(email, password)
+
+        if (!response.ok) {
+            console.log(data.message)
+            throw new Error(data.message || 'Неверные данные');
+        } 
+        
+        localStorage.setItem("token", data.accessToken); 
+        return data;
+
+    } catch (error) {
+        throw error
+    }
 };
 
 export const register = async (firstName, lastName, email, password, role) => {
-    const response = await fetch(`${BASE_URL}/register`, {
-        method : 'POST',
-        headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify({firstName, lastName, email, password, role}),
-    });
+    try {
+        const response = await fetch(`${BASE_URL}/api/auth/register`, {
+            method : 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({firstName, lastName, email, password, role}),
+        });
 
-    if (!response.ok) {
-        throw new Error(errorData.message || 'Ошибка при регистрации')
-    } return response.json();
+        const data = await response.json()
+        console.log(firstName, lastName, email, password, role)
+    
+        if (!response.ok) {
+            throw new Error(data.message || 'Неверные данные');
+        } 
+        
+        localStorage.setItem("token", data.accessToken); 
+        return data;
+
+    } catch (error) {
+        throw error
+    }
 }

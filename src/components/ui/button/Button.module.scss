@@ -1,0 +1,36 @@
+@import "../../../assets/styles/variables.scss";
+
+.btn {
+    height: 42px;
+    padding: 10px 20px;
+
+    border: 0;
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    transition: .2s all ease;
+
+    &--white {
+    color: $black;
+    background-color: $white;
+    }
+
+    &--black {
+    color: $white;
+    background-color: $black;
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+
+    &:focus {
+        outline: 0;
+        border: 0;
+    }
+}
+
+
+

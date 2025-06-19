@@ -63,8 +63,8 @@ const AuthForm = ({ isLoading, isLogin, onSubmit }) => {
               <option value="" disabled>
                 Выберите роль
               </option>
-              <option value="student">Студент</option>
-              <option value="mentor">Ментор</option>
+              <option value="STUDENT">Студент</option>
+              <option value="MENTOR">Ментор</option>
             </select>
           </div>
         </>
@@ -91,16 +91,18 @@ const AuthForm = ({ isLoading, isLogin, onSubmit }) => {
         onChange={handleChange}
       />
 
-      <Input
-        value={authData.confirmPassword}
-        name="confirmPassword"
-        type={showPassword ? "text" : "password"}
-        required={true}
-        placeholder="Повторите пароль"
-        label="Повторите пароль"
-        minLength="5"
-        onChange={handleChange}
-      />
+      {!isLogin && (
+        <Input
+          value={authData.confirmPassword}
+          name="confirmPassword"
+          type={showPassword ? "text" : "password"}
+          required={true}
+          placeholder="Повторите пароль"
+          label="Повторите пароль"
+          minLength="5"
+          onChange={handleChange}
+        />
+      )}
 
       <div>
         <input
