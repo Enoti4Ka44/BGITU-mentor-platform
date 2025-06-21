@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "./StudentHome.module.scss";
 import Sidebar from "../../../components/layout/sidebar/Sidebar";
-import MentorCard from "../../../components/ui/mentorCard/MentorCard";
-import MyMentorCard from "../../../components/ui/myMentorCard/MyMentorCard";
+import MentorCard from "../components/mentorCard/MentorCard";
+import MyMentorCard from "../components/myMentorCard/MyMentorCard";
 
 function StudentHome(props) {
   const [active, setActive] = useState(false);
@@ -37,7 +37,18 @@ function StudentHome(props) {
 
         <div className={styles.myMentor}>
           <h3 className={styles.sectionTitle}>Мой ментор</h3>
-          <MyMentorCard />
+          <MyMentorCard
+            firstName="Евангелион"
+            lastName="Александр"
+            speciality="Python Backen Developer"
+            description="Lorem ipsum dolor sit amet, 
+            consectetur adipiscing elit, sed do eiusmod 
+            tempor incididunt ut labore et dolore magna 
+            aliqua. Ut enim ad minim veniam, quis nostrud 
+            exercitation ullamco laboris "
+            vk="#"
+            telegram="#"
+          />
         </div>
 
         <div className={styles.popularArticles}>

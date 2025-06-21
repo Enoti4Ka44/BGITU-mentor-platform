@@ -1,5 +1,5 @@
 import styles from "./MentorCard.module.scss";
-import StarIcon from "../../../assets/images/icons/star-icon.png";
+import StarIcon from "../../../../assets/images/icons/star-icon.png";
 
 function MentorCard(props) {
   const name = `${props.firstName} ${props.lastName}`;
