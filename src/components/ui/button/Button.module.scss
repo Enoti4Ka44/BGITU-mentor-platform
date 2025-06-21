@@ -1,14 +1,15 @@
 @import "../../../assets/styles/variables.scss";
 
 .btn {
-    height: 42px;
-    padding: 10px 20px;
+    height: 60px;
+    width: 100%;
+    padding: 15px 30px;
 
     border: 0;
     border-radius: 8px;
 
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 600;
 
     transition: .2s all ease;
 
@@ -21,6 +22,12 @@
     color: $white;
     background-color: $black;
     }
+
+    &--green {
+        background-color: $green;
+        color: $white;
+    }
+
 
     &:hover {
         transform: translateY(-3px);

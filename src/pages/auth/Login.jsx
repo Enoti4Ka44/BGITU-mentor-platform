@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "./AuthForm";
-import { login } from "./authServices";
+import { login } from "../../services/authServices";
 
 function Login() {
   const navigate = useNavigate();

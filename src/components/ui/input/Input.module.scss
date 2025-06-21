@@ -1,0 +1,32 @@
+@import "../../../assets/styles/variables.scss";
+
+.label {
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.input {
+    border: 0;
+    border-radius: 8px;
+    background-color: $grey-light;
+
+    font-size: 18px;
+    font-weight: 400;
+    
+    font-family: $font-montserrat;
+
+    height: 50px;
+    width: 100%;
+
+    padding: 10px 20px;
+    margin-top: 5px;
+
+    &::placeholder {
+        color: $grey;
+    }
+
+    &:focus {
+        outline: 2px $grey solid;
+    }
+}

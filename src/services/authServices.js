@@ -1,4 +1,4 @@
-import {BASE_URL} from '../../config'
+import {BASE_URL} from '../config'
 
 export const login = async (email, password) => {
     try {
@@ -17,6 +17,7 @@ export const login = async (email, password) => {
         } 
         
         localStorage.setItem("token", data.accessToken); 
+        localStorage.setItem("role", data.role)
         return data;
 
     } catch (error) {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AuthForm from "./AuthForm";
-import { register } from "./authServices";
+import { register } from "../../services/authServices";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +29,6 @@ function Register() {
 
   return (
     <>
-      <h1>Регистрация</h1>
       <AuthForm isLoading={isLoading} isLogin={false} onSubmit={handleSubmit} />
     </>
   );

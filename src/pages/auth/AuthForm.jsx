@@ -1,5 +1,13 @@
 import { useState } from "react";
 import Input from "../../components/ui/input/Input";
+import Button from "../../components/ui/button/Button";
+import Logo from "../../components/ui/logo/Logo";
+import Select from "../../components/ui/select/Select";
+import styles from "./AuthForm.module.scss";
+import { useNavigate } from "react-router";
+import navigateTo from "../../services/navigateTo";
+import icon from "../../assets/images/icons/auth-icon.svg";
+import { toast } from "react-toastify";
 
 const AuthForm = ({ isLoading, isLogin, onSubmit }) => {
   const [authData, setAuthData] = useState({
@@ -10,15 +18,20 @@ const AuthForm = ({ isLoading, isLogin, onSubmit }) => {
     role: "",
     confirmPassword: "",
   });
+  const roleOptions = [
+    { value: "STUDENT", label: "Студент" },
+    { value: "MENTOR", label: "Ментор" },
+  ];
 
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
+  const navigation = navigateTo();
 
   const handleSubmit = (e) => {
     setError(false);
     e.preventDefault();
     if (!isLogin && authData.confirmPassword !== authData.password) {
-      setError("Пароли должны совпадать!");
+      toast.error("Пароли должны совпадать");
     } else {
       onSubmit(authData);
     }
@@ -30,95 +43,115 @@ const AuthForm = ({ isLoading, isLogin, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {!isLogin && (
-        <>
-          <Input
-            value={authData.firstName}
-            name="firstName"
-            type="text"
-            required={true}
-            label="Имя"
-            placeholder="Имя"
-            onChange={handleChange}
-          />
+    <div className={styles.authContainer}>
+      <Logo route="welcome" />
+      <div className={styles.container}>
+        <div className={styles.formContainer}>
+          {isLogin ? (
+            <p className={styles.links}>
+              Нет аккаунта ?{" "}
+              <a onClick={() => navigation("register")}>Зарегистрироваться</a>
+            </p>
+          ) : (
+            <p className={styles.links}>
+              Есть аккаунт ? <a onClick={() => navigation("login")}>Войти</a>
+            </p>
+          )}
+          <form className={styles.form} onSubmit={handleSubmit}>
+            {!isLogin && (
+              <>
+                <Input
+                  value={authData.firstName}
+                  name="firstName"
+                  id="firstName"
+                  type="text"
+                  required={true}
+                  label="Имя"
+                  placeholder="Имя"
+                  onChange={handleChange}
+                />
 
-          <Input
-            value={authData.lastName}
-            name="lastName"
-            type="text"
-            required={true}
-            label="Фамилия"
-            placeholder="Фамилия"
-            onChange={handleChange}
-          />
+                <Input
+                  value={authData.lastName}
+                  name="lastName"
+                  id="lastName"
+                  type="text"
+                  required={true}
+                  label="Фамилия"
+                  placeholder="Фамилия"
+                  onChange={handleChange}
+                />
 
-          <div>
-            <select
-              value={authData.role}
-              name="role"
-              required
+                <Select
+                  value={authData.role}
+                  options={roleOptions}
+                  name="role"
+                  label="Роль"
+                  placeholder="Выберите роль"
+                  onChange={handleChange}
+                />
+              </>
+            )}
+
+            <Input
+              value={authData.email}
+              name="email"
+              id="email"
+              type="email"
+              required={true}
+              placeholder="Почта"
+              label="Почта"
               onChange={handleChange}
-            >
-              <option value="" disabled>
-                Выберите роль
-              </option>
-              <option value="STUDENT">Студент</option>
-              <option value="MENTOR">Ментор</option>
-            </select>
-          </div>
-        </>
-      )}
+            />
 
-      <Input
-        value={authData.email}
-        name="email"
-        type="email"
-        required={true}
-        placeholder="Почта"
-        label="Почта"
-        onChange={handleChange}
-      />
+            <Input
+              value={authData.password}
+              name="password"
+              id="password"
+              type={showPassword ? "text" : "password"}
+              required={true}
+              label="Пароль"
+              placeholder="Пароль"
+              minLength="5"
+              onChange={handleChange}
+            />
 
-      <Input
-        value={authData.password}
-        name="password"
-        type={showPassword ? "text" : "password"}
-        required={true}
-        label="Пароль"
-        placeholder="Пароль"
-        minLength="5"
-        onChange={handleChange}
-      />
+            {!isLogin && (
+              <Input
+                value={authData.confirmPassword}
+                name="confirmPassword"
+                id="confirmPassword"
+                type={showPassword ? "text" : "password"}
+                required={true}
+                placeholder="Повторите пароль"
+                label="Повторите пароль"
+                minLength="5"
+                onChange={handleChange}
+              />
+            )}
 
-      {!isLogin && (
-        <Input
-          value={authData.confirmPassword}
-          name="confirmPassword"
-          type={showPassword ? "text" : "password"}
-          required={true}
-          placeholder="Повторите пароль"
-          label="Повторите пароль"
-          minLength="5"
-          onChange={handleChange}
-        />
-      )}
+            <div className={styles.passwordCheckbox}>
+              <input
+                type="checkbox"
+                name="showPassword"
+                id="showPassword"
+                value={showPassword}
+                onChange={(e) => setShowPassword((prev) => !prev)}
+              />
+              <label htmlFor="showPassword">Показать пароль</label>
+            </div>
 
-      <div>
-        <input
-          type="checkbox"
-          name="showPassword"
-          id="showPassword"
-          value={showPassword}
-          onChange={(e) => setShowPassword((prev) => !prev)}
-        />
-        <label htmlFor="showPassword">Показать пароль</label>
+            <Button color="green">
+              {isLogin ? "Войти" : "Зарегистрироваться"}
+            </Button>
+          </form>
+        </div>
+
+        <div className={styles.content}>
+          <img src={icon} alt="image of devices" />
+        </div>
       </div>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      <button type="submit">{isLogin ? "Войти" : "Зарегистрироваться"}</button>
-    </form>
+    </div>
   );
 };
 

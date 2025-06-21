@@ -1,13 +1,15 @@
+import styles from "./Input.module.scss";
+
 function Input(props) {
   return (
     <div>
       {props.label && (
-        <label style={{ fontWeight: "bold", fontSize: "20px" }}>
+        <label className={styles.label} htmlFor={props.id}>
           {props.label}
         </label>
       )}
 
-      <input {...props} />
+      <input className={styles.input} {...props} />
     </div>
   );
 }

@@ -16,7 +16,12 @@ function App() {
           <Route path="/home" element={<Home />} />
         </Routes>
       </Router>
-      <ToastContainer position="bottom-right" theme="colored" closeOnClick />
+      <ToastContainer
+        limit={2}
+        position="bottom-right"
+        theme="colored"
+        closeOnClick
+      />
     </>
   );
 }
