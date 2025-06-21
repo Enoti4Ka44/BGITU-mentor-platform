@@ -1,15 +1,11 @@
-import { useNavigate } from "react-router";
+import navigateTo from "../../../services/navigateTo";
 import styles from "./Logo.module.scss";
 
-function Logo(props) {
-  const navigate = useNavigate();
+function Logo({ route }) {
+  const navigation = navigateTo();
 
-  const handleNavigate = () => {
-    if (!props.route) return;
-    navigate(`/${props.route}`);
-  };
   return (
-    <a className={styles.logo} onClick={handleNavigate}>
+    <a className={styles.logo} onClick={() => navigation(route)}>
       MentorShip
     </a>
   );

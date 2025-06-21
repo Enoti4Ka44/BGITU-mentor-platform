@@ -17,18 +17,18 @@ h1 {
 }
 
 h2 {
-    font-size: 38px;
+    font-size: 42px;
     font-weight: 700;
 }
 
 h3 {
-    font-size: 26px;
+    font-size: 34px;
     font-weight: 600;
 }
 
 h4 {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 28px;
+    font-weight: 600;
 }
 
 h5 {
@@ -47,4 +47,8 @@ a, button {
     color: inherit;
 
     cursor: pointer;
+}
+
+.container {
+    display: flex;
 }

@@ -1,15 +1,55 @@
 import { useState } from "react";
 import SidebarButton from "./components/sidebarButton/SidebarButton";
+import Logo from "../../ui/logo/Logo";
 import styles from "./Sidebar.module.scss";
+import navigateTo from "../../../services/navigateTo";
+
+import HomeIcon from "../../../assets/images/icons/home-icon.svg";
+import ArticlesIcon from "../../../assets/images/icons/articles-icon.svg";
+import LogoutIcon from "../../../assets/images/icons/logout-icon.svg";
+import SettingsIcon from "../../../assets/images/icons/settings-icon.svg";
+import ProfileIcon from "../../../assets/images/icons/profile-icon.svg";
+import MentorsIcon from "../../../assets/images/icons/mentors-icon.svg";
 
 function Sidebar(props) {
   const [active, setActive] = useState(false);
+  const navigation = navigateTo();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigation("welcome");
+  };
+
   return (
-    <div className={styles.test}>
-      <SidebarButton route="home">Главная</SidebarButton>
-      <SidebarButton route="aticles">Статьи</SidebarButton>
-      <SidebarButton route="mentors">Менторы</SidebarButton>
-      <SidebarButton route="login">sing in</SidebarButton>
+    <div className={styles.container}>
+      <div className={styles.sidebarContent}>
+        <div className={styles.btnTop}>
+          <Logo route="home" />
+          <div className={styles.btnWrapper}>
+            <SidebarButton icon={<img src={HomeIcon} />} route="home">
+              Главная
+            </SidebarButton>
+            <SidebarButton icon={<img src={MentorsIcon} />} route="mentors">
+              Менторы
+            </SidebarButton>
+            <SidebarButton icon={<img src={ArticlesIcon} />} route="aticles">
+              Статьи
+            </SidebarButton>
+            <SidebarButton icon={<img src={ProfileIcon} />} route="login">
+              Профиль
+            </SidebarButton>
+          </div>
+        </div>
+        <div className={styles.btnWrapper}>
+          <SidebarButton icon={<img src={SettingsIcon} />}>
+            Настройки
+          </SidebarButton>
+          <SidebarButton logout={logout} icon={<img src={LogoutIcon} />}>
+            Выйти
+          </SidebarButton>
+        </div>
+      </div>
     </div>
   );
 }

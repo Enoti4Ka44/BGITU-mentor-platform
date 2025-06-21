@@ -9,17 +9,17 @@ import styles from "./Welcome.module.scss";
 
 function Welcome() {
   return (
-    <>
+    <div style={{ paddingBottom: "10px" }}>
       <div className={styles.container}>
         <Logo route="welcome" />
         <div className={styles.hero}>
           <h1>Делись мудростью, формируй успех</h1>
           <div className={styles.content}>
-            <h3>
+            <h4>
               Прямое подключение студентов к выпускникам для карьерного роста и
               академической поддержки <br /> <br />
               Ваш мост между университетом и профессиональным успехом
-            </h3>
+            </h4>
             <img src={peopleHeroIcon} alt="" />
           </div>
           <div className={styles.btnWrapper}>
@@ -53,7 +53,7 @@ function Welcome() {
           text="Получите конкурентное преимущество на пути к карьере с помощью советов опытных профессионалов."
         />
       </div>
-    </>
+    </div>
   );
 }
 

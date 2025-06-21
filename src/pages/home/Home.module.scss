@@ -1,0 +1,28 @@
+@import "../../assets/styles/variables.scss";
+
+
+.home {
+    margin-left: 400px; // Отступ = ширина сайдбара
+    width: calc(100% - 400px); // Ширина контента
+    height: 100vh;
+    overflow-y: auto;
+    padding: 30px 50px;
+
+    .featureMentors {
+        margin-top: 40px;
+
+        .mentorsCards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 70px;
+        }
+    }
+
+    .myMentor {
+        margin-top: 40px;
+    }
+}
+
+.sectionTitle {
+    margin-bottom: 20px;
+}

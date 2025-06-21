@@ -24,11 +24,9 @@ const AuthForm = ({ isLoading, isLogin, onSubmit }) => {
   ];
 
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(false);
   const navigation = navigateTo();
 
   const handleSubmit = (e) => {
-    setError(false);
     e.preventDefault();
     if (!isLogin && authData.confirmPassword !== authData.password) {
       toast.error("Пароли должны совпадать");
@@ -44,19 +42,22 @@ const AuthForm = ({ isLoading, isLogin, onSubmit }) => {
 
   return (
     <div className={styles.authContainer}>
-      <Logo route="welcome" />
       <div className={styles.container}>
         <div className={styles.formContainer}>
-          {isLogin ? (
-            <p className={styles.links}>
-              Нет аккаунта ?{" "}
-              <a onClick={() => navigation("register")}>Зарегистрироваться</a>
-            </p>
-          ) : (
-            <p className={styles.links}>
-              Есть аккаунт ? <a onClick={() => navigation("login")}>Войти</a>
-            </p>
-          )}
+          <div className={styles.formContainerHeader}>
+            <Logo route="welcome" />
+            {isLogin ? (
+              <p className={styles.links}>
+                Нет аккаунта ?{" "}
+                <a onClick={() => navigation("register")}>Зарегистрироваться</a>
+              </p>
+            ) : (
+              <p className={styles.links}>
+                Есть аккаунт ? <a onClick={() => navigation("login")}>Войти</a>
+              </p>
+            )}
+          </div>
+
           <form className={styles.form} onSubmit={handleSubmit}>
             {!isLogin && (
               <>

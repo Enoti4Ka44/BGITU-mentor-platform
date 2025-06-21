@@ -16,21 +16,27 @@
 
     .formContainer {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        justify-content: start;
         align-items: center;
+        gap: 180px;
         width: 50%;
         height: 100%;
 
         position: relative;
 
-        .links {
-            position: absolute;
-            right: 50px;
-            top: 42px;
+        .formContainerHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
 
-            a {
+            padding: 50px;
+
+            .links {
                 font-weight: 600;
                 transition: all .2s ease;
+                cursor: pointer;
 
                 &:hover {
                     color: $green-dark;

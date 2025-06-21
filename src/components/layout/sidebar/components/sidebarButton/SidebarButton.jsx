@@ -1,15 +1,22 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import styles from "./SidebarButton.module.scss";
+import navigateTo from "../../../../../services/navigateTo";
 
-function SidebarButton({ children, route }) {
-  const [active, setActive] = useState(false);
-  const navigate = useNavigate();
+function SidebarButton({ children, route, icon, logout }) {
+  const location = useLocation();
+  const isActive = location.pathname === `/${route}`;
+  const navigation = navigateTo();
 
-  const handleNavigate = () => {
-    if (!route) return;
-    navigate(`/${route}`);
-  };
-  return <button onClick={handleNavigate}>{children}</button>;
+  return (
+    <button
+      className={`${styles.sidebarButton} ${isActive ? styles.active : ""}`}
+      onClick={() => (route ? navigation(route) : logout())}
+    >
+      {icon && <span className={styles.icon}> {icon} </span>}
+      {children}
+    </button>
+  );
 }
 
 export default SidebarButton;

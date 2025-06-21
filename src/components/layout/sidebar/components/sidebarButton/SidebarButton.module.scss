@@ -1,0 +1,34 @@
+@import "../../../../../assets/styles/variables.scss";
+
+.sidebarButton {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    font-size: 18px;
+    font-weight: 600;
+    text-align: start;
+
+    border-radius: 20px;
+    border: 0;
+
+    height: 50px;
+    width: 100%;
+
+    padding: 10px 25px;
+
+    transition: all .2s ease;
+
+    &:hover {
+        background-color: $green;
+    }
+
+    &.active {
+        background-color: $green;
+    }
+
+    .icon {
+        width: 18px;
+        height: 18px;
+    }
+}
