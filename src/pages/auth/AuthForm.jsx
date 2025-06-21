@@ -142,8 +142,12 @@ const AuthForm = ({ isLoading, isLogin, onSubmit }) => {
               <label htmlFor="showPassword">Показать пароль</label>
             </div>
 
-            <Button color="green">
-              {isLogin ? "Войти" : "Зарегистрироваться"}
+            <Button disabled={isLoading} color="green">
+              {isLoading
+                ? "Загрузка..."
+                : isLogin
+                ? "Войти"
+                : "Зарегистрироваться"}
             </Button>
           </form>
         </div>

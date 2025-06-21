@@ -1,10 +1,10 @@
 import { useState } from "react";
-import styles from "./Home.module.scss";
-import Sidebar from "../../components/layout/sidebar/Sidebar";
-import MentorCard from "../../components/ui/mentorCard/MentorCard";
-import MyMentorCard from "../../components/ui/myMentorCard/MyMentorCard";
+import styles from "./StudentHome.module.scss";
+import Sidebar from "../../../components/layout/sidebar/Sidebar";
+import MentorCard from "../../../components/ui/mentorCard/MentorCard";
+import MyMentorCard from "../../../components/ui/myMentorCard/MyMentorCard";
 
-function Home(props) {
+function StudentHome(props) {
   const [active, setActive] = useState(false);
   return (
     <div className="container">
@@ -48,4 +48,4 @@ function Home(props) {
   );
 }
 
-export default Home;
+export default StudentHome;

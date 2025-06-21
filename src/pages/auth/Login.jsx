@@ -11,10 +11,20 @@ function Login() {
   const handleSubmit = async (data) => {
     try {
       setIsLoading(true);
-      await login(data.email, data.password);
-      navigate("/home");
+
+      const response = await login(data.email, data.password);
+      const role = response.role;
+
+      if (role === "ROLE_STUDENT") {
+        navigate("/studentHome");
+      } else if (role === "ROLE_MENTOR") {
+        navigate("/mentorHome");
+      }
+
       toast.success("Вход в аккаунт успешно выполнен!");
     } catch (error) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
       toast.error(`${error}`);
     } finally {
       setIsLoading(false);

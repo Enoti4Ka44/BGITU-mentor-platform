@@ -10,7 +10,11 @@ function Button(props) {
   };
 
   return (
-    <button onClick={handleNavigate} className={btnClass}>
+    <button
+      disabled={props.disabled}
+      onClick={handleNavigate}
+      className={btnClass}
+    >
       {props.children}
     </button>
   );

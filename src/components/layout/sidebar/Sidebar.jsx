@@ -14,6 +14,7 @@ import MentorsIcon from "../../../assets/images/icons/mentors-icon.svg";
 function Sidebar(props) {
   const [active, setActive] = useState(false);
   const navigation = navigateTo();
+  const role = localStorage.getItem("role");
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -25,9 +26,26 @@ function Sidebar(props) {
     <div className={styles.container}>
       <div className={styles.sidebarContent}>
         <div className={styles.btnTop}>
-          <Logo route="home" />
+          <Logo
+            route={
+              role === "ROLE_STUDENT"
+                ? "studentHome"
+                : role === "ROLE_MENTOR"
+                ? "mentorHome"
+                : "welcome"
+            }
+          />
           <div className={styles.btnWrapper}>
-            <SidebarButton icon={<img src={HomeIcon} />} route="home">
+            <SidebarButton
+              icon={<img src={HomeIcon} />}
+              route={
+                role === "ROLE_STUDENT"
+                  ? "studentHome"
+                  : role === "ROLE_MENTOR"
+                  ? "mentorHome"
+                  : "welcome"
+              }
+            >
               Главная
             </SidebarButton>
             <SidebarButton icon={<img src={MentorsIcon} />} route="mentors">
@@ -36,7 +54,7 @@ function Sidebar(props) {
             <SidebarButton icon={<img src={ArticlesIcon} />} route="aticles">
               Статьи
             </SidebarButton>
-            <SidebarButton icon={<img src={ProfileIcon} />} route="login">
+            <SidebarButton icon={<img src={ProfileIcon} />} route="profile">
               Профиль
             </SidebarButton>
           </div>
