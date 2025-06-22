@@ -29,9 +29,9 @@ function Sidebar() {
           <Logo
             route={
               role === "ROLE_STUDENT"
-                ? "studentHome"
+                ? "student-home"
                 : role === "ROLE_MENTOR"
-                ? "mentorHome"
+                ? "mentor-home"
                 : "welcome"
             }
           />
@@ -40,9 +40,9 @@ function Sidebar() {
               icon={<img src={HomeIcon} />}
               route={
                 role === "ROLE_STUDENT"
-                  ? "studentHome"
+                  ? "student-home"
                   : role === "ROLE_MENTOR"
-                  ? "mentorHome"
+                  ? "mentor-home"
                   : "welcome"
               }
             >
@@ -51,7 +51,7 @@ function Sidebar() {
             {role === "ROLE_STUDENT" ? (
               <SidebarButton
                 icon={<img src={MentorsIcon} />}
-                route="allMentors"
+                route="all-mentors"
               >
                 Менторы
               </SidebarButton>
@@ -62,7 +62,16 @@ function Sidebar() {
             <SidebarButton icon={<img src={ArticlesIcon} />} route="articles">
               Статьи
             </SidebarButton>
-            <SidebarButton icon={<img src={ProfileIcon} />} route="profile">
+            <SidebarButton
+              icon={<img src={ProfileIcon} />}
+              route={
+                role === "ROLE_STUDENT"
+                  ? "student-profile"
+                  : role === "ROLE_MENTOR"
+                  ? "mentor-profile"
+                  : "welcome"
+              }
+            >
               Профиль
             </SidebarButton>
           </div>

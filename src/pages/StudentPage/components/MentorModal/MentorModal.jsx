@@ -1,13 +1,16 @@
 import styles from "./MentorModal.module.scss";
 import Button from "../../../../components/ui/button/Button";
+import Vote from "../../../../components/ui/vote/Vote";
 import CloseIcon from "../../../../assets/images/icons/close-icon.svg";
 import VkIcon from "../../../../assets/images/icons/vk-icon.png";
 import TelegramIcon from "../../../../assets/images/icons/telegram-icon.png";
 import { mentorshipAPI } from "../../../../services";
+import { voteAPI } from "../../../../services";
 import { toast } from "react-toastify";
 
 function MentorModal({ mentor, onClose }) {
   const name = `${mentor.firstName} ${mentor.lastName}`;
+  console.log(mentor);
 
   const handleSubmit = async (data) => {
     try {
@@ -23,17 +26,23 @@ function MentorModal({ mentor, onClose }) {
     }
   };
 
+  const handleVote = async (upvote) => {
+    try {
+      const sentVote = await voteAPI.postMentorVote(mentor.id, upvote);
+      toast.success("Ваш голос учтен");
+    } catch (error) {
+      toast.error("Ошибка при голосовании");
+      console.error("Ошибка при голосовании:", error);
+      console.log(typeof upvote);
+    }
+  };
+
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <button className={styles.closeBtn} onClick={onClose}>
           <img src={CloseIcon} alt="" />{" "}
         </button>
-        <div className={styles.btnWrapper}>
-          <Button onClick={handleSubmit} color="green">
-            Отправить запрос
-          </Button>
-        </div>
 
         <div className={styles.modalContent}>
           <h3 className={styles.modalName}>
@@ -64,6 +73,17 @@ function MentorModal({ mentor, onClose }) {
           ) : (
             <div className={styles.plug}></div>
           )}
+        </div>
+
+        <div className={styles.btnWrapper}>
+          <Button onClick={handleSubmit} color="green">
+            Отправить запрос
+          </Button>
+        </div>
+        <div className={styles.vote}>
+          <Vote onClick={handleVote} id={mentor.id}>
+            {mentor.rank}
+          </Vote>
         </div>
       </div>
     </div>

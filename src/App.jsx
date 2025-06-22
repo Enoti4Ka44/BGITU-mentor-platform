@@ -8,6 +8,7 @@ import StudentHome from "./pages/StudentPage/studentHome/StudentHome";
 import MentorHome from "./pages/mentorPage/MentorHome";
 import AllMentors from "./pages/StudentPage/allMentors/AllMentors";
 import AllArticles from "./pages/articles/AllArticles";
+import StudentProfile from "./pages/StudentPage/studentProfile/studentProfile";
 function App() {
   return (
     <>
@@ -19,7 +20,7 @@ function App() {
           <Route path="/articles" element={<AllArticles />} />
 
           <Route
-            path="/mentorHome"
+            path="/mentor-home"
             element={
               <ProtectedRoute roles={["ROLE_MENTOR"]}>
                 <MentorHome />
@@ -28,7 +29,7 @@ function App() {
           />
 
           <Route
-            path="/studentHome"
+            path="/student-home"
             element={
               <ProtectedRoute roles={["ROLE_STUDENT"]}>
                 <StudentHome />
@@ -37,7 +38,16 @@ function App() {
           />
 
           <Route
-            path="/allMentors"
+            path="/student-profile"
+            element={
+              <ProtectedRoute roles={["ROLE_STUDENT"]}>
+                <StudentProfile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/all-mentors"
             element={
               <ProtectedRoute roles={["ROLE_STUDENT"]}>
                 <AllMentors />
@@ -48,7 +58,7 @@ function App() {
       </Router>
 
       <ToastContainer
-        limit={2}
+        limit={3}
         position="bottom-right"
         theme="colored"
         closeOnClick

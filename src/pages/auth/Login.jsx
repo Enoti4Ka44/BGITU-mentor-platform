@@ -16,9 +16,9 @@ function Login() {
       const role = response.role;
 
       if (role === "ROLE_STUDENT") {
-        navigate("/studentHome");
+        navigate("/student-home");
       } else if (role === "ROLE_MENTOR") {
-        navigate("/mentorHome");
+        navigate("/mentor-home");
       }
 
       toast.success("Вход в аккаунт успешно выполнен!");

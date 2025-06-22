@@ -40,7 +40,7 @@ export const articlesAPI = {
             method: "POST",
             headers: {
                 ...authHeader(),
-                'Content-Type' : "applicetion/json"
+                'Content-Type' : "application/json"
             },
             body: JSON.stringify(data)
         })

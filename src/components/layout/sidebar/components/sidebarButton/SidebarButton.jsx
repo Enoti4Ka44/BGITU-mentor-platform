@@ -11,7 +11,7 @@ function SidebarButton({ children, route, icon, logout }) {
   return (
     <button
       className={`${styles.sidebarButton} ${isActive ? styles.active : ""}`}
-      onClick={() => (route ? navigation(route) : logout())}
+      onClick={() => (route ? navigation(route) : logout ? logout() : "")}
     >
       {icon && <span className={styles.icon}> {icon} </span>}
       {children}
