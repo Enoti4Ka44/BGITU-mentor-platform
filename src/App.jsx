@@ -6,6 +6,7 @@ import Register from "./pages/auth/Register";
 import Welcome from "./pages/welcome/Welcome";
 import StudentHome from "./pages/StudentPage/studentHome/StudentHome";
 import MentorHome from "./pages/mentorPage/MentorHome";
+import AllMentors from "./pages/StudentPage/allMentors/AllMentors";
 
 function App() {
   return (
@@ -30,6 +31,15 @@ function App() {
             element={
               <ProtectedRoute roles={["ROLE_STUDENT"]}>
                 <StudentHome />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/allMentors"
+            element={
+              <ProtectedRoute roles={["ROLE_STUDENT"]}>
+                <AllMentors />
               </ProtectedRoute>
             }
           />

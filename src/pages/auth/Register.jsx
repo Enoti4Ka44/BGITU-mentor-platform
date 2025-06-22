@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AuthForm from "./AuthForm";
-import { register } from "../../services/authServices";
+import { register } from "../../services/api/authServices";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 

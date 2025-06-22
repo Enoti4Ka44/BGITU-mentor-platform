@@ -48,9 +48,17 @@ function Sidebar(props) {
             >
               Главная
             </SidebarButton>
-            <SidebarButton icon={<img src={MentorsIcon} />} route="mentors">
-              Менторы
-            </SidebarButton>
+            {role === "ROLE_STUDENT" ? (
+              <SidebarButton
+                icon={<img src={MentorsIcon} />}
+                route="allMentors"
+              >
+                Менторы
+              </SidebarButton>
+            ) : (
+              ""
+            )}
+
             <SidebarButton icon={<img src={ArticlesIcon} />} route="aticles">
               Статьи
             </SidebarButton>
