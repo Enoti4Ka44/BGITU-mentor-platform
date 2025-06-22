@@ -59,7 +59,7 @@ function Sidebar(props) {
               ""
             )}
 
-            <SidebarButton icon={<img src={ArticlesIcon} />} route="aticles">
+            <SidebarButton icon={<img src={ArticlesIcon} />} route="articles">
               Статьи
             </SidebarButton>
             <SidebarButton icon={<img src={ProfileIcon} />} route="profile">

@@ -6,6 +6,7 @@ import Sidebar from "../../../components/layout/sidebar/Sidebar";
 import MentorCard from "../components/mentorCard/MentorCard";
 import MyMentorCard from "../components/myMentorCard/MyMentorCard";
 import MentorModal from "../components/MentorModal/MentorModal";
+import ArticleCard from "../../../components/layout/articleCard/ArticleCard";
 import { toast } from "react-toastify";
 
 function StudentHome(props) {
@@ -104,6 +105,13 @@ function StudentHome(props) {
 
         <div className={styles.popularArticles}>
           <h3 className={styles.sectionTitle}>Популярные статьи</h3>
+          {popularArticles ? (
+            <ArticleCard />
+          ) : (
+            <p style={{ fontWeight: "700", fontSize: "32px" }}>
+              Рекомендуемые менторы не найдены
+            </p>
+          )}
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ import Welcome from "./pages/welcome/Welcome";
 import StudentHome from "./pages/StudentPage/studentHome/StudentHome";
 import MentorHome from "./pages/mentorPage/MentorHome";
 import AllMentors from "./pages/StudentPage/allMentors/AllMentors";
-
+import AllArticles from "./pages/articles/AllArticles";
 function App() {
   return (
     <>
@@ -16,6 +16,7 @@ function App() {
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/articles" element={<AllArticles />} />
 
           <Route
             path="/mentorHome"
