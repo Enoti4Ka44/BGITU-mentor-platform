@@ -11,7 +11,7 @@ import SettingsIcon from "../../../assets/images/icons/settings-icon.svg";
 import ProfileIcon from "../../../assets/images/icons/profile-icon.svg";
 import MentorsIcon from "../../../assets/images/icons/mentors-icon.svg";
 
-function Sidebar(props) {
+function Sidebar() {
   const [active, setActive] = useState(false);
   const navigation = navigateTo();
   const role = localStorage.getItem("role");

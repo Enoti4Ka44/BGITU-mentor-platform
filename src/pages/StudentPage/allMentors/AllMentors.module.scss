@@ -1,16 +1,8 @@
-.home {
-    margin-left: 400px; // Отступ = ширина сайдбара
-    width: calc(100% - 400px); // Ширина контента
-    height: 100vh;
-    overflow-y: auto;
-    padding: 30px 50px;
 
-    .mentorsCards {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 70px;
+.mentorsCards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 70px;
 
-        margin-top: 40px;
-    }
-
+    margin-top: 40px;
 }

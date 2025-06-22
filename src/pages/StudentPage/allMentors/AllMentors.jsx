@@ -1,6 +1,7 @@
 import { mentorAPI } from "../../../services";
 import styles from "./AllMentors.module.scss";
 import { toast } from "react-toastify";
+import Layout from "../../../components/layout/Layout";
 import MentorCard from "../components/mentorCard/MentorCard";
 import MentorModal from "../components/MentorModal/MentorModal";
 import Sidebar from "../../../components/layout/sidebar/Sidebar";
@@ -35,33 +36,29 @@ function AllMentors() {
   };
 
   return (
-    <div className="container">
+    <Layout>
       {isModalOpen && selectedMentor && (
         <MentorModal
           mentor={selectedMentor}
           onClose={() => setIsModalOpen(false)}
         />
       )}
+      <h2>Все менторы</h2>
 
-      <Sidebar />
-      <div className={styles.home}>
-        <h2>Все менторы</h2>
-
-        <div className={styles.mentorsCards}>
-          {allMentors.map((card) => (
-            <MentorCard
-              id={card.id}
-              firstName={card.firstName}
-              lastName={card.lastName}
-              speciality={card.speciality}
-              rank={card.rank}
-              key={card.id}
-              onClick={handleCardClick}
-            />
-          ))}
-        </div>
+      <div className={styles.mentorsCards}>
+        {allMentors.map((card) => (
+          <MentorCard
+            id={card.id}
+            firstName={card.firstName}
+            lastName={card.lastName}
+            speciality={card.speciality}
+            rank={card.rank}
+            key={card.id}
+            onClick={handleCardClick}
+          />
+        ))}
       </div>
-    </div>
+    </Layout>
   );
 }
 

@@ -1,6 +1,7 @@
 import { articlesAPI } from "../../services";
 import styles from "./AllArticles.module.scss";
 import { toast } from "react-toastify";
+import Layout from "../../components/layout/Layout";
 import ArticleCard from "../../components/layout/articleCard/ArticleCard";
 import Sidebar from "../../components/layout/sidebar/Sidebar";
 import { useEffect, useState } from "react";
@@ -34,20 +35,17 @@ function AllArticles() {
   };
 
   return (
-    <div className="container">
+    <Layout>
       {isModalOpen && selectedMentor && (
         <MentorModal
           mentor={selectedMentor}
           onClose={() => setIsModalOpen(false)}
         />
       )}
+      <h2>Все статьи</h2>
 
-      <Sidebar />
-      <div className={styles.home}>
-        <h2>Все статьи</h2>
-
-        <div className={styles.articlesCard}>
-          {/* {allArticles.map((card) => (
+      <div className={styles.articlesCard}>
+        {/* {allArticles.map((card) => (
             <ArticleCard
               //   id={card.id}
               title={card.data.title}
@@ -56,9 +54,8 @@ function AllArticles() {
               onClick={handleCardClick}
             />
           ))} */}
-        </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 

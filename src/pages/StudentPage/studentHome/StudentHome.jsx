@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { mentorAPI } from "../../../services/api/mentorAPI";
 import { articlesAPI } from "../../../services/api/articlesAPI";
 import styles from "./StudentHome.module.scss";
+import Layout from "../../../components/layout/Layout";
 import Sidebar from "../../../components/layout/sidebar/Sidebar";
 import MentorCard from "../components/mentorCard/MentorCard";
 import MyMentorCard from "../components/myMentorCard/MyMentorCard";
@@ -53,16 +54,8 @@ function StudentHome(props) {
   };
 
   return (
-    <div className="container">
-      {isModalOpen && selectedMentor && (
-        <MentorModal
-          mentor={selectedMentor}
-          onClose={() => setIsModalOpen(false)}
-        />
-      )}
-
-      <Sidebar />
-      <div className={styles.home}>
+    <Layout>
+      <>
         <h2>Главная</h2>
         <div className={styles.featureMentors}>
           <h3 className={styles.sectionTitle}>Рекомендуемые менторы</h3>
@@ -113,8 +106,15 @@ function StudentHome(props) {
             </p>
           )}
         </div>
-      </div>
-    </div>
+      </>
+
+      {isModalOpen && selectedMentor && (
+        <MentorModal
+          mentor={selectedMentor}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
+    </Layout>
   );
 }
 
