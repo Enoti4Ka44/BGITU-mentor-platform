@@ -14,7 +14,7 @@ function AllArticles() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await articlesAPI.getAllArticles;
+        const data = await articlesAPI.getAllArticles();
         setAllArticles(data);
       } catch (error) {
         console.log("Ошибка", error);
@@ -22,6 +22,8 @@ function AllArticles() {
     };
     fetchData();
   }, []);
+
+  console.log(allArticles);
 
   const handleCardClick = async (articleId) => {
     try {
@@ -42,18 +44,21 @@ function AllArticles() {
           onClose={() => setIsModalOpen(false)}
         />
       )}
-      <h2>Все статьи</h2>
 
+      <h2>Все статьи</h2>
       <div className={styles.articlesCard}>
-        {/* {allArticles.map((card) => (
-            <ArticleCard
-              //   id={card.id}
-              title={card.data.title}
-              content={card.data.content}
-              //   key={card.id}
-              onClick={handleCardClick}
-            />
-          ))} */}
+        {allArticles.map((card) => (
+          <ArticleCard
+            id={card.id}
+            imgUrl={card.imageUrl}
+            title={card.title}
+            content={card.content}
+            speciality={card.specialityName}
+            rank={card.rank}
+            key={card.id}
+            onClick={handleCardClick}
+          />
+        ))}
       </div>
     </Layout>
   );

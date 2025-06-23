@@ -3,13 +3,13 @@ import { authHeader } from "./authHeader"
 
 export const voteAPI = {
     postMentorVote: async (id, upvote) => {
-        const response = await fetch(`${BASE_URL}/api/mentor/mentors/${id}/vote`, {
+        const response = await fetch(`${BASE_URL}/api/mentor/mentors/${id}/vote?upvote=${upvote}`, {
             method: "POST",
             headers: {
                 ...authHeader(),
                 'Content-Type' : "application/json"
             },
-            body: JSON.stringify({id, upvote})
+            body: JSON.stringify({id})
         })
         return handleResponse(response)
     },

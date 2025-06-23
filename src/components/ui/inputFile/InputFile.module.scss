@@ -1,0 +1,47 @@
+
+@import "../../../assets/styles/variables.scss";
+
+
+.fileWrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 5px;
+
+  .fileButton {
+    background-color: $green;
+    border: none;
+    border-radius: 8px;
+    font-size: 22px;
+    font-weight: 500;
+    padding: 15px 30px;
+  
+    cursor: pointer;
+    transition: background-color 0.2s;
+  
+    &:hover {
+      background-color: lighten($green, 5%);
+    }
+  
+    &:focus {
+      outline: 2px solid $green-dark;
+    }
+  }
+
+
+  .fileName {
+    font-size: 22px;
+    font-family: $font-montserrat;
+    color: $grey;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .fileHidden {
+    display: none;
+  }
+}
+
+
+

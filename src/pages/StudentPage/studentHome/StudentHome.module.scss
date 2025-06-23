@@ -1,20 +1,17 @@
 @import "../../../assets/styles/variables.scss";
 
-.featureMentors {
+.featureMentors, .myMentor, .popularArticles {
     margin-top: 40px;
-
-    .mentorsCards {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 70px;
-    }
 }
 
-.myMentor {
-    margin-top: 40px;
+.mentorsCards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 70px;
 }
 
 
 .sectionTitle {
     margin-bottom: 20px;
 }
+

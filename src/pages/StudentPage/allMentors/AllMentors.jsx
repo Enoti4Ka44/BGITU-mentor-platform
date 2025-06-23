@@ -54,6 +54,7 @@ function AllMentors() {
             speciality={card.speciality}
             rank={card.rank}
             key={card.id}
+            avatarUrl={card.avatarUrl}
             onClick={handleCardClick}
           />
         ))}

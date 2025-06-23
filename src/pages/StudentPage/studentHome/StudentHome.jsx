@@ -53,6 +53,8 @@ function StudentHome(props) {
     }
   };
 
+  console.log(popularArticles, "text");
+
   return (
     <Layout>
       <>
@@ -60,7 +62,7 @@ function StudentHome(props) {
         <div className={styles.featureMentors}>
           <h3 className={styles.sectionTitle}>Рекомендуемые менторы</h3>
           <div className={styles.mentorsCards}>
-            {popularMentors ? (
+            {popularMentors > 0 ? (
               popularMentors.map((card) => (
                 <MentorCard
                   id={card.id}
@@ -73,7 +75,7 @@ function StudentHome(props) {
                 />
               ))
             ) : (
-              <p style={{ fontWeight: "700", fontSize: "32px" }}>
+              <p style={{ fontWeight: "500", fontSize: "28px" }}>
                 Рекомендуемые менторы не найдены
               </p>
             )}
@@ -98,11 +100,22 @@ function StudentHome(props) {
 
         <div className={styles.popularArticles}>
           <h3 className={styles.sectionTitle}>Популярные статьи</h3>
-          {popularArticles ? (
-            <ArticleCard />
+          {popularArticles > 0 ? (
+            popularArticles.map((card) => (
+              <ArticleCard
+                id={card.id}
+                img={card.imageUrl}
+                title={card.title}
+                content={card.content}
+                speciality={card.specialityName}
+                rank={card.rank}
+                key={card.id}
+                onClick={handleCardClick}
+              />
+            ))
           ) : (
-            <p style={{ fontWeight: "700", fontSize: "32px" }}>
-              Рекомендуемые менторы не найдены
+            <p style={{ fontWeight: "500", fontSize: "28px" }}>
+              Рекомендуемые статьи не найдены
             </p>
           )}
         </div>

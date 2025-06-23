@@ -1,0 +1,25 @@
+@import "../../../assets/styles/variables.scss";
+
+.imageWrapper {
+    width: inherit;
+    height: inherit;
+    background-color: $green-light;
+    border: 2px $grey-light solid;
+    border-radius: inherit;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    .imagePlug {
+        width: 60%;
+    }
+
+    .userAvatar {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}

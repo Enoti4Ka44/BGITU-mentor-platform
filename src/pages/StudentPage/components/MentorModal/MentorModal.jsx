@@ -7,8 +7,11 @@ import TelegramIcon from "../../../../assets/images/icons/telegram-icon.png";
 import { mentorshipAPI } from "../../../../services";
 import { voteAPI } from "../../../../services";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 function MentorModal({ mentor, onClose }) {
+  const [hasVoted, setHasVoted] = useState(false);
+  const [vote, setVote] = useState("");
   const name = `${mentor.firstName} ${mentor.lastName}`;
   console.log(mentor);
 
@@ -19,9 +22,11 @@ function MentorModal({ mentor, onClose }) {
         message: "",
       };
       const sentRequest = await mentorshipAPI.postRequest(data);
+      setHasVoted(true);
+      setVote(vote ? "like" : "dis");
       toast.success("Заявка успешно отправлена");
     } catch (error) {
-      toast.error("Ошибка при отправке запроса");
+      toast.error(`${error}`);
       console.error("Ошибка при отправке запроса:", error);
     }
   };
@@ -29,11 +34,11 @@ function MentorModal({ mentor, onClose }) {
   const handleVote = async (upvote) => {
     try {
       const sentVote = await voteAPI.postMentorVote(mentor.id, upvote);
+
       toast.success("Ваш голос учтен");
     } catch (error) {
-      toast.error("Ошибка при голосовании");
+      toast.error(`${error}`);
       console.error("Ошибка при голосовании:", error);
-      console.log(typeof upvote);
     }
   };
 
