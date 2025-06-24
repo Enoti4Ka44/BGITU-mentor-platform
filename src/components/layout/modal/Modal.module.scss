@@ -1,0 +1,43 @@
+@import "../../../assets/styles/variables.scss";
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal {
+    background: white;
+    border-radius: 8px;
+    width: 1200px;
+
+    min-width: 800px;
+    height: 800px;
+    overflow-y: auto;
+    position: relative;
+
+    padding: 60px 40px;
+
+    .closeBtn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 101;
+
+        border: 0;
+        cursor: pointer;
+
+    }
+}
+
+
+

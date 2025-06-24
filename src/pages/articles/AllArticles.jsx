@@ -3,6 +3,7 @@ import styles from "./AllArticles.module.scss";
 import { toast } from "react-toastify";
 import Layout from "../../components/layout/Layout";
 import ArticleCard from "../../components/layout/articleCard/ArticleCard";
+import ArticleModal from "./components/articleModal/ArticleModal";
 import Sidebar from "../../components/layout/sidebar/Sidebar";
 import { useEffect, useState } from "react";
 
@@ -38,9 +39,9 @@ function AllArticles() {
 
   return (
     <Layout>
-      {isModalOpen && selectedMentor && (
-        <MentorModal
-          mentor={selectedMentor}
+      {isModalOpen && selectedArticle && (
+        <ArticleModal
+          article={selectedArticle}
           onClose={() => setIsModalOpen(false)}
         />
       )}

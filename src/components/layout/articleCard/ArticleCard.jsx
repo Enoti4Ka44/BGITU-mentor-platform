@@ -2,12 +2,14 @@ import styles from "./ArticleCard.module.scss";
 import ImageWrapper from "../../ui/imageWrapper/ImageWrapper";
 import StarIcon from "../../../assets/images/icons/star-icon.png";
 
-function ArticleCard(props) {
+function ArticleCard({ onClick, ...props }) {
   return (
     <div className={styles.card}>
       <div className={styles.cardContent}>
         <div className={styles.cardTop}>
-          <a className={styles.cardTitle}>{props.title}</a>
+          <a className={styles.cardTitle} onClick={() => onClick(props.id)}>
+            {props.title}
+          </a>
           <p className={styles.cardDescription}> {props.content}</p>
         </div>
         <div className={styles.cardBottom}>

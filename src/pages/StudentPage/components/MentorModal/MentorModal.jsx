@@ -1,5 +1,6 @@
 import styles from "./MentorModal.module.scss";
 import Button from "../../../../components/ui/button/Button";
+import Modal from "../../../../components/layout/modal/Modal";
 import Vote from "../../../../components/ui/vote/Vote";
 import CloseIcon from "../../../../assets/images/icons/close-icon.svg";
 import VkIcon from "../../../../assets/images/icons/vk-icon.png";

@@ -7,17 +7,18 @@ import ImageWrapper from "../../../components/ui/imageWrapper/ImageWrapper";
 import Button from "../../../components/ui/button/Button";
 import { useEffect, useState } from "react";
 import { studentAPI } from "../../../services";
+import { toast } from "react-toastify";
 
 function StudentProfile(props) {
   const [studentData, setStudentData] = useState([]);
-  const [avatarFile, setAvatarUrl] = useState(null);
-  const [avatarUrl, setAvatarFile] = useState("");
+  const [avatarFile, setAvatarFile] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    telegramUrl: "",
-    vkUrl: "",
     description: "",
+    vkUrl: "",
+    telegramUrl: "",
   });
   useEffect(() => {
     const fetchData = async () => {
@@ -49,25 +50,47 @@ function StudentProfile(props) {
   };
 
   const handleFileChange = (e) => {
-    const file = e.target.file[0];
+    const file = e.target.files[0];
     if (file) {
-      setAvatar(file);
+      setAvatarFile(file);
     }
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  //   try {
-  //     const data =
-  //   }
-  // }
+    try {
+      const formData = new FormData();
+
+      formData.append(
+        "card",
+        JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          description: formData.description,
+          vkUrl: formData.vkUrl,
+          telegramUrl: formData.telegramUrl,
+        })
+      );
+
+      if (avatarFile) {
+        formData.append("avatar", avatarFile);
+      }
+
+      const response = await studentAPI.patchStudentSummary(formData);
+      toast.success("Данные успешно обновлены");
+      console.log("Данные успешно обновлены:", response);
+    } catch (error) {
+      console.error("Ошибка при обновлении:", error);
+      toast.error("Ошибка при обновлении");
+    }
+  };
 
   return (
     <Layout>
       <>
         <h2>Профиль</h2>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.formContainer}>
             <div className={styles.inputContainer}>
               <Input
@@ -78,6 +101,7 @@ function StudentProfile(props) {
                 required={true}
                 label="Имя"
                 placeholder="Имя"
+                onChange={handleInputChange}
               />
               <Input
                 value={formData.lastName}
@@ -87,6 +111,7 @@ function StudentProfile(props) {
                 required={true}
                 label="Фамилия"
                 placeholder="Фамилия"
+                onChange={handleInputChange}
               />
             </div>
 
@@ -98,6 +123,7 @@ function StudentProfile(props) {
                 type="text"
                 label="Телеграм"
                 placeholder="Телеграм тег"
+                onChange={handleInputChange}
               />
               <Input
                 value={formData.vkUrl}
@@ -106,6 +132,7 @@ function StudentProfile(props) {
                 type="text"
                 label="Вконтакте"
                 placeholder="Профиль ВК"
+                onChange={handleInputChange}
               />
             </div>
 
@@ -122,9 +149,14 @@ function StudentProfile(props) {
               type="text"
               label="Описание"
               placeholder="Введите текст"
+              onChange={handleInputChange}
             />
 
-            <InputFile label="Ваше фото" id="file-upload" />
+            <InputFile
+              label="Ваше фото"
+              id="file-upload"
+              onChange={handleFileChange}
+            />
           </div>
 
           <div className={styles.btnWrapper}>

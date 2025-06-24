@@ -13,6 +13,18 @@ export const voteAPI = {
         })
         return handleResponse(response)
     },
+
+    postArticleVote: async (id, upvote) => {
+        const response = await fetch(`${BASE_URL}/api/article/${id}/vote?like=${upvote}`, {
+            method: "POST",
+            headers: {
+                ...authHeader(),
+                'Content-Type' : "application/json"
+            },
+            body: JSON.stringify({id})
+        })
+        return handleResponse(response)
+    },
 }
 
 const handleResponse = async (response) => {

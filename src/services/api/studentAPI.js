@@ -11,12 +11,9 @@ export const studentAPI = {
     },
 
     patchStudentSummary: async (data) => {
-        const response = await fetch(`${BASE_URL}/api/mentorship/request`, {
+        const response = await fetch(`${BASE_URL}/api/student/summary`, {
             method: "PATCH",
-            headers: {
-                ...authHeader(),
-                'Content-Type' : 'multipart/form-data'
-            },
+            headers: authHeader(),
             body: data
         }) 
 

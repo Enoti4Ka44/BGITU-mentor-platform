@@ -53,8 +53,6 @@ function StudentHome(props) {
     }
   };
 
-  console.log(popularArticles, "text");
-
   return (
     <Layout>
       <>
