@@ -1,33 +1,38 @@
 import styles from "./ArticleModal.module.scss";
-import Button from "../../../../components/ui/button/Button";
 import Vote from "../../../../components/ui/vote/Vote";
+import ImageWrapper from "../../../../components/ui/imageWrapper/ImageWrapper";
 import { voteAPI } from "../../../../services";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import Modal from "../../../../components/layout/modal/Modal";
 
 function ArticleModal({ article, onClose }) {
-  const [hasVoted, setHasVoted] = useState(false);
-  const [vote, setVote] = useState("");
+  const [activeVote, setActiveVote] = useState(null);
+  const [rank, setRank] = useState(article.rank);
 
   const handleVote = async (upvote) => {
     try {
-      const sentVote = await voteAPI.postArticleVote(article.id, upvote);
-      toast.success("Ваш голос учтен");
+      const response = await voteAPI.postArticleVote(article.id, upvote);
+      toast.success("Ваш голос учтён");
+
+      return response.rank;
     } catch (error) {
-      toast.error(`${error}`);
-      console.error("Ошибка при голосовании:", error);
+      console.error(error);
     }
   };
+
+  console.log(article.imageUrl);
 
   return (
     <Modal onClose={onClose}>
       <div className={styles.modalArticle}>
         <div className={styles.modalContent}>
           <h3 className={styles.modalName}>{article.title}</h3>
-          <div className={styles.imgWrapper}>
-            {article.imageUrl && <img src={article.imageUrl} alt="" />}
-          </div>
+          {article.imageUrl && (
+            <div className={styles.imgWrapper}>
+              <ImageWrapper imageUrl={article.imageUrl} />
+            </div>
+          )}
           <p className={styles.modalDescription}>{article.content}</p>
         </div>
 
@@ -36,9 +41,7 @@ function ArticleModal({ article, onClose }) {
             {article.authorFullName} <span>{article.specialityName}</span>
           </p>
           <div className={styles.vote}>
-            <Vote onClick={handleVote} id={article.id}>
-              {article.rank}
-            </Vote>
+            <Vote onClick={handleVote} value={rank} setValue={setRank} />
           </div>
         </div>
       </div>

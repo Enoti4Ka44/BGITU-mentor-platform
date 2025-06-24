@@ -3,15 +3,22 @@
 .modalArticle {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+    height: 100%;;
 
     .imgWrapper {
+        width: 100%;
+        height: auto;
 
+        border-radius: 10px;
+        margin: 20px 0;
     }
 
     .modalDescription {
-        font-size: 24px;
+        font-size: 28px;
+    }
+
+    .modalContent {
+
     }
 
     .modalFooter {
@@ -19,8 +26,10 @@
         justify-content: space-between;
         align-items: center;
 
+        padding: 40px 0;
+
         .modalArticleInfo {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 500;
 
             span {

@@ -60,29 +60,32 @@ function StudentProfile(props) {
     e.preventDefault();
 
     try {
-      const formData = new FormData();
+      const dataToSend = new FormData();
 
-      formData.append(
-        "card",
-        JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          description: formData.description,
-          vkUrl: formData.vkUrl,
-          telegramUrl: formData.telegramUrl,
-        })
+      const cardBlob = new Blob(
+        [
+          JSON.stringify({
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            description: formData.description,
+            vkUrl: formData.vkUrl,
+            telegramUrl: formData.telegramUrl,
+          }),
+        ],
+        { type: "application/json" }
       );
 
+      dataToSend.append("card", cardBlob);
+
       if (avatarFile) {
-        formData.append("avatar", avatarFile);
+        dataToSend.append("avatar", avatarFile);
       }
 
-      const response = await studentAPI.patchStudentSummary(formData);
+      const response = await studentAPI.patchStudentSummary(dataToSend);
       toast.success("Данные успешно обновлены");
       console.log("Данные успешно обновлены:", response);
     } catch (error) {
       console.error("Ошибка при обновлении:", error);
-      toast.error("Ошибка при обновлении");
     }
   };
 

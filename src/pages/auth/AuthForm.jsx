@@ -2,7 +2,7 @@ import { useState } from "react";
 import Input from "../../components/ui/input/Input";
 import Button from "../../components/ui/button/Button";
 import Logo from "../../components/ui/logo/Logo";
-import Select from "../../components/ui/select/Select";
+import InputSelect from "../../components/ui/inputSelect/InputSelect";
 import styles from "./AuthForm.module.scss";
 import { useNavigate } from "react-router";
 import navigateTo from "../../services/navigateTo";
@@ -83,7 +83,7 @@ const AuthForm = ({ isLoading, isLogin, onSubmit }) => {
                   onChange={handleChange}
                 />
 
-                <Select
+                <InputSelect
                   value={authData.role}
                   options={roleOptions}
                   name="role"

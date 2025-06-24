@@ -5,10 +5,12 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Welcome from "./pages/welcome/Welcome";
 import StudentHome from "./pages/StudentPage/studentHome/StudentHome";
-import MentorHome from "./pages/mentorPage/MentorHome";
+import MentorHome from "./pages/mentorPage/mentorHome/MentorHome";
+import MentorProfile from "./pages/mentorPage/mentorProfile/MentorProfile";
 import AllMentors from "./pages/StudentPage/allMentors/AllMentors";
 import AllArticles from "./pages/articles/AllArticles";
 import StudentProfile from "./pages/StudentPage/studentProfile/studentProfile";
+import PostArticle from "./pages/mentorPage/postArticle/PostArticle";
 function App() {
   return (
     <>
@@ -24,6 +26,23 @@ function App() {
             element={
               <ProtectedRoute roles={["ROLE_MENTOR"]}>
                 <MentorHome />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/mentor-profile"
+            element={
+              <ProtectedRoute roles={["ROLE_MENTOR"]}>
+                <MentorProfile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/mentor-post-article"
+            element={
+              <ProtectedRoute roles={["ROLE_MENTOR"]}>
+                <PostArticle />
               </ProtectedRoute>
             }
           />

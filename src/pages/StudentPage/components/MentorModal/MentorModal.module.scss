@@ -1,113 +1,77 @@
 @import "../../../../assets/styles/variables.scss";
 
-.modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
 
-    background: rgba(0, 0, 0, 0.5);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
+.btnWrapper {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
 }
 
-.modal {
+.vote {
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+}
+
+.modalMentor {
     display: flex;
     justify-content: space-between;
-    gap: 50px;
+}
 
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 1200px;
+.modalContent {
+    width: calc(100% - 400px);
 
-    min-width: 800px;
-    height: 800px;
-    overflow-y: auto;
-    position: relative;
-
-    padding: 60px 40px;
-
-    .closeBtn {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        z-index: 101;
-
-        border: 0;
-        cursor: pointer;
-
+    span {
+        font-size: 28px;
+        font-weight: 600;
+        color: $black;
     }
 
-    .btnWrapper {
-        position: absolute;
-        bottom: 50px;
-        right: 50px;
-    }
+    .modalName {
+        display: flex;
+        align-items: center;
+        gap: 30px;
 
-    .vote {
-        position: absolute;
-        left: 50px;
-        bottom: 50px;
-    }
+        a {
+            cursor: pointer;
+            margin-right: 10px;
 
-    .modalContent {
-        width: calc(100% - 400px);
-
-        span {
-            font-size: 28px;
-            font-weight: 600;
-            color: $black;
-        }
-
-        .modalName {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-
-            a {
-                cursor: pointer;
-                margin-right: 10px;
-
-                img {
-                    width: 30px;
-                    height: 30px;
-                }
+            img {
+                width: 30px;
+                height: 30px;
             }
         }
-
-        .modalSpeciality {
-            font-size: 26px;
-            font-weight: 500;
-
-            margin-top: 10px;
-        }
-        
-        .modalDescription, .modalRank {
-            font-size: 24px;
-            margin: 30px 0;
-        }
     }
 
-    .imgWrapper {
-        width: 400px;
-        height: 500px;
+    .modalSpeciality {
+        font-size: 26px;
+        font-weight: 500;
 
-        .plug {
-            width: 100%;
-            height: 100%;
+        margin-top: 10px;
+    }
     
-            border-radius: 10px;
-            background-color: $grey;
-        }
+    .modalDescription, .modalRank {
+        font-size: 24px;
+        margin: 30px 0;
     }
-
-
 }
+
+.imgWrapper {
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+
+    .plug {
+        width: 100%;
+        height: 100%;
+
+        border-radius: 10px;
+        background-color: $grey;
+    }
+}
+
+
+
 
 
 

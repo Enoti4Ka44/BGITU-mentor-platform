@@ -4,14 +4,13 @@ import { useState, useEffect } from "react";
 import { authHeader } from "../../../services/api/authHeader";
 import { BASE_URL } from "../../../config";
 
-function ImageWrapper({ imgUrl }) {
+function ImageWrapper({ imageUrl }) {
   const [imageSrc, setImageSrc] = useState("");
 
   useEffect(() => {
-    if (!imgUrl) return;
+    if (!imageUrl) return;
 
-    // Создаем URL с токеном авторизации
-    const url = new URL(`${BASE_URL}${imgUrl}`);
+    const url = new URL(`${BASE_URL}${imageUrl}`);
     const headers = authHeader();
 
     if (headers.Authorization) {
@@ -22,11 +21,11 @@ function ImageWrapper({ imgUrl }) {
     }
 
     setImageSrc(url.toString());
-  }, [imgUrl]);
+  }, [imageUrl]);
 
   return (
     <div className={styles.imageWrapper}>
-      {!imgUrl ? (
+      {!imageUrl ? (
         <img
           className={styles.imagePlug}
           src={ProfileHolder}
@@ -36,7 +35,7 @@ function ImageWrapper({ imgUrl }) {
         <img
           className={styles.userAvatar}
           src={imageSrc}
-          alt="user avatar"
+          alt="image"
           crossOrigin="anonymous"
         />
       )}

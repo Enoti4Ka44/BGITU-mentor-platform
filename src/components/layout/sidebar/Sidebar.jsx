@@ -10,9 +10,9 @@ import LogoutIcon from "../../../assets/images/icons/logout-icon.svg";
 import SettingsIcon from "../../../assets/images/icons/settings-icon.svg";
 import ProfileIcon from "../../../assets/images/icons/profile-icon.svg";
 import MentorsIcon from "../../../assets/images/icons/mentors-icon.svg";
+import WriteArticleIcon from "../../../assets/images/icons/write-icon.png";
 
 function Sidebar() {
-  const [active, setActive] = useState(false);
   const navigation = navigateTo();
   const role = localStorage.getItem("role");
 
@@ -48,6 +48,7 @@ function Sidebar() {
             >
               Главная
             </SidebarButton>
+
             {role === "ROLE_STUDENT" ? (
               <SidebarButton
                 icon={<img src={MentorsIcon} />}
@@ -62,6 +63,18 @@ function Sidebar() {
             <SidebarButton icon={<img src={ArticlesIcon} />} route="articles">
               Статьи
             </SidebarButton>
+
+            {role === "ROLE_MENTOR" ? (
+              <SidebarButton
+                icon={<img src={WriteArticleIcon} />}
+                route="mentor-post-article"
+              >
+                Написать статью
+              </SidebarButton>
+            ) : (
+              ""
+            )}
+
             <SidebarButton
               icon={<img src={ProfileIcon} />}
               route={

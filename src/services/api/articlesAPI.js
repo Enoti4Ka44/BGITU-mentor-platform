@@ -1,5 +1,6 @@
 import { BASE_URL } from "../../config"
 import { authHeader } from "./authHeader"
+import { toast } from "react-toastify"
 
 export const articlesAPI = {
     getAllArticles: async () => {
@@ -26,10 +27,7 @@ export const articlesAPI = {
     deleteArticleById: async (id) => {
         const response = await fetch(`${BASE_URL}/api/article/${id}`, {
             method: "DELETE",
-            headers: {
-                ...authHeader(),
-                'Content-Type' : "application/json"
-            },
+            headers: authHeader(),
             body: JSON.stringify(id)
         })
         return handleResponse(response)
@@ -38,11 +36,8 @@ export const articlesAPI = {
     postArticle: async (data) => {
         const response = await fetch(`${BASE_URL}/api/article`, {
             method: "POST",
-            headers: {
-                ...authHeader(),
-                'Content-Type' : "application/json"
-            },
-            body: JSON.stringify(data)
+            headers: authHeader(),
+            body: data
         })
         return handleResponse(response)
     }
@@ -52,6 +47,7 @@ const handleResponse = async (response) => {
   if(!response.ok) {
     const errorData = await response.json().catch(() => ({}));
     console.error('Server error:', errorData);
+    toast.error(`${errorData.message}`)
     throw new Error(errorData.message || response.statusText);
   }
   return response.json();

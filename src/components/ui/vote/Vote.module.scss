@@ -1,36 +1,32 @@
 @import "../../../assets/styles/variables.scss";
 
 .vote {
-    font-size: 28px;
-    font-weight: 600;
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  gap: 20px;
+  align-items: center;
 
-    display: flex;
-    gap: 20px;
-    align-items: center;
+  .thumbUp,
+  .thumbDown {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
 
+  .thumbUp:hover path {
+    fill: $green-dark;
+  }
 
+  .thumbDown:hover path {
+    fill: $red;
+  }
 
-    .thumbUp, .thumbDown {
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
+  .thumbUp.active path {
+    fill: $green-dark;
+  }
 
-        path {
-        fill: $black; // Серый по умолчанию
-        transition: fill 0.3s ease;
-        }
-
-    }
-
-    .thumbUp:hover {
-      path {
-        fill: $green-dark; // Зеленый при наведении
-      }
-    }
-
-    .thumbDown:hover {
-      path {
-        fill: $red; // Зеленый при наведении
-      }
-    }
+  .thumbDown.active path {
+    fill: $red;
+  }
 }

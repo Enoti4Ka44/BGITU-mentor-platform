@@ -10,6 +10,12 @@
     gap: 70px;
 }
 
+.articleCards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 
 .sectionTitle {
     margin-bottom: 20px;

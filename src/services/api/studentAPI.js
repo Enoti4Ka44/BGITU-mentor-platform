@@ -1,5 +1,6 @@
 import { BASE_URL } from "../../config"
 import { authHeader } from "./authHeader"
+import { toast } from "react-toastify"
 
 export const studentAPI = {
     getStudentSummary: async () => {
@@ -10,6 +11,14 @@ export const studentAPI = {
         return handleResponse(response)
     },
 
+    getStudentMentor: async () => {
+        const response = await fetch(`${BASE_URL}/api/student/mentor`, {
+            headers: authHeader()
+        }) 
+
+        return handleResponse(response)
+    },
+    
     patchStudentSummary: async (data) => {
         const response = await fetch(`${BASE_URL}/api/student/summary`, {
             method: "PATCH",
@@ -19,12 +28,15 @@ export const studentAPI = {
 
         return handleResponse(response)
     },
+
 }
 
-const handleResponse = (response) => {
-    if (!response.ok) {
-        throw new Error(response.statusText)
-    }
-
-    return response.json()
+const handleResponse = async (response) => {
+  if(!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    console.error('Server error:', errorData);
+    toast.error(`${errorData.message}`)
+    throw new Error(errorData.message || response.statusText);
+  }
+  return response.json();
 }

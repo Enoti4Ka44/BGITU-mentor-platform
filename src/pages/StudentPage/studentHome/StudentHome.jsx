@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
 import { mentorAPI } from "../../../services/api/mentorAPI";
 import { articlesAPI } from "../../../services/api/articlesAPI";
+import { studentAPI } from "../../../services/api/studentAPI";
 import styles from "./StudentHome.module.scss";
 import Layout from "../../../components/layout/Layout";
-import Sidebar from "../../../components/layout/sidebar/Sidebar";
 import MentorCard from "../components/mentorCard/MentorCard";
 import MyMentorCard from "../components/myMentorCard/MyMentorCard";
 import MentorModal from "../components/MentorModal/MentorModal";
+import ArticleModal from "../../articles/components/articleModal/ArticleModal";
 import ArticleCard from "../../../components/layout/articleCard/ArticleCard";
 import { toast } from "react-toastify";
 
-function StudentHome(props) {
+function StudentHome() {
   const [popularMentors, setPopularMentors] = useState([]);
   const [popularArticles, setPopularArticles] = useState([]);
+  const [studentMentor, setStudentMentor] = useState([]);
   const [selectedMentor, setSelectedMentor] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedArticle, setSelectedArticle] = useState(null);
+  const [isMentorModalOpen, setIsMentorModalOpen] = useState(false);
+  const [isArticleModalOpen, setIsArticleModalOpen] = useState(false);
 
   const fetchMentors = async () => {
     try {
@@ -22,7 +26,6 @@ function StudentHome(props) {
       setPopularMentors(data);
     } catch (error) {
       console.error("Ошибка загрузки менторов", error);
-      toast.error("Не удалось загрузить менторов");
     }
   };
 
@@ -32,21 +35,45 @@ function StudentHome(props) {
       setPopularArticles(data);
     } catch (error) {
       console.error("Ошибка загрузки статей", error);
-      toast.error("Не удалось загрузить статьи");
     }
   };
+
+  const fetchStudentMentor = async () => {
+    try {
+      const data = await studentAPI.getStudentMentor();
+      setStudentMentor(data);
+    } catch (error) {
+      console.error("Не удалось загрузить информацию о вашем менторе", error);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
-      await Promise.all([fetchMentors(), fetchArticles()]);
+      await Promise.all([
+        fetchMentors(),
+        fetchStudentMentor(),
+        fetchArticles(),
+      ]);
     };
     fetchData();
   }, []);
 
-  const handleCardClick = async (mentorId) => {
+  const handleMentorCardClick = async (mentorId) => {
     try {
       const fullMentorData = await mentorAPI.getMentorById(mentorId);
       setSelectedMentor(fullMentorData);
-      setIsModalOpen(true);
+      setIsMentorModalOpen(true);
+    } catch (error) {
+      console.error("Ошибка загрузки данных", error);
+      toast.error("Ошибка загрузки данных");
+    }
+  };
+
+  const handleArticleCardClick = async (articleId) => {
+    try {
+      const fullArticleData = await articlesAPI.getArticleById(articleId);
+      setSelectedArticle(fullArticleData);
+      setIsArticleModalOpen(true);
     } catch (error) {
       console.error("Ошибка загрузки данных", error);
       toast.error("Ошибка загрузки данных");
@@ -60,16 +87,17 @@ function StudentHome(props) {
         <div className={styles.featureMentors}>
           <h3 className={styles.sectionTitle}>Рекомендуемые менторы</h3>
           <div className={styles.mentorsCards}>
-            {popularMentors > 0 ? (
+            {popularMentors.length > 0 ? (
               popularMentors.map((card) => (
                 <MentorCard
                   id={card.id}
+                  avatarUrl={card.avatarUrl}
                   firstName={card.firstName}
                   lastName={card.lastName}
                   speciality={card.speciality}
                   rank={card.rank}
                   key={card.id}
-                  onClick={handleCardClick}
+                  onClick={handleMentorCardClick}
                 />
               ))
             ) : (
@@ -82,47 +110,62 @@ function StudentHome(props) {
 
         <div className={styles.myMentor}>
           <h3 className={styles.sectionTitle}>Мой ментор</h3>
-          <MyMentorCard
-            firstName="Евангелион"
-            lastName="Александр"
-            speciality="Python Backen Developer"
-            description="Lorem ipsum dolor sit amet, 
+          {studentMentor.length > 0 ? (
+            <MyMentorCard
+              firstName="Евангелион"
+              lastName="Александр"
+              speciality="Python Backen Developer"
+              description="Lorem ipsum dolor sit amet, 
             consectetur adipiscing elit, sed do eiusmod 
             tempor incididunt ut labore et dolore magna 
             aliqua. Ut enim ad minim veniam, quis nostrud 
             exercitation ullamco laboris "
-            vk="#"
-            telegram="#"
-          />
+              vk="#"
+              telegram="#"
+            />
+          ) : (
+            <p style={{ fontWeight: "500", fontSize: "28px" }}>
+              Ваш ментор не найден
+            </p>
+          )}
         </div>
 
         <div className={styles.popularArticles}>
           <h3 className={styles.sectionTitle}>Популярные статьи</h3>
-          {popularArticles > 0 ? (
-            popularArticles.map((card) => (
-              <ArticleCard
-                id={card.id}
-                img={card.imageUrl}
-                title={card.title}
-                content={card.content}
-                speciality={card.specialityName}
-                rank={card.rank}
-                key={card.id}
-                onClick={handleCardClick}
-              />
-            ))
-          ) : (
-            <p style={{ fontWeight: "500", fontSize: "28px" }}>
-              Рекомендуемые статьи не найдены
-            </p>
-          )}
+          <div className={styles.articleCards}>
+            {popularArticles.length > 0 ? (
+              popularArticles.map((card) => (
+                <ArticleCard
+                  id={card.id}
+                  img={card.imageUrl}
+                  title={card.title}
+                  content={card.content}
+                  speciality={card.specialityName}
+                  rank={card.rank}
+                  key={card.id}
+                  onClick={handleArticleCardClick}
+                />
+              ))
+            ) : (
+              <p style={{ fontWeight: "500", fontSize: "28px" }}>
+                Рекомендуемые статьи не найдены
+              </p>
+            )}
+          </div>
         </div>
       </>
 
-      {isModalOpen && selectedMentor && (
+      {isMentorModalOpen && selectedMentor && (
         <MentorModal
           mentor={selectedMentor}
-          onClose={() => setIsModalOpen(false)}
+          onClose={() => setIsMentorModalOpen(false)}
+        />
+      )}
+
+      {isArticleModalOpen && selectedArticle && (
+        <ArticleModal
+          article={selectedArticle}
+          onClose={() => setIsArticleModalOpen(false)}
         />
       )}
     </Layout>

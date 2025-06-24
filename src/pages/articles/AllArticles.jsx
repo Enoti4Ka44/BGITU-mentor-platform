@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import Layout from "../../components/layout/Layout";
 import ArticleCard from "../../components/layout/articleCard/ArticleCard";
 import ArticleModal from "./components/articleModal/ArticleModal";
-import Sidebar from "../../components/layout/sidebar/Sidebar";
 import { useEffect, useState } from "react";
 
 function AllArticles() {
@@ -23,8 +22,6 @@ function AllArticles() {
     };
     fetchData();
   }, []);
-
-  console.log(allArticles);
 
   const handleCardClick = async (articleId) => {
     try {
@@ -51,7 +48,7 @@ function AllArticles() {
         {allArticles.map((card) => (
           <ArticleCard
             id={card.id}
-            imgUrl={card.imageUrl}
+            imageUrl={card.imageUrl}
             title={card.title}
             content={card.content}
             speciality={card.specialityName}

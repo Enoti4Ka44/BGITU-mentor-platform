@@ -1,6 +1,6 @@
-import styles from "./Select.module.scss";
+import styles from "./InputSelect.module.scss";
 
-function Select(props) {
+function InputSelect(props) {
   return (
     <div>
       <label className={styles.label} htmlFor={props.name}>
@@ -13,6 +13,7 @@ function Select(props) {
           value={props.value}
           id={props.name}
           onChange={props.onChange}
+          required={props.required}
         >
           {props.placeholder && (
             <option value="" disabled>
@@ -30,4 +31,4 @@ function Select(props) {
   );
 }
 
-export default Select;
+export default InputSelect;
