@@ -3,7 +3,6 @@ import ImageWrapper from "../../ui/imageWrapper/ImageWrapper";
 import StarIcon from "../../../assets/images/icons/star-icon.png";
 
 function ArticleCard({ onClick, ...props }) {
-  console.log(props.imageUrl);
   return (
     <div className={styles.card}>
       <div className={styles.cardContent}>

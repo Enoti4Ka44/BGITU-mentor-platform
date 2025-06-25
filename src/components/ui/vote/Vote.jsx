@@ -3,16 +3,13 @@ import ThumbUpIcon from "../../../assets/images/icons/thumbUp-icon.svg?react";
 import ThumbDownIcon from "../../../assets/images/icons/thumbDown-icon.svg?react";
 import { useState } from "react";
 
-function Vote({ children, onClick, value, setValue }) {
+function Vote({ children, onClick }) {
   const [userVote, setUserVote] = useState(null);
 
   const handleVote = async (upvote) => {
     try {
       const newRank = await onClick(upvote);
-      if (typeof newRank === "number" && setValue) {
-        setValue(newRank);
-        setUserVote(upvote ? "up" : "down");
-      }
+      setUserVote(upvote ? "up" : "down");
     } catch (e) {
       console.error(e);
     }
@@ -26,7 +23,7 @@ function Vote({ children, onClick, value, setValue }) {
           userVote === "up" ? styles.active : ""
         }`}
       />
-      {value}
+      {children}
       <ThumbDownIcon
         onClick={() => handleVote(false)}
         className={`${styles.thumbDown} ${

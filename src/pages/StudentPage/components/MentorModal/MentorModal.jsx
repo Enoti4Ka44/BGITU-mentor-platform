@@ -15,7 +15,7 @@ function MentorModal({ mentor, onClose }) {
   const [rank, setRank] = useState(mentor.rank);
   const name = `${mentor.firstName} ${mentor.lastName}`;
 
-  const handleSubmit = async (data) => {
+  const handleSubmit = async () => {
     try {
       const data = {
         mentorId: mentor.id,
@@ -24,7 +24,6 @@ function MentorModal({ mentor, onClose }) {
       const sentRequest = await mentorshipAPI.postRequest(data);
       toast.success("Заявка успешно отправлена");
     } catch (error) {
-      toast.error(`${error}`);
       console.error("Ошибка при отправке запроса:", error);
     }
   };
@@ -47,10 +46,10 @@ function MentorModal({ mentor, onClose }) {
           <h3 className={styles.modalName}>
             {name}
             <span className={styles.socials}>
-              <a href={mentor.vkUrl}>
+              <a href={mentor.vkUrl} target="_blank">
                 <img src={VkIcon} alt="" />
               </a>
-              <a href={mentor.telegramUrl}>
+              <a href={mentor.telegramUrl} target="_blank">
                 <img src={TelegramIcon} alt="" />
               </a>
             </span>
@@ -67,11 +66,7 @@ function MentorModal({ mentor, onClose }) {
           </p>
         </div>
         <div className={styles.imgWrapper}>
-          {mentor.avatarUrl ? (
-            <ImageWrapper imgUrl={mentor.avatarUrl} />
-          ) : (
-            <div className={styles.plug}></div>
-          )}
+          <ImageWrapper imageUrl={mentor.avatarUrl} />
         </div>
       </div>
 

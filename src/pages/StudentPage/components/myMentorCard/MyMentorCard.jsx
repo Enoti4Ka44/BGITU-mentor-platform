@@ -10,10 +10,10 @@ function MyMentorCard(props) {
         <div className={styles.cardContentTop}>
           <h3>{name}</h3>
           <div className={styles.socials}>
-            <a href={props.vk}>
+            <a href={props.vk} target="_blank">
               <img src={VkIcon} alt="icon of vkontakte" />
             </a>
-            <a href={props.telegram}>
+            <a href={props.telegram} target="_blank">
               <img src={TelegramIcon} alt="icon of telegram" />
             </a>
           </div>

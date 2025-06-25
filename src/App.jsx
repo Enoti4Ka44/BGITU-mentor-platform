@@ -11,6 +11,9 @@ import AllMentors from "./pages/StudentPage/allMentors/AllMentors";
 import AllArticles from "./pages/articles/AllArticles";
 import StudentProfile from "./pages/StudentPage/studentProfile/studentProfile";
 import PostArticle from "./pages/mentorPage/postArticle/PostArticle";
+import MentorRequests from "./pages/mentorPage/mentorRequests/MentorRequests";
+import MentorStudents from "./pages/mentorPage/mentorStudents/MentorStudents";
+
 function App() {
   return (
     <>
@@ -43,6 +46,24 @@ function App() {
             element={
               <ProtectedRoute roles={["ROLE_MENTOR"]}>
                 <PostArticle />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/mentor-pending-requests"
+            element={
+              <ProtectedRoute roles={["ROLE_MENTOR"]}>
+                <MentorRequests />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/mentor-students"
+            element={
+              <ProtectedRoute roles={["ROLE_MENTOR"]}>
+                <MentorStudents />
               </ProtectedRoute>
             }
           />

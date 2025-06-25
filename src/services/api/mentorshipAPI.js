@@ -13,16 +13,22 @@ export const mentorshipAPI = {
     postRequest: async (data) => {
         const response = await fetch(`${BASE_URL}/api/mentorship/request`, {
             method: "POST",
-            headers: authHeader(),
+            headers: {
+                ...authHeader(),
+                'Content-type' : "application/json"
+                },
             body: JSON.stringify(data)
         })
         return handleResponse(response)
     },
 
     postResponse: async (data) => {
-        const response = await fetch(`${BASE_URL}/api/mentorship/response`, {
+        const response = await fetch(`${BASE_URL}/api/mentorship/respond`, {
             method: "POST",
-            headers: authHeader(),
+            headers: {
+                ...authHeader(),
+                'Content-type' : "application/json"
+                },
             body: JSON.stringify(data)
         })
         return handleResponse(response)

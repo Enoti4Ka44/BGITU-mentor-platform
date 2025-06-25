@@ -8,7 +8,7 @@ function MentorCard({ onClick, ...props }) {
   return (
     <div className={styles.card}>
       <div className={styles.imgWrapper} onClick={() => onClick(props.id)}>
-        <ImageWrapper imgUrl={props.avatarUrl} />
+        <ImageWrapper imageUrl={props.avatarUrl} />
       </div>
       <div className={styles.cardContent}>
         <h4>{name}</h4>

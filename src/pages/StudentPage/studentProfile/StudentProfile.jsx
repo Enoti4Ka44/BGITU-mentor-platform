@@ -140,7 +140,7 @@ function StudentProfile(props) {
             </div>
 
             <div className={styles.imageWrapper}>
-              <ImageWrapper imgUrl={avatarUrl} />
+              <ImageWrapper imageUrl={avatarUrl} />
             </div>
           </div>
 

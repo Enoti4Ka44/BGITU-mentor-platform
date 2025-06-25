@@ -17,6 +17,20 @@
             border-radius: 10px;
             overflow: hidden;
         }
+
+        .rank {
+            font-size: 22px;
+            font-weight: 500;
+
+            span {
+                font-weight: 600;
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
     }
 
     .btnWrapper {

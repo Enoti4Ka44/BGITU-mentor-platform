@@ -7,21 +7,16 @@ import { useState } from "react";
 import Modal from "../../../../components/layout/modal/Modal";
 
 function ArticleModal({ article, onClose }) {
-  const [activeVote, setActiveVote] = useState(null);
-  const [rank, setRank] = useState(article.rank);
-
   const handleVote = async (upvote) => {
     try {
       const response = await voteAPI.postArticleVote(article.id, upvote);
       toast.success("Ваш голос учтён");
 
-      return response.rank;
+      return response;
     } catch (error) {
       console.error(error);
     }
   };
-
-  console.log(article.imageUrl);
 
   return (
     <Modal onClose={onClose}>
@@ -41,7 +36,7 @@ function ArticleModal({ article, onClose }) {
             {article.authorFullName} <span>{article.specialityName}</span>
           </p>
           <div className={styles.vote}>
-            <Vote onClick={handleVote} value={rank} setValue={setRank} />
+            <Vote onClick={handleVote}>{article.rank}</Vote>
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@
 
     font-size: 18px;
     font-weight: 600;
+    color: $white;
 
     transition: .2s all ease;
 
@@ -18,16 +19,11 @@
     background-color: $white;
     }
 
-    &--black {
-    color: $white;
-    background-color: $black;
-    }
+    &--black { background-color: $black; }
 
-    &--green {
-        background-color: $green;
-        color: $white;
-    }
+    &--green { background-color: $green; }
 
+    &--red { background-color: $red; }
 
     &:hover {
         transform: translateY(-3px);

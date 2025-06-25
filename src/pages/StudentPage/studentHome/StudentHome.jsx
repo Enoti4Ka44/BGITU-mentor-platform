@@ -112,16 +112,13 @@ function StudentHome() {
           <h3 className={styles.sectionTitle}>Мой ментор</h3>
           {studentMentor.length > 0 ? (
             <MyMentorCard
-              firstName="Евангелион"
-              lastName="Александр"
-              speciality="Python Backen Developer"
-              description="Lorem ipsum dolor sit amet, 
-            consectetur adipiscing elit, sed do eiusmod 
-            tempor incididunt ut labore et dolore magna 
-            aliqua. Ut enim ad minim veniam, quis nostrud 
-            exercitation ullamco laboris "
-              vk="#"
-              telegram="#"
+              firstName={studentMentor.firstName}
+              lastName={studentMentor.lastName}
+              speciality={studentMentor.speciality}
+              description={studentMentor.description}
+              vk={studentMentor.vkUrl}
+              telegram={studentMentor.telegramUrl}
+              imageUrl={studentMentor.avatarUrl}
             />
           ) : (
             <p style={{ fontWeight: "500", fontSize: "28px" }}>
@@ -137,7 +134,7 @@ function StudentHome() {
               popularArticles.map((card) => (
                 <ArticleCard
                   id={card.id}
-                  img={card.imageUrl}
+                  imageUrl={card.imageUrl}
                   title={card.title}
                   content={card.content}
                   speciality={card.specialityName}

@@ -8,6 +8,7 @@ import Button from "../../../components/ui/button/Button";
 import { mentorAPI } from "../../../services";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import StarIcon from "../../../assets/images/icons/star-icon.png";
 
 function MentorProfile(props) {
   const [avatarFile, setAvatarFile] = useState(null);
@@ -120,6 +121,13 @@ function MentorProfile(props) {
               placeholder="Фамилия"
               onChange={handleInputChange}
             />
+
+            <p className={styles.rank}>
+              Мой рейтинг:{" "}
+              <span>
+                {formData.rank} <img src={StarIcon} alt="" />
+              </span>
+            </p>
           </div>
 
           <div className={styles.inputContainer}>
@@ -144,7 +152,7 @@ function MentorProfile(props) {
           </div>
 
           <div className={styles.imageWrapper}>
-            <ImageWrapper imgUrl={avatarUrl} />
+            <ImageWrapper imageUrl={avatarUrl} />
           </div>
         </div>
 
