@@ -23,6 +23,9 @@ function MentorStudents() {
     try {
       const response = await mentorshipAPI.postMentorReject(studentId);
       toast.success("Вы отказались от студента");
+      setStudentsData((prevStudents) =>
+        prevStudents.filter((student) => student.id !== studentId)
+      );
     } catch (error) {
       console.error(error);
     }

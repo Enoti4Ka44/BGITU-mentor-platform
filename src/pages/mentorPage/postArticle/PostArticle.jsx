@@ -75,7 +75,6 @@ function PostArticle({ props, specialities }) {
 
       const response = await articlesAPI.postArticle(dataToSend);
       toast.success("Статья успешно опубликована");
-      console.log("Статья успешно опубликована: ", response);
     } catch (error) {
       console.error("Ошибка при публикации статьи:", error);
     }
