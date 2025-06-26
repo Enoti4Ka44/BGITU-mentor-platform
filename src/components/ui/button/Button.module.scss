@@ -1,6 +1,11 @@
 @import "../../../assets/styles/variables.scss";
 
 .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
     height: 60px;
     width: 100%;
     padding: 15px 30px;
@@ -13,6 +18,13 @@
     color: $white;
 
     transition: .2s all ease;
+
+    &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none !important; 
+  }
 
     &--white {
     color: $black;
@@ -32,6 +44,11 @@
     &:focus {
         outline: 0;
         border: 0;
+    }
+
+    img {
+        width: 30px;
+        height: 30px;
     }
 }
 

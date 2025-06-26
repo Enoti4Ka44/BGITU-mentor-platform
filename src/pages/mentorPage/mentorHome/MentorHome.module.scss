@@ -1,0 +1,20 @@
+@import "../../../assets/styles/variables.scss";
+
+.myStudents, .popularArticles {
+    margin-top: 40px;
+}
+
+.myStudentsCards {
+    display: flex;
+    gap: 40px;
+
+    margin: 20px 0;
+}
+
+.showAllLink {
+    font-size: 18px;
+
+    &:hover {
+        color: $green-dark;
+    }
+}

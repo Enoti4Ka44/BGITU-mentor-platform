@@ -73,7 +73,6 @@ function PostArticle({ props, specialities }) {
         dataToSend.append("image", articleImage);
       }
 
-      console.log(dataToSend);
       const response = await articlesAPI.postArticle(dataToSend);
       toast.success("Статья успешно опубликована");
       console.log("Статья успешно опубликована: ", response);
@@ -84,6 +83,7 @@ function PostArticle({ props, specialities }) {
 
   return (
     <Layout>
+      <h2>Написать статью</h2>
       <form className={styles.articleForm} onSubmit={handleSubmit}>
         <Input
           value={articleData.title}

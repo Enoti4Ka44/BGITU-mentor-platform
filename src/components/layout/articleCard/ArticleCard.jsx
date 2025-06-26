@@ -1,6 +1,7 @@
 import styles from "./ArticleCard.module.scss";
 import ImageWrapper from "../../ui/imageWrapper/ImageWrapper";
 import StarIcon from "../../../assets/images/icons/star-icon.png";
+import Button from "../../ui/button/Button";
 
 function ArticleCard({ onClick, ...props }) {
   return (

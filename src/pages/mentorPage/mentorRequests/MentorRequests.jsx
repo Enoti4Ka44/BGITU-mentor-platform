@@ -2,7 +2,7 @@ import styles from "./MentorRequests.module.scss";
 import Layout from "../../../components/layout/Layout";
 import { mentorshipAPI } from "../../../services";
 import { useState, useEffect } from "react";
-import RequestCard from "./components/requestCard/RequestCard";
+import RequestCard from "../components/requestCard/RequestCard";
 
 function MentorRequests() {
   const [requestData, setRequestData] = useState([]);

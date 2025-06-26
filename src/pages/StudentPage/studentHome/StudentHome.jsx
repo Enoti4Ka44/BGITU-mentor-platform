@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import { mentorAPI } from "../../../services/api/mentorAPI";
-import { articlesAPI } from "../../../services/api/articlesAPI";
-import { studentAPI } from "../../../services/api/studentAPI";
+import {
+  mentorshipAPI,
+  mentorAPI,
+  articlesAPI,
+  studentAPI,
+} from "../../../services";
+
 import styles from "./StudentHome.module.scss";
 import Layout from "../../../components/layout/Layout";
 import MentorCard from "../components/mentorCard/MentorCard";
 import MyMentorCard from "../components/myMentorCard/MyMentorCard";
 import MentorModal from "../components/MentorModal/MentorModal";
+import PopularArticles from "../../../components/layout/popularArticles/PopularArticles";
 import ArticleModal from "../../articles/components/articleModal/ArticleModal";
 import ArticleCard from "../../../components/layout/articleCard/ArticleCard";
 import { toast } from "react-toastify";
@@ -80,6 +85,15 @@ function StudentHome() {
     }
   };
 
+  const handleReject = async () => {
+    try {
+      const response = await mentorshipAPI.postStudentReject();
+      toast.success("Вы отказались от студента");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Layout>
       <>
@@ -112,13 +126,8 @@ function StudentHome() {
           <h3 className={styles.sectionTitle}>Мой ментор</h3>
           {studentMentor.length > 0 ? (
             <MyMentorCard
-              firstName={studentMentor.firstName}
-              lastName={studentMentor.lastName}
-              speciality={studentMentor.speciality}
-              description={studentMentor.description}
-              vk={studentMentor.vkUrl}
-              telegram={studentMentor.telegramUrl}
-              imageUrl={studentMentor.avatarUrl}
+              studentMentor={studentMentor}
+              onClick={handleReject}
             />
           ) : (
             <p style={{ fontWeight: "500", fontSize: "28px" }}>
@@ -129,26 +138,7 @@ function StudentHome() {
 
         <div className={styles.popularArticles}>
           <h3 className={styles.sectionTitle}>Популярные статьи</h3>
-          <div className={styles.articleCards}>
-            {popularArticles.length > 0 ? (
-              popularArticles.map((card) => (
-                <ArticleCard
-                  id={card.id}
-                  imageUrl={card.imageUrl}
-                  title={card.title}
-                  content={card.content}
-                  speciality={card.specialityName}
-                  rank={card.rank}
-                  key={card.id}
-                  onClick={handleArticleCardClick}
-                />
-              ))
-            ) : (
-              <p style={{ fontWeight: "500", fontSize: "28px" }}>
-                Рекомендуемые статьи не найдены
-              </p>
-            )}
-          </div>
+          <PopularArticles onArticleClick={handleArticleCardClick} />
         </div>
       </>
 

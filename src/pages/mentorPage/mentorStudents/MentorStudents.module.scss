@@ -1,1 +1,8 @@
 @import "../../../assets/styles/variables.scss";
+
+.myStudentsCards {
+    display: flex;
+    gap: 40px;
+
+    margin-top: 40px;
+}

@@ -9,11 +9,10 @@
     justify-content: space-between;
     gap: 30px;
 
-    padding-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
 
-    &:not(:last-child) {
-        border-bottom: 2px $grey-light solid;
-    }
 
     .cardContent {
         display: flex;

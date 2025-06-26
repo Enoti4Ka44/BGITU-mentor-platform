@@ -32,6 +32,30 @@ export const mentorshipAPI = {
             body: JSON.stringify(data)
         })
         return handleResponse(response)
+    },
+
+    postStudentReject: async () => {
+        const response = await fetch(`${BASE_URL}/api/mentorship/student/reject`, {
+            method: "POST",
+            headers: {
+                ...authHeader(),
+                'Content-type' : "application/json"
+                }
+            
+        })
+        return handleResponse(response)
+    },
+
+    postMentorReject: async (studentId) => {
+        const response = await fetch(`${BASE_URL}/api/mentorship/mentor/reject/${studentId}`, {
+            method: "POST",
+            headers: {
+                ...authHeader(),
+                'Content-type' : "application/json"
+                },
+            body: JSON.stringify(studentId)
+        })
+        return handleResponse(response)
     }
 }
 

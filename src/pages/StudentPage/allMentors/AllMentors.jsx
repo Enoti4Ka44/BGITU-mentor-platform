@@ -5,6 +5,7 @@ import Layout from "../../../components/layout/Layout";
 import MentorCard from "../components/mentorCard/MentorCard";
 import MentorModal from "../components/MentorModal/MentorModal";
 import Sidebar from "../../../components/layout/sidebar/Sidebar";
+import SearchBar from "../../../components/ui/searchBar/SearchBar";
 import { useEffect, useState } from "react";
 
 function AllMentors() {
@@ -35,6 +36,15 @@ function AllMentors() {
     }
   };
 
+  const handleSearch = async (query) => {
+    try {
+      const results = await mentorAPI.searchMentors(query);
+      setAllMentors(results);
+    } catch (error) {
+      toast.error("Ошибка при поиске менторов");
+    }
+  };
+
   return (
     <Layout>
       {isModalOpen && selectedMentor && (
@@ -43,20 +53,12 @@ function AllMentors() {
           onClose={() => setIsModalOpen(false)}
         />
       )}
-      <h2>Все менторы</h2>
+      <h2 style={{ marginBottom: "20px" }}>Все менторы</h2>
 
+      <SearchBar placeholder="Поиск менторов..." onSearch={handleSearch} />
       <div className={styles.mentorsCards}>
         {allMentors.map((card) => (
-          <MentorCard
-            id={card.id}
-            firstName={card.firstName}
-            lastName={card.lastName}
-            speciality={card.speciality}
-            rank={card.rank}
-            key={card.id}
-            avatarUrl={card.avatarUrl}
-            onClick={handleCardClick}
-          />
+          <MentorCard key={card.id} {...card} onClick={handleCardClick} />
         ))}
       </div>
     </Layout>

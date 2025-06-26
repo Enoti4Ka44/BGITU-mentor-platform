@@ -17,9 +17,6 @@
         font-size: 28px;
     }
 
-    .modalContent {
-
-    }
 
     .modalFooter {
         display: flex;
@@ -36,5 +33,10 @@
                 color: $grey;
             }
         }
+    }
+
+    .btnWrapper {
+        width: 200px;
+        padding-bottom: 20px;
     }
 }

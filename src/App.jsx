@@ -13,6 +13,7 @@ import StudentProfile from "./pages/StudentPage/studentProfile/studentProfile";
 import PostArticle from "./pages/mentorPage/postArticle/PostArticle";
 import MentorRequests from "./pages/mentorPage/mentorRequests/MentorRequests";
 import MentorStudents from "./pages/mentorPage/mentorStudents/MentorStudents";
+import MentorArticles from "./pages/mentorPage/myArticles/MentorArticles";
 
 function App() {
   return (
@@ -46,6 +47,15 @@ function App() {
             element={
               <ProtectedRoute roles={["ROLE_MENTOR"]}>
                 <PostArticle />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/mentor-articles"
+            element={
+              <ProtectedRoute roles={["ROLE_MENTOR"]}>
+                <MentorArticles />
               </ProtectedRoute>
             }
           />

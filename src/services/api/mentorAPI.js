@@ -31,6 +31,20 @@ export const mentorAPI = {
 
         return handleResponse(response)
     },
+    getMentorStudents: async() => {
+        const response = await fetch(`${BASE_URL}/api/mentor/students`,{ 
+            headers: authHeader()
+        })
+
+        return handleResponse(response)
+    },
+    getMentorArticles: async() => {
+        const response = await fetch(`${BASE_URL}/api/mentor/articles`,{ 
+            headers: authHeader()
+        })
+
+        return handleResponse(response)
+    },
 
     patchMentortSummary: async (data) => {
             const response = await fetch(`${BASE_URL}/api/mentor/summary`, {
@@ -41,6 +55,14 @@ export const mentorAPI = {
     
             return handleResponse(response)
         },
+
+    searchMentors: async (query) => {
+        const response = await fetch(`${BASE_URL}/api/mentor/search?query=${encodeURIComponent(query)}`, {
+            headers: authHeader(),
+            });
+            return handleResponse(response);
+        },
+
 
 
 }

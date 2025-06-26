@@ -40,7 +40,16 @@ export const articlesAPI = {
             body: data
         })
         return handleResponse(response)
-    }
+    }, 
+
+    searchArticles: async (query) => {
+        const response = await fetch(`${BASE_URL}/api/article/search?query=${encodeURIComponent(query)}`, {
+            headers: authHeader(),
+        });
+        return handleResponse(response);
+    },
+
+
 }
 
 const handleResponse = async (response) => {

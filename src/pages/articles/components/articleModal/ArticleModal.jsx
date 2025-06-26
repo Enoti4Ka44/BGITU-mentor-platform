@@ -1,16 +1,28 @@
 import styles from "./ArticleModal.module.scss";
 import Vote from "../../../../components/ui/vote/Vote";
 import ImageWrapper from "../../../../components/ui/imageWrapper/ImageWrapper";
-import { voteAPI } from "../../../../services";
+import { voteAPI, articlesAPI } from "../../../../services";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import Modal from "../../../../components/layout/modal/Modal";
+import Button from "../../../../components/ui/button/Button";
 
-function ArticleModal({ article, onClose }) {
+function ArticleModal({ article, onClose, button }) {
   const handleVote = async (upvote) => {
     try {
       const response = await voteAPI.postArticleVote(article.id, upvote);
       toast.success("Ваш голос учтён");
+
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDeleteArticle = async (articleId) => {
+    try {
+      const response = await articlesAPI.deleteArticleById(articleId);
+      toast.success("Статья успешно удалена");
 
       return response;
     } catch (error) {
@@ -39,6 +51,13 @@ function ArticleModal({ article, onClose }) {
             <Vote onClick={handleVote}>{article.rank}</Vote>
           </div>
         </div>
+        {button && (
+          <div className={styles.btnWrapper}>
+            <Button onClick={() => handleDeleteArticle(article.id)} color="red">
+              Удалить
+            </Button>
+          </div>
+        )}
       </div>
     </Modal>
   );

@@ -1,5 +1,4 @@
-
-@import "../../../../../assets/styles/variables.scss";
+@import "../../../../assets/styles/variables.scss";
 
 .card {
     display: flex;
@@ -63,7 +62,7 @@
             &.pending { background: $yellow-light; color: $yellow-dark; }
             &.accepted { background: $green-light; color: $green-dark; }
             &.rejected { background: $red-light; color: $red-dark; }
-            &.expired { background: $green-light; color: $grey; }
+            &.expired { background: $grey-light; color: $grey; }
         }
     }
 

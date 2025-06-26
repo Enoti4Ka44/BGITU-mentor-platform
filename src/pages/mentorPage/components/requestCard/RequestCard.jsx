@@ -1,10 +1,11 @@
 import styles from "./RequestCard.module.scss";
-import ImageWrapper from "../../../../../components/ui/imageWrapper/ImageWrapper";
-import VkIcon from "../../../../../assets/images/icons/vk-icon.png";
-import TelegramIcon from "../../../../../assets/images/icons/telegram-icon.png";
-import Button from "../../../../../components/ui/button/Button";
+import ImageWrapper from "../../../../components/ui/imageWrapper/ImageWrapper";
+import VkIcon from "../../../../assets/images/icons/vk-icon.png";
+import TelegramIcon from "../../../../assets/images/icons/telegram-icon.png";
+import Button from "../../../../components/ui/button/Button";
 import { useState } from "react";
-import { mentorshipAPI } from "../../../../../services/api/mentorshipAPI";
+import { mentorshipAPI } from "../../../../services/api/mentorshipAPI";
+import { toast } from "react-toastify";
 
 function RequestCard({ request }) {
   const { student, status } = request;
@@ -15,7 +16,7 @@ function RequestCard({ request }) {
     PENDING: "В ожидании",
     ACCEPTED: "Принята",
     REJECTED: "Отклонена",
-    EXPIRED: "Истек срок",
+    EXPIRED: "Неактуально",
   };
 
   const handleClick = async (choise) => {

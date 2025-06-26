@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import Layout from "../../components/layout/Layout";
 import ArticleCard from "../../components/layout/articleCard/ArticleCard";
 import ArticleModal from "./components/articleModal/ArticleModal";
+import SearchBar from "../../components/ui/searchBar/SearchBar";
 import { useEffect, useState } from "react";
 
 function AllArticles() {
@@ -34,6 +35,15 @@ function AllArticles() {
     }
   };
 
+  const handleSearch = async (query) => {
+    try {
+      const results = await articlesAPI.searchArticles(query);
+      setAllArticles(results);
+    } catch (error) {
+      toast.error("Ошибка при поиске статей");
+    }
+  };
+
   return (
     <Layout>
       {isModalOpen && selectedArticle && (
@@ -45,17 +55,9 @@ function AllArticles() {
 
       <h2>Все статьи</h2>
       <div className={styles.articlesCard}>
+        <SearchBar placeholder="Поиск статей..." onSearch={handleSearch} />
         {allArticles.map((card) => (
-          <ArticleCard
-            id={card.id}
-            imageUrl={card.imageUrl}
-            title={card.title}
-            content={card.content}
-            speciality={card.specialityName}
-            rank={card.rank}
-            key={card.id}
-            onClick={handleCardClick}
-          />
+          <ArticleCard key={card.id} {...card} onClick={handleCardClick} />
         ))}
       </div>
     </Layout>

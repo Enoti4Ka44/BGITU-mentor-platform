@@ -9,10 +9,8 @@ export const login = async (email, password) => {
         });
 
         const data = await response.json()
-        console.log(email, password)
 
         if (!response.ok) {
-            console.log(data.message)
             throw new Error(data.message || 'Неверные данные');
         } 
         
@@ -34,7 +32,6 @@ export const register = async (firstName, lastName, email, password, role) => {
         });
 
         const data = await response.json()
-        console.log(firstName, lastName, email, password, role)
     
         if (!response.ok) {
             throw new Error(data.message || 'Неверные данные');

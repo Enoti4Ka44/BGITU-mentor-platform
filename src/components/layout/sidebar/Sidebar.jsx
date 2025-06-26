@@ -11,6 +11,7 @@ import SettingsIcon from "../../../assets/images/icons/settings-icon.svg";
 import ProfileIcon from "../../../assets/images/icons/profile-icon.svg";
 import MentorsIcon from "../../../assets/images/icons/mentors-icon.svg";
 import WriteArticleIcon from "../../../assets/images/icons/write-icon.png";
+import BlankIcon from "../../../assets/images/icons/blank-icon.png";
 import RequestsIcon from "../../../assets/images/icons/request-icon.svg";
 
 function Sidebar() {
@@ -50,52 +51,53 @@ function Sidebar() {
               Главная
             </SidebarButton>
 
-            {role === "ROLE_STUDENT" ? (
+            {role === "ROLE_STUDENT" && (
               <SidebarButton
                 icon={<img src={MentorsIcon} />}
                 route="all-mentors"
               >
                 Менторы
               </SidebarButton>
-            ) : (
-              ""
             )}
 
             <SidebarButton icon={<img src={ArticlesIcon} />} route="articles">
               Статьи
             </SidebarButton>
 
-            {role === "ROLE_MENTOR" ? (
+            {role === "ROLE_MENTOR" && (
               <SidebarButton
                 icon={<img src={WriteArticleIcon} />}
                 route="mentor-post-article"
               >
                 Написать статью
               </SidebarButton>
-            ) : (
-              ""
             )}
 
-            {role === "ROLE_MENTOR" ? (
+            {role === "ROLE_MENTOR" && (
+              <SidebarButton
+                icon={<img src={BlankIcon} />}
+                route="mentor-articles"
+              >
+                Мои статьи
+              </SidebarButton>
+            )}
+
+            {role === "ROLE_MENTOR" && (
               <SidebarButton
                 icon={<img src={RequestsIcon} />}
                 route="mentor-pending-requests"
               >
                 Входящие заявки
               </SidebarButton>
-            ) : (
-              ""
             )}
 
-            {role === "ROLE_MENTOR" ? (
+            {role === "ROLE_MENTOR" && (
               <SidebarButton
-                icon={<img src={RequestsIcon} />}
+                icon={<img src={MentorsIcon} />}
                 route="mentor-students"
               >
                 Мои студенты
               </SidebarButton>
-            ) : (
-              ""
             )}
 
             <SidebarButton
