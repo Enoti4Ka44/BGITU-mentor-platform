@@ -4,7 +4,7 @@ import { authHeader } from "./authHeader"
 
 export const voteAPI = {
     postMentorVote: async (id, upvote) => {
-        const response = await fetch(`${BASE_URL}/api/mentor/mentors/${id}/vote?upvote=${upvote}`, {
+        const response = await fetch(`${BASE_URL}/api/mentors/${id}/vote?upvote=${upvote}`, {
             method: "POST",
             headers: authHeader(),
             body: JSON.stringify({id})
@@ -13,7 +13,7 @@ export const voteAPI = {
     },
 
     postArticleVote: async (id, upvote) => {
-        const response = await fetch(`${BASE_URL}/api/article/${id}/vote?like=${upvote}`, {
+        const response = await fetch(`${BASE_URL}/api/articles/${id}/vote?like=${upvote}`, {
             method: "POST",
             headers: authHeader(),
             body: JSON.stringify({id})
@@ -29,5 +29,6 @@ const handleResponse = async (response) => {
     toast.error(`${errorData.message}`)
     throw new Error(errorData.message || response.statusText);
   }
-  return response.json();
+    const text = await response.text(); // пробуем как текст
+    return text ? JSON.parse(text) : {}; // если пусто — вернём пустой объект
 }

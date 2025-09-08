@@ -12,7 +12,7 @@ export const studentAPI = {
     },
 
     getStudentMentor: async () => {
-        const response = await fetch(`${BASE_URL}/api/student/mentor`, {
+        const response = await fetch(`${BASE_URL}/api/profiles/student/mentor`, {
             headers: authHeader()
         }) 
 

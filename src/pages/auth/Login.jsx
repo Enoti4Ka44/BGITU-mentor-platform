@@ -15,9 +15,9 @@ function Login() {
       const response = await login(data.email, data.password);
       const role = response.role;
 
-      if (role === "ROLE_STUDENT") {
+      if (role === "STUDENT") {
         navigate("/student-home");
-      } else if (role === "ROLE_MENTOR") {
+      } else if (role === "MENTOR") {
         navigate("/mentor-home");
       }
 

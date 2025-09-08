@@ -30,9 +30,9 @@ function Sidebar() {
         <div className={styles.btnTop}>
           <Logo
             route={
-              role === "ROLE_STUDENT"
+              role === "STUDENT"
                 ? "student-home"
-                : role === "ROLE_MENTOR"
+                : role === "MENTOR"
                 ? "mentor-home"
                 : "welcome"
             }
@@ -41,9 +41,9 @@ function Sidebar() {
             <SidebarButton
               icon={<img src={HomeIcon} />}
               route={
-                role === "ROLE_STUDENT"
+                role === "STUDENT"
                   ? "student-home"
-                  : role === "ROLE_MENTOR"
+                  : role === "MENTOR"
                   ? "mentor-home"
                   : "welcome"
               }
@@ -51,7 +51,7 @@ function Sidebar() {
               Главная
             </SidebarButton>
 
-            {role === "ROLE_STUDENT" && (
+            {role === "STUDENT" && (
               <SidebarButton
                 icon={<img src={MentorsIcon} />}
                 route="all-mentors"
@@ -64,7 +64,7 @@ function Sidebar() {
               Статьи
             </SidebarButton>
 
-            {role === "ROLE_MENTOR" && (
+            {role === "MENTOR" && (
               <SidebarButton
                 icon={<img src={WriteArticleIcon} />}
                 route="mentor-post-article"
@@ -73,7 +73,7 @@ function Sidebar() {
               </SidebarButton>
             )}
 
-            {role === "ROLE_MENTOR" && (
+            {role === "MENTOR" && (
               <SidebarButton
                 icon={<img src={BlankIcon} />}
                 route="mentor-articles"
@@ -82,7 +82,7 @@ function Sidebar() {
               </SidebarButton>
             )}
 
-            {role === "ROLE_MENTOR" && (
+            {role === "MENTOR" && (
               <SidebarButton
                 icon={<img src={RequestsIcon} />}
                 route="mentor-pending-requests"
@@ -91,7 +91,7 @@ function Sidebar() {
               </SidebarButton>
             )}
 
-            {role === "ROLE_MENTOR" && (
+            {role === "MENTOR" && (
               <SidebarButton
                 icon={<img src={MentorsIcon} />}
                 route="mentor-students"
@@ -103,9 +103,9 @@ function Sidebar() {
             <SidebarButton
               icon={<img src={ProfileIcon} />}
               route={
-                role === "ROLE_STUDENT"
+                role === "STUDENT"
                   ? "student-profile"
-                  : role === "ROLE_MENTOR"
+                  : role === "MENTOR"
                   ? "mentor-profile"
                   : "welcome"
               }

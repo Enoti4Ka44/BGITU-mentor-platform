@@ -4,42 +4,42 @@ import { toast } from "react-toastify"
 
 export const mentorAPI = {
     getAllMentors: async () => {
-        const response = await fetch(`${BASE_URL}/api/mentor/all`, {
+        const response = await fetch(`${BASE_URL}/api/mentor/all`, { //FIX
             headers: authHeader()
         }) 
         return handleResponse(response)
     },
 
     getPopularMentors: async () => {
-        const response = await fetch(`${BASE_URL}/api/mentor/popular`, {
+        const response = await fetch(`${BASE_URL}/api/mentors/popular`, {
             headers: authHeader()
         })
         return handleResponse(response)
     },
 
     getMentorById: async(id) => {
-        const response = await fetch(`${BASE_URL}/api/mentor/${id}`,{ 
+        const response = await fetch(`${BASE_URL}/api/mentors/${id}`,{ 
             headers: authHeader()
         })
 
         return handleResponse(response)
     },
     getMentorSummary: async() => {
-        const response = await fetch(`${BASE_URL}/api/mentor/summary`,{ 
+        const response = await fetch(`${BASE_URL}/api/profiles/mentor/credentials`,{ 
             headers: authHeader()
         })
 
         return handleResponse(response)
     },
     getMentorStudents: async() => {
-        const response = await fetch(`${BASE_URL}/api/mentor/students`,{ 
+        const response = await fetch(`${BASE_URL}/api/profiles/mentor/students`,{ 
             headers: authHeader()
         })
 
         return handleResponse(response)
     },
     getMentorArticles: async() => {
-        const response = await fetch(`${BASE_URL}/api/mentor/articles`,{ 
+        const response = await fetch(`${BASE_URL}/api/profiles/mentor/articles`,{ 
             headers: authHeader()
         })
 
@@ -47,7 +47,7 @@ export const mentorAPI = {
     },
 
     patchMentortSummary: async (data) => {
-            const response = await fetch(`${BASE_URL}/api/mentor/summary`, {
+            const response = await fetch(`${BASE_URL}/api/profiles/mentor/credentials`, {
                 method: "PATCH",
                 headers: authHeader(),
                 body: data

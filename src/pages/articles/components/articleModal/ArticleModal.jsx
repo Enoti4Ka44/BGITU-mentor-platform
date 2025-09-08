@@ -12,8 +12,6 @@ function ArticleModal({ article, onClose, button }) {
     try {
       const response = await voteAPI.postArticleVote(article.id, upvote);
       toast.success("Ваш голос учтён");
-
-      return response;
     } catch (error) {
       console.error(error);
     }

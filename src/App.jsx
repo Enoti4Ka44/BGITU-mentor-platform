@@ -28,7 +28,7 @@ function App() {
           <Route
             path="/mentor-home"
             element={
-              <ProtectedRoute roles={["ROLE_MENTOR"]}>
+              <ProtectedRoute roles={["MENTOR"]}>
                 <MentorHome />
               </ProtectedRoute>
             }
@@ -36,7 +36,7 @@ function App() {
           <Route
             path="/mentor-profile"
             element={
-              <ProtectedRoute roles={["ROLE_MENTOR"]}>
+              <ProtectedRoute roles={["MENTOR"]}>
                 <MentorProfile />
               </ProtectedRoute>
             }
@@ -45,7 +45,7 @@ function App() {
           <Route
             path="/mentor-post-article"
             element={
-              <ProtectedRoute roles={["ROLE_MENTOR"]}>
+              <ProtectedRoute roles={["MENTOR"]}>
                 <PostArticle />
               </ProtectedRoute>
             }
@@ -54,7 +54,7 @@ function App() {
           <Route
             path="/mentor-articles"
             element={
-              <ProtectedRoute roles={["ROLE_MENTOR"]}>
+              <ProtectedRoute roles={["MENTOR"]}>
                 <MentorArticles />
               </ProtectedRoute>
             }
@@ -63,7 +63,7 @@ function App() {
           <Route
             path="/mentor-pending-requests"
             element={
-              <ProtectedRoute roles={["ROLE_MENTOR"]}>
+              <ProtectedRoute roles={["MENTOR"]}>
                 <MentorRequests />
               </ProtectedRoute>
             }
@@ -72,7 +72,7 @@ function App() {
           <Route
             path="/mentor-students"
             element={
-              <ProtectedRoute roles={["ROLE_MENTOR"]}>
+              <ProtectedRoute roles={["MENTOR"]}>
                 <MentorStudents />
               </ProtectedRoute>
             }
@@ -81,7 +81,7 @@ function App() {
           <Route
             path="/student-home"
             element={
-              <ProtectedRoute roles={["ROLE_STUDENT"]}>
+              <ProtectedRoute roles={["STUDENT"]}>
                 <StudentHome />
               </ProtectedRoute>
             }
@@ -90,7 +90,7 @@ function App() {
           <Route
             path="/student-profile"
             element={
-              <ProtectedRoute roles={["ROLE_STUDENT"]}>
+              <ProtectedRoute roles={["STUDENT"]}>
                 <StudentProfile />
               </ProtectedRoute>
             }
@@ -99,7 +99,7 @@ function App() {
           <Route
             path="/all-mentors"
             element={
-              <ProtectedRoute roles={["ROLE_STUDENT"]}>
+              <ProtectedRoute roles={["STUDENT"]}>
                 <AllMentors />
               </ProtectedRoute>
             }

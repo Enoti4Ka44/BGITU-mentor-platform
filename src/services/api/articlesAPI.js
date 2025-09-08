@@ -4,28 +4,28 @@ import { toast } from "react-toastify"
 
 export const articlesAPI = {
     getAllArticles: async () => {
-        const response = await fetch(`${BASE_URL}/api/article`, {
+        const response = await fetch(`${BASE_URL}/api/articles`, { //FIX
             headers: authHeader()
         })
         return handleResponse(response)
     },
 
     getPopularArticles: async () => {
-        const response = await fetch(`${BASE_URL}/api/article/top`,{
+        const response = await fetch(`${BASE_URL}/api/articles/popular`,{
             headers: authHeader()
             })
         return handleResponse(response)
     },
 
     getArticleById: async (id) => {
-        const response = await fetch(`${BASE_URL}/api/article/${id}`, {
+        const response = await fetch(`${BASE_URL}/api/articles/${id}`, {
             headers: authHeader()
         })
         return handleResponse(response)
     },
 
     deleteArticleById: async (id) => {
-        const response = await fetch(`${BASE_URL}/api/article/${id}`, {
+        const response = await fetch(`${BASE_URL}/api/articles/${id}`, {
             method: "DELETE",
             headers: authHeader(),
             body: JSON.stringify(id)
@@ -34,7 +34,7 @@ export const articlesAPI = {
     },
 
     postArticle: async (data) => {
-        const response = await fetch(`${BASE_URL}/api/article`, {
+        const response = await fetch(`${BASE_URL}/api/articles`, {
             method: "POST",
             headers: authHeader(),
             body: data

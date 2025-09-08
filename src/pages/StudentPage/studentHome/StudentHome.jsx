@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  mentorshipAPI,
-  mentorAPI,
-  articlesAPI,
-  studentAPI,
-} from "../../../services";
+import { mentorAPI, articlesAPI, studentAPI } from "../../../services";
 
 import styles from "./StudentHome.module.scss";
 import Layout from "../../../components/layout/Layout";
@@ -85,15 +80,6 @@ function StudentHome() {
     }
   };
 
-  const handleReject = async () => {
-    try {
-      const response = await mentorshipAPI.postStudentReject();
-      toast.success("Вы отказались от студента");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <Layout>
       <>
@@ -125,10 +111,7 @@ function StudentHome() {
         <div className={styles.myMentor}>
           <h3 className={styles.sectionTitle}>Мой ментор</h3>
           {studentMentor.length > 0 ? (
-            <MyMentorCard
-              studentMentor={studentMentor}
-              onClick={handleReject}
-            />
+            <MyMentorCard studentMentor={studentMentor} />
           ) : (
             <p style={{ fontWeight: "500", fontSize: "28px" }}>
               Ваш ментор не найден

@@ -4,7 +4,7 @@ import { toast } from "react-toastify"
 
 export const specialitiesAPI = {
     getAllSpecialities: async () => {
-        const response = await fetch(`${BASE_URL}/api/speciality`, {
+        const response = await fetch(`${BASE_URL}/api/specialities`, {
             headers: authHeader()
         })
 

@@ -5,14 +5,12 @@ import Vote from "../../../../components/ui/vote/Vote";
 import ImageWrapper from "../../../../components/ui/imageWrapper/ImageWrapper";
 import VkIcon from "../../../../assets/images/icons/vk-icon.png";
 import TelegramIcon from "../../../../assets/images/icons/telegram-icon.png";
-import { mentorshipAPI } from "../../../../services";
-import { voteAPI } from "../../../../services";
+import { applicationsAPI, voteAPI } from "../../../../services";
 import { toast } from "react-toastify";
 import { useState } from "react";
 
 function MentorModal({ mentor, onClose }) {
   const [activeVote, setActiveVote] = useState(null);
-  const [rank, setRank] = useState(mentor.rank);
   const name = `${mentor.firstName} ${mentor.lastName}`;
 
   const handleSubmit = async () => {
@@ -21,7 +19,7 @@ function MentorModal({ mentor, onClose }) {
         mentorId: mentor.id,
         message: "",
       };
-      const sentRequest = await mentorshipAPI.postRequest(data);
+      const sentRequest = await applicationsAPI.postApplication(data);
       toast.success("Заявка успешно отправлена");
     } catch (error) {
       console.error("Ошибка при отправке запроса:", error);
@@ -32,8 +30,6 @@ function MentorModal({ mentor, onClose }) {
     try {
       const response = await voteAPI.postMentorVote(mentor.id, upvote);
       toast.success("Ваш голос учтён");
-
-      return response.rank;
     } catch (error) {
       console.error(error);
     }
@@ -76,7 +72,9 @@ function MentorModal({ mentor, onClose }) {
         </Button>
       </div>
       <div className={styles.vote}>
-        <Vote onClick={handleVote} value={rank} setValue={setRank} />
+        <Vote onClick={handleVote} value={mentor.rank}>
+          {mentor.rank}
+        </Vote>
       </div>
     </Modal>
   );

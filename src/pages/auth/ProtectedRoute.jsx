@@ -10,9 +10,9 @@ const ProtectedRoute = ({ children, roles }) => {
 
   if (roles && !roles.includes(role)) {
     switch (role) {
-      case "ROLE_MENTOR":
+      case "MENTOR":
         return <Navigate to="/mentorHome" replace />;
-      case "ROLE_STUDENT":
+      case "STUDENT":
         return <Navigate to="/studentHome" replace />;
       default:
         return <Navigate to="/welcome" replace />;
