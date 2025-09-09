@@ -29,6 +29,6 @@ const handleResponse = async (response) => {
     toast.error(`${errorData.message}`)
     throw new Error(errorData.message || response.statusText);
   }
-    const text = await response.text(); // пробуем как текст
-    return text ? JSON.parse(text) : {}; // если пусто — вернём пустой объект
+    const text = await response.text();
+    return text ? JSON.parse(text) : {}; 
 }

@@ -10,7 +10,6 @@ import { studentAPI } from "../../../services";
 import { toast } from "react-toastify";
 
 function StudentProfile(props) {
-  const [studentData, setStudentData] = useState([]);
   const [avatarFile, setAvatarFile] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState("");
   const [formData, setFormData] = useState({
@@ -41,6 +40,8 @@ function StudentProfile(props) {
     fetchData();
   }, []);
 
+  console.log(formData);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -61,7 +62,6 @@ function StudentProfile(props) {
 
     try {
       const dataToSend = new FormData();
-
       const cardBlob = new Blob(
         [
           JSON.stringify({
@@ -74,7 +74,6 @@ function StudentProfile(props) {
         ],
         { type: "application/json" }
       );
-
       dataToSend.append("card", cardBlob);
 
       if (avatarFile) {

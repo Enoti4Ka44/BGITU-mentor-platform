@@ -8,9 +8,13 @@ import Modal from "../../../../components/layout/modal/Modal";
 import Button from "../../../../components/ui/button/Button";
 
 function ArticleModal({ article, onClose, button }) {
+  const [rank, setRank] = useState(article.rank);
   const handleVote = async (upvote) => {
     try {
       const response = await voteAPI.postArticleVote(article.id, upvote);
+      if (response.rank !== undefined) {
+        setRank(response.rank);
+      }
       toast.success("Ваш голос учтён");
     } catch (error) {
       console.error(error);
@@ -46,7 +50,7 @@ function ArticleModal({ article, onClose, button }) {
             {article.authorFullName} <span>{article.specialityName}</span>
           </p>
           <div className={styles.vote}>
-            <Vote onClick={handleVote}>{article.rank}</Vote>
+            <Vote onClick={handleVote}>{rank}</Vote>
           </div>
         </div>
         {button && (

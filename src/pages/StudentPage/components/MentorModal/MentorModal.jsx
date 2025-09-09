@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 
 function MentorModal({ mentor, onClose }) {
+  const [rank, setRank] = useState(mentor.rank);
   const [activeVote, setActiveVote] = useState(null);
   const name = `${mentor.firstName} ${mentor.lastName}`;
 
@@ -29,6 +30,9 @@ function MentorModal({ mentor, onClose }) {
   const handleVote = async (upvote) => {
     try {
       const response = await voteAPI.postMentorVote(mentor.id, upvote);
+      if (response.rank !== undefined) {
+        setRank(response.rank);
+      }
       toast.success("Ваш голос учтён");
     } catch (error) {
       console.error(error);
@@ -58,7 +62,7 @@ function MentorModal({ mentor, onClose }) {
             <span>Описание:</span> {mentor.description}
           </p>
           <p className={styles.modalRank}>
-            <span>Рейтинг:</span> {mentor.rank}
+            <span>Рейтинг:</span> {rank}
           </p>
         </div>
         <div className={styles.imgWrapper}>
@@ -72,8 +76,8 @@ function MentorModal({ mentor, onClose }) {
         </Button>
       </div>
       <div className={styles.vote}>
-        <Vote onClick={handleVote} value={mentor.rank}>
-          {mentor.rank}
+        <Vote onClick={handleVote} value={rank}>
+          {rank}
         </Vote>
       </div>
     </Modal>
