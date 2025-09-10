@@ -11,18 +11,31 @@ function AllArticles() {
   const [allArticles, setAllArticles] = useState([]);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filters, setFilters] = useState({
+    specialityId: null,
+    query: "",
+    page: 0,
+    size: 10,
+    sort: "",
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await articlesAPI.getAllArticles();
-        setAllArticles(data);
+        const data = await articlesAPI.getAllArticles({
+          specialityId: null,
+          query: filters.query,
+          page: 0,
+          size: 10,
+          sort: "",
+        });
+        setAllArticles(data.content);
       } catch (error) {
         console.log("Ошибка", error);
       }
     };
     fetchData();
-  }, []);
+  }, [filters]);
 
   const handleCardClick = async (articleId) => {
     try {
@@ -36,12 +49,11 @@ function AllArticles() {
   };
 
   const handleSearch = async (query) => {
-    try {
-      const results = await articlesAPI.searchArticles(query);
-      setAllArticles(results);
-    } catch (error) {
-      toast.error("Ошибка при поиске статей");
-    }
+    setFilters((prev) => ({
+      ...prev,
+      query,
+      page: 0,
+    }));
   };
 
   return (

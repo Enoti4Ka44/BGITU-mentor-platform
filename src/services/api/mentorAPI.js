@@ -3,16 +3,21 @@ import {authHeader} from "./authHeader"
 import { toast } from "react-toastify"
 
 export const mentorAPI = {
-
     //Получение списка всех менторов (с фильтрацией и пагинацией)
       getAllMentors: async (data) => {
         const params = new URLSearchParams();
 
-        if (data.specialityId) params.append("specialityId", data.specialityId);
-        if (data.query) params.append("query", data.query);
+        if (data.specialityId) {
+            params.append("specialityId", data.specialityId)
+        };
+        if (data.query) {
+            params.append("query", data.query)
+        };
         params.append("page", data.page);
         params.append("size", data.size);
-        if (data.sort) params.append("sort", data.sort);
+        if (data.sort) {
+            params.append("sort", data.sort)
+        };
 
         const response = await fetch(`${BASE_URL}/api/mentors?${params.toString()}`, {
             method: "GET",
