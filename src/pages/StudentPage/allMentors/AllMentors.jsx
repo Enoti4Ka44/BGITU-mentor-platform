@@ -12,18 +12,31 @@ function AllMentors() {
   const [allMentors, setAllMentors] = useState([]);
   const [selectedMentor, setSelectedMentor] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filters, setFilters] = useState({
+    specialityId: null,
+    query: "",
+    page: 0,
+    size: 10,
+    sort: "",
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await mentorAPI.getAllMentors();
-        setAllMentors(data);
+        const data = await mentorAPI.getAllMentors({
+          specialityId: null,
+          query: filters.query,
+          page: 0,
+          size: 10,
+          sort: "",
+        });
+        setAllMentors(data.content);
       } catch (error) {
         console.log("Ошибка", error);
       }
     };
     fetchData();
-  }, []);
+  }, [filters]);
 
   const handleCardClick = async (mentorId) => {
     try {
@@ -36,14 +49,17 @@ function AllMentors() {
     }
   };
 
-  const handleSearch = async (query) => {
-    try {
-      const results = await mentorAPI.searchMentors(query);
-      setAllMentors(results);
-    } catch (error) {
-      toast.error("Ошибка при поиске менторов");
-    }
+  console.log(allMentors);
+
+  const handleSearch = (query) => {
+    setFilters((prev) => ({
+      ...prev,
+      query,
+      page: 0,
+    }));
   };
+
+  console.log(filters);
 
   return (
     <Layout>
