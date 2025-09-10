@@ -24,11 +24,11 @@ export const articlesAPI = {
         return handleResponse(response)
     },
 
-    deleteArticleById: async (id) => {
-        const response = await fetch(`${BASE_URL}/api/articles/${id}`, {
+    deleteArticleById: async (articleId) => {
+        const response = await fetch(`${BASE_URL}/api/articles/${articleId}`, {
             method: "DELETE",
             headers: authHeader(),
-            body: JSON.stringify(id)
+            body: JSON.stringify(articleId)
         })
         return handleResponse(response)
     },

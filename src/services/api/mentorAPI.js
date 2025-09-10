@@ -3,6 +3,7 @@ import {authHeader} from "./authHeader"
 import { toast } from "react-toastify"
 
 export const mentorAPI = {
+    //Получение списка всех менторов (с фильтрами)
     getAllMentors: async () => {
         const response = await fetch(`${BASE_URL}/api/mentor/all`, { //FIX
             headers: authHeader()
@@ -10,6 +11,7 @@ export const mentorAPI = {
         return handleResponse(response)
     },
 
+    //Получение топ-3 ментора
     getPopularMentors: async () => {
         const response = await fetch(`${BASE_URL}/api/mentors/popular`, {
             headers: authHeader()
@@ -17,6 +19,7 @@ export const mentorAPI = {
         return handleResponse(response)
     },
 
+    //Получение карточки ментора (modal)
     getMentorById: async(id) => {
         const response = await fetch(`${BASE_URL}/api/mentors/${id}`,{ 
             headers: authHeader()
@@ -24,44 +27,13 @@ export const mentorAPI = {
 
         return handleResponse(response)
     },
-    getMentorSummary: async() => {
-        const response = await fetch(`${BASE_URL}/api/profiles/mentor/credentials`,{ 
-            headers: authHeader()
-        })
 
-        return handleResponse(response)
-    },
-    getMentorStudents: async() => {
-        const response = await fetch(`${BASE_URL}/api/profiles/mentor/students`,{ 
-            headers: authHeader()
-        })
-
-        return handleResponse(response)
-    },
-    getMentorArticles: async() => {
-        const response = await fetch(`${BASE_URL}/api/profiles/mentor/articles`,{ 
-            headers: authHeader()
-        })
-
-        return handleResponse(response)
-    },
-
-    patchMentortSummary: async (data) => {
-            const response = await fetch(`${BASE_URL}/api/profiles/mentor/credentials`, {
-                method: "PATCH",
-                headers: authHeader(),
-                body: data
-            }) 
-    
-            return handleResponse(response)
-        },
-
-    searchMentors: async (query) => {
-        const response = await fetch(`${BASE_URL}/api/mentor/search?query=${encodeURIComponent(query)}`, {
-            headers: authHeader(),
-            });
-            return handleResponse(response);
-        },
+    // searchMentors: async (query) => {
+    //     const response = await fetch(`${BASE_URL}/api/mentor/search?query=${encodeURIComponent(query)}`, {
+    //         headers: authHeader(),
+    //         });
+    //         return handleResponse(response);
+    //     },
 
 
 

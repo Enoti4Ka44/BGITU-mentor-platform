@@ -4,7 +4,7 @@ import VkIcon from "../../../../assets/images/icons/vk-icon.png";
 import TelegramIcon from "../../../../assets/images/icons/telegram-icon.png";
 import Button from "../../../../components/ui/button/Button";
 import { useState } from "react";
-import { mentorshipAPI } from "../../../../services/api/mentorshipAPI";
+import { applicationsAPI } from "../../../../services/api/applicationsAPI.js";
 import { toast } from "react-toastify";
 
 function RequestCard({ request }) {
@@ -26,7 +26,7 @@ function RequestCard({ request }) {
         accepted: choise,
       };
 
-      const respone = await mentorshipAPI.postResponse(data);
+      const respone = await applicationsAPI.patchApplicationResponse(data);
       toast.success(choise ? "Заявка принята" : "Заявка отклонена");
 
       return respone;

@@ -6,7 +6,7 @@ import styles from "./MentorHome.module.scss";
 import Layout from "../../../components/layout/Layout";
 import PopularArticles from "../../../components/layout/popularArticles/PopularArticles";
 import StudentCard from "../components/studentCard/StudentCard";
-import { mentorAPI, mentorshipAPI, articlesAPI } from "../../../services";
+import { mentorAPI, mentorProfileAPI, articlesAPI } from "../../../services";
 
 function MentorHome() {
   const [studentsData, setStudentsData] = useState([]);
@@ -39,7 +39,7 @@ function MentorHome() {
 
   const handleReject = async (studentId) => {
     try {
-      const response = await mentorshipAPI.postMentorReject(studentId);
+      const response = await deleteMentorStudent.deleteMentorStudent(studentId);
       toast.success("Вы отказались от студента");
       setStudentsData((prevStudents) =>
         prevStudents.filter((student) => student.id !== studentId)

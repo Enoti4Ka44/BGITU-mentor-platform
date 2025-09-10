@@ -1,6 +1,6 @@
 import styles from "./MentorRequests.module.scss";
 import Layout from "../../../components/layout/Layout";
-import { mentorshipAPI } from "../../../services";
+import { applicationsAPI } from "../../../services";
 import { useState, useEffect } from "react";
 import RequestCard from "../components/requestCard/RequestCard";
 
@@ -11,7 +11,7 @@ function MentorRequests() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await mentorshipAPI.getApplications();
+        const data = await applicationsAPI.getApplications();
         setRequestData(data);
 
         if (data.avatarUrl) {

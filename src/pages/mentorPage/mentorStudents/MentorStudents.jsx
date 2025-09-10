@@ -1,7 +1,7 @@
 import styles from "./MentorStudents.module.scss";
 import Layout from "../../../components/layout/Layout";
 import StudentCard from "../components/studentCard/StudentCard";
-import { mentorAPI, mentorshipAPI } from "../../../services";
+import { mentorAPI, mentorProfileAPI } from "../../../services";
 import { useState, useEffect } from "react";
 
 function MentorStudents() {
@@ -21,7 +21,7 @@ function MentorStudents() {
 
   const handleReject = async (studentId) => {
     try {
-      const response = await mentorshipAPI.postMentorReject(studentId);
+      const response = await mentorProfileAPI.deleteMentorStudent(studentId);
       toast.success("Вы отказались от студента");
       setStudentsData((prevStudents) =>
         prevStudents.filter((student) => student.id !== studentId)
