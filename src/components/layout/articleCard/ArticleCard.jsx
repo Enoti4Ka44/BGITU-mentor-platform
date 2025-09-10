@@ -11,10 +11,10 @@ function ArticleCard({ onClick, ...props }) {
           <a className={styles.cardTitle} onClick={() => onClick(props.id)}>
             {props.title}
           </a>
-          <p className={styles.cardDescription}> {props.content}</p>
+          <p className={styles.cardDescription}> {props.shortContent}</p>
         </div>
         <div className={styles.cardBottom}>
-          <p className={styles.cardSpeciality}>{props.speciality}</p>
+          <p className={styles.cardSpeciality}>{props.specialityName}</p>
           <p className={styles.cardRank}>
             {props.rank} <img src={StarIcon} alt="" />{" "}
           </p>

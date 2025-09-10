@@ -55,6 +55,7 @@ export const studentAPI = {
     //Прекратить менторство
     deleteStudentMentor: async () => {
         const response = await fetch(`${BASE_URL}/api/profiles/student/mentor`, {
+            method: "DELETE",
             headers: authHeader()
         })
 

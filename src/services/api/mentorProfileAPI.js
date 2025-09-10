@@ -66,8 +66,7 @@ export const mentorProfileAPI = {
     deleteMentorStudent: async(studentId) => {
         const response = await fetch(`${BASE_URL}/api/profiles/mentor/students/${studentId}`,{ 
             method: "DELETE",
-            headers: authHeader(),
-            body: JSON.stringify(studentId)
+            headers: authHeader()
         })
 
         return handleResponse(response)

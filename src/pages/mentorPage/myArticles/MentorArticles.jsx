@@ -4,7 +4,7 @@ import Layout from "../../../components/layout/Layout";
 import ArticleCard from "../../../components/layout/articleCard/ArticleCard";
 import ArticleModal from "../../articles/components/articleModal/ArticleModal";
 import { useEffect, useState } from "react";
-import { mentorAPI, articlesAPI } from "../../../services";
+import { mentorProfileAPI, articlesAPI } from "../../../services";
 
 function MentorArticles() {
   const [mentorArticles, setMentorArticles] = useState([]);
@@ -14,7 +14,7 @@ function MentorArticles() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await mentorAPI.getMentorArticles();
+        const data = await mentorProfileAPI.getMentorArticles();
         setMentorArticles(data);
       } catch (error) {
         console.log("Ошибка", error);
@@ -47,16 +47,7 @@ function MentorArticles() {
       <h2>Мои статьи</h2>
       <div className={styles.articlesCard}>
         {mentorArticles.map((card) => (
-          <ArticleCard
-            id={card.id}
-            imageUrl={card.imageUrl}
-            title={card.title}
-            content={card.content}
-            speciality={card.specialityName}
-            rank={card.rank}
-            key={card.id}
-            onClick={handleCardClick}
-          />
+          <ArticleCard key={card.id} {...card} onClick={handleCardClick} />
         ))}
       </div>
     </Layout>

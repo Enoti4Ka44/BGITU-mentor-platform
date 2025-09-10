@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 
 function RequestCard({ request }) {
   const { student, status } = request;
-  const [choice, setChoise] = useState(null);
 
   const name = `${student.firstName} ${student.lastName}`;
   const statusTranslations = {
@@ -25,6 +24,8 @@ function RequestCard({ request }) {
         applicationId: request.id,
         accepted: choise,
       };
+
+      console.log(data.applicationId, data.accepted);
 
       const respone = await applicationsAPI.patchApplicationResponse(data);
       toast.success(choise ? "Заявка принята" : "Заявка отклонена");

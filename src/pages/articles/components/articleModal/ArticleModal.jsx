@@ -25,8 +25,6 @@ function ArticleModal({ article, onClose, button }) {
     try {
       const response = await articlesAPI.deleteArticleById(articleId);
       toast.success("Статья успешно удалена");
-
-      return response;
     } catch (error) {
       console.error(error);
     }
