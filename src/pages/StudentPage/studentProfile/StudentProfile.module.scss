@@ -1,7 +1,5 @@
 
 .form {
-    height: 90%;
-    position: relative;
     margin-top: 40px;
 
     .formContainer {
@@ -20,9 +18,7 @@
     }
 
     .btnWrapper {
-        position: absolute;
-        bottom: 0;
-        right: 0;
+        margin-top: 20px;
     }
 }
 

@@ -5,7 +5,7 @@ import styles from "./MentorProfile.module.scss";
 import InputFile from "../../../components/ui/inputFile/InputFile";
 import ImageWrapper from "../../../components/ui/imageWrapper/ImageWrapper";
 import Button from "../../../components/ui/button/Button";
-import { mentorAPI } from "../../../services";
+import { mentorProfileAPI } from "../../../services";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import StarIcon from "../../../assets/images/icons/star-icon.png";
@@ -25,7 +25,7 @@ function MentorProfile(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await mentorAPI.getMentorSummary();
+        const data = await mentorProfileAPI.getMentorSummary();
         setFormData({
           firstName: data.firstName || "",
           lastName: data.lastName || "",

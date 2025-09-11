@@ -44,12 +44,6 @@ export const mentorAPI = {
         return handleResponse(response)
     },
 
-    // searchMentors: async (query) => {
-    //     const response = await fetch(`${BASE_URL}/api/mentor/search?query=${encodeURIComponent(query)}`, {
-    //         headers: authHeader(),
-    //         });
-    //         return handleResponse(response);
-    //     },
 
 
 

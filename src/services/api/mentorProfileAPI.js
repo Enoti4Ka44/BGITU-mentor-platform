@@ -5,8 +5,8 @@ import { toast } from "react-toastify"
 export const mentorProfileAPI = {
 
     //Получение карточки ментора (личная) 
-    getMentorProfile: async() => {
-        const response = await fetch(`${BASE_URL}/api/profiles/mentor/`,{ 
+    getMentorSummary: async() => {
+        const response = await fetch(`${BASE_URL}/api/profiles/mentor`,{ 
             headers: authHeader()
         })
         
@@ -14,8 +14,8 @@ export const mentorProfileAPI = {
     },
 
     //Изменение карточки ментора (личная) 
-    patchMentorProfile: async(data) => {
-        const response = await fetch(`${BASE_URL}/api/profiles/mentor/`,{ 
+    patchMentorSummary: async(data) => {
+        const response = await fetch(`${BASE_URL}/api/profiles/mentor`,{ 
             method: "PATCH",
             headers: authHeader(),
             body: data

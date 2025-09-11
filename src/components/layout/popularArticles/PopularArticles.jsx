@@ -27,16 +27,7 @@ function PopularArticles({ onArticleClick }) {
       <div className={styles.articleCards}>
         {popularArticles.length > 0 ? (
           popularArticles.map((card) => (
-            <ArticleCard
-              id={card.id}
-              imageUrl={card.imageUrl}
-              title={card.title}
-              content={card.content}
-              speciality={card.specialityName}
-              rank={card.rank}
-              key={card.id}
-              onClick={onArticleClick}
-            />
+            <ArticleCard {...card} key={card.id} onClick={onArticleClick} />
           ))
         ) : (
           <p style={{ fontWeight: "500", fontSize: "28px" }}>

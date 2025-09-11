@@ -16,8 +16,8 @@ function MentorHome() {
 
   const handleCardClick = async (articleId) => {
     try {
-      const fullMentorData = await articlesAPI.getArticleById(articleId);
-      setSelectedArticle(fullMentorData);
+      const fullArticleData = await articlesAPI.getArticleById(articleId);
+      setSelectedArticle(fullArticleData);
       setIsModalOpen(true);
     } catch (error) {
       console.error("Ошибка загрузки данных", error);
