@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AuthForm from "./AuthForm";
-import { register } from "../../services/api/authServices";
+import { authAPI } from "../../services";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ function Register() {
   const handleSubmit = async (data) => {
     try {
       setIsLoading(true);
-      await register(
+      await authAPI.register(
         data.firstName,
         data.lastName,
         data.email,

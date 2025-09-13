@@ -1,7 +1,7 @@
 import styles from "./ImageWrapper.module.scss";
 import ProfileHolder from "../../../assets/images/icons/profile-holder-icon.svg";
 import { useState, useEffect } from "react";
-import { authHeader } from "../../../services/api/authHeader";
+import { authHeader } from "../../../services/authHeader";
 import { BASE_URL } from "../../../config";
 
 function ImageWrapper({ imageUrl }) {

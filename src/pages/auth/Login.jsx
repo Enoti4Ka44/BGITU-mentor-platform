@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "./AuthForm";
-import { login } from "../../services/api/authServices";
+import { authAPI } from "../../services/api/authAPI";
 
 function Login() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ function Login() {
     try {
       setIsLoading(true);
 
-      const response = await login(data.email, data.password);
+      const response = await authAPI.login(data.email, data.password);
       const role = response.role;
 
       if (role === "STUDENT") {

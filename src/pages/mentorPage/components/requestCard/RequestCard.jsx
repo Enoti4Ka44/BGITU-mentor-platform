@@ -25,12 +25,8 @@ function RequestCard({ request }) {
         accepted: choise,
       };
 
-      console.log(data.applicationId, data.accepted);
-
       const respone = await applicationsAPI.patchApplicationResponse(data);
       toast.success(choise ? "Заявка принята" : "Заявка отклонена");
-
-      return respone;
     } catch (error) {
       console.log(error);
     }

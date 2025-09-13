@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { studentAPI } from "../../../services";
 import { toast } from "react-toastify";
 
-function StudentProfile(props) {
+function StudentProfile() {
   const [avatarFile, setAvatarFile] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState("");
   const [formData, setFormData] = useState({
@@ -39,8 +39,6 @@ function StudentProfile(props) {
     };
     fetchData();
   }, []);
-
-  console.log(formData);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

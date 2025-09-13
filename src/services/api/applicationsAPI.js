@@ -1,6 +1,7 @@
 import {BASE_URL} from "../../config"
-import {authHeader} from "./authHeader"
+import {authHeader} from "../authHeader"
 import { toast } from "react-toastify"
+import { handleResponse } from "../handleResponse"
 
 export const applicationsAPI = {
     //Заявки (входящие для ментора, отправленные для студента)
@@ -27,23 +28,13 @@ export const applicationsAPI = {
     //Ответить на заявку
     patchApplicationResponse: async (data) => { // FIX
         const response = await fetch(`${BASE_URL}/api/applications/${data.applicationId}`, {
-            method: "POST",
+            method: "PATCH",
             headers: {
                 ...authHeader(),
                 'Content-type' : "application/json"
                 },
-            body: JSON.stringify(data.accepted)
+            body: JSON.stringify({ accepted: data.accepted })
         })
         return handleResponse(response)
     }
-}
-
-const handleResponse = async (response) => {
-  if(!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    console.error('Server error:', errorData);
-    toast.error(`${errorData.message}`)
-    throw new Error(errorData.message || response.statusText);
-  }
-  return response.json();
 }

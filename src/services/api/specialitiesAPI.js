@@ -1,6 +1,7 @@
 import { BASE_URL } from "../../config"
-import { authHeader } from "./authHeader"
+import { authHeader } from "../authHeader"
 import { toast } from "react-toastify"
+import { handleResponse } from "../handleResponse"
 
 export const specialitiesAPI = {
     getAllSpecialities: async () => {
@@ -11,14 +12,4 @@ export const specialitiesAPI = {
         return handleResponse(response)
     },
 
-}
-
-const handleResponse = async (response) => {
-  if(!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    console.error('Server error:', errorData);
-    toast.error(`${errorData.message}`)
-    throw new Error(errorData.message || response.statusText);
-  }
-  return response.json();
 }

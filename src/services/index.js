@@ -1,3 +1,4 @@
+export * from "./api/authAPI"
 export * from "./api/mentorAPI";
 export * from "./api/articlesAPI";
 export * from "./api/mentorProfileAPI"

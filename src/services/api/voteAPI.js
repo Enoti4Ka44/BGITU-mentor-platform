@@ -1,6 +1,8 @@
 import { toast } from "react-toastify"
 import { BASE_URL } from "../../config"
-import { authHeader } from "./authHeader"
+import { authHeader } from "../authHeader"
+import { handleResponse } from "../handleResponse"
+
 
 export const voteAPI = {
     postMentorVote: async (id, upvote) => {
@@ -22,13 +24,13 @@ export const voteAPI = {
     },
 }
 
-const handleResponse = async (response) => {
-  if(!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    console.error('Server error:', errorData);
-    toast.error(`${errorData.message}`)
-    throw new Error(errorData.message || response.statusText);
-  }
-    const text = await response.text();
-    return text ? JSON.parse(text) : {}; 
-}
+// const handleResponse = async (response) => {
+//   if(!response.ok) {
+//     const errorData = await response.json().catch(() => ({}));
+//     console.error('Server error:', errorData);
+//     toast.error(`${errorData.message}`)
+//     throw new Error(errorData.message || response.statusText);
+//   }
+//     const text = await response.text();
+//     return text ? JSON.parse(text) : {}; 
+// }

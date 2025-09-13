@@ -1,6 +1,7 @@
 import { BASE_URL } from "../../config"
-import { authHeader } from "./authHeader"
+import { authHeader } from "../authHeader"
 import { toast } from "react-toastify"
+import { handleResponse } from "../handleResponse"
 
 export const articlesAPI = {
     //Получение всех статей (с фильтрацией и пагинацией)
@@ -63,15 +64,3 @@ export const articlesAPI = {
 
 }
 
-const handleResponse = async (response) => {
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    console.error('Server error:', errorData);
-    toast.error(`${errorData.message}`)
-    throw new Error(errorData.message || response.statusText);
-  } 
-  if (response.status === 204) {
-    return null;
-  }
-  return response.json();
-}

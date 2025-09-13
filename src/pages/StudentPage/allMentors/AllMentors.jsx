@@ -49,8 +49,6 @@ function AllMentors() {
     }
   };
 
-  console.log(allMentors);
-
   const handleSearch = (query) => {
     setFilters((prev) => ({
       ...prev,
@@ -58,8 +56,6 @@ function AllMentors() {
       page: 0,
     }));
   };
-
-  console.log(filters);
 
   return (
     <Layout>

@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import StarIcon from "../../../assets/images/icons/star-icon.png";
 
-function MentorProfile(props) {
+function MentorProfile() {
   const [avatarFile, setAvatarFile] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState("");
   const [formData, setFormData] = useState({
@@ -87,7 +87,7 @@ function MentorProfile(props) {
         dataToSend.append("avatar", avatarFile);
       }
 
-      const response = await mentorAPI.patchMentortSummary(dataToSend);
+      const response = await mentorProfileAPI.patchMentorSummary(dataToSend);
       toast.success("Данные успешно обновлены");
       console.log("Данные успешно обновлены:", response);
     } catch (error) {
