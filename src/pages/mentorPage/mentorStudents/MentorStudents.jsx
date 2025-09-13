@@ -1,7 +1,8 @@
 import styles from "./MentorStudents.module.scss";
 import Layout from "../../../components/layout/Layout";
 import StudentCard from "../components/studentCard/StudentCard";
-import { mentorAPI, mentorProfileAPI } from "../../../services";
+import NotFoundText from "../../../components/ui/notFoundText/NotFoundText";
+import { mentorProfileAPI } from "../../../services";
 import { useState, useEffect } from "react";
 
 function MentorStudents() {
@@ -10,7 +11,7 @@ function MentorStudents() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await mentorAPI.getMentorStudents();
+        const data = await mentorProfileAPI.getMentorStudents();
         setStudentsData(data);
       } catch (error) {
         console.log("Ошибка при загрузке данных", error);
@@ -46,9 +47,7 @@ function MentorStudents() {
               />
             ))
         ) : (
-          <p style={{ fontWeight: "500", fontSize: "28px" }}>
-            Студенты не найдены
-          </p>
+          <NotFoundText>Студенты не найдены</NotFoundText>
         )}
       </div>
     </Layout>

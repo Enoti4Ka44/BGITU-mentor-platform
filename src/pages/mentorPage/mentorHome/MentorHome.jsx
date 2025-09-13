@@ -6,7 +6,8 @@ import styles from "./MentorHome.module.scss";
 import Layout from "../../../components/layout/Layout";
 import PopularArticles from "../../../components/layout/popularArticles/PopularArticles";
 import StudentCard from "../components/studentCard/StudentCard";
-import { mentorAPI, mentorProfileAPI, articlesAPI } from "../../../services";
+import { mentorProfileAPI, articlesAPI } from "../../../services";
+import NotFoundText from "../../../components/ui/notFoundText/NotFoundText";
 
 function MentorHome() {
   const [studentsData, setStudentsData] = useState([]);
@@ -28,7 +29,7 @@ function MentorHome() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await mentorAPI.getMentorStudents();
+        const data = await mentorProfileAPI.getMentorStudents();
         setStudentsData(data);
       } catch (error) {
         console.log("Ошибка при загрузке данных", error);
@@ -39,7 +40,7 @@ function MentorHome() {
 
   const handleReject = async (studentId) => {
     try {
-      const response = await deleteMentorStudent.deleteMentorStudent(studentId);
+      const response = await mentorProfileAPI.deleteMentorStudent(studentId);
       toast.success("Вы отказались от студента");
       setStudentsData((prevStudents) =>
         prevStudents.filter((student) => student.id !== studentId)
@@ -73,9 +74,7 @@ function MentorHome() {
                 />
               ))
           ) : (
-            <p style={{ fontWeight: "500", fontSize: "28px" }}>
-              Студенты не найдены
-            </p>
+            <NotFoundText>Студенты не найдены</NotFoundText>
           )}
         </div>
         {studentsData.length > 0 && (

@@ -7,8 +7,9 @@ import { useState } from "react";
 import Modal from "../../../../components/layout/modal/Modal";
 import Button from "../../../../components/ui/button/Button";
 
-function ArticleModal({ article, onClose, button }) {
+function ArticleModal({ article, onClose, button, onDelete }) {
   const [rank, setRank] = useState(article.rank);
+
   const handleVote = async (upvote) => {
     try {
       const response = await voteAPI.postArticleVote(article.id, upvote);
@@ -25,6 +26,7 @@ function ArticleModal({ article, onClose, button }) {
     try {
       const response = await articlesAPI.deleteArticleById(articleId);
       toast.success("Статья успешно удалена");
+      onDelete(articleId);
     } catch (error) {
       console.error(error);
     }

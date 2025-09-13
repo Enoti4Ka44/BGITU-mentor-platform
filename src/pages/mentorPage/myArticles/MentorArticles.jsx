@@ -3,6 +3,7 @@ import styles from "./MentorArticles.module.scss";
 import Layout from "../../../components/layout/Layout";
 import ArticleCard from "../../../components/layout/articleCard/ArticleCard";
 import ArticleModal from "../../articles/components/articleModal/ArticleModal";
+import NotFoundText from "../../../components/ui/notFoundText/NotFoundText";
 import { useEffect, useState } from "react";
 import { mentorProfileAPI, articlesAPI } from "../../../services";
 
@@ -41,14 +42,24 @@ function MentorArticles() {
           article={selectedArticle}
           onClose={() => setIsModalOpen(false)}
           button={true}
+          onDelete={(deleteId) => {
+            setMentorArticles((prev) =>
+              prev.filter((article) => article.id !== deleteId)
+            );
+            setIsModalOpen(false);
+          }}
         />
       )}
 
       <h2>Мои статьи</h2>
       <div className={styles.articlesCard}>
-        {mentorArticles.map((card) => (
-          <ArticleCard key={card.id} {...card} onClick={handleCardClick} />
-        ))}
+        {mentorArticles.length > 0 ? (
+          mentorArticles.map((card) => (
+            <ArticleCard key={card.id} {...card} onClick={handleCardClick} />
+          ))
+        ) : (
+          <NotFoundText>Статьи не найдены</NotFoundText>
+        )}
       </div>
     </Layout>
   );
