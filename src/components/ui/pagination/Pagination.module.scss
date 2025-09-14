@@ -1,0 +1,36 @@
+@import "../../../assets/styles/variables.scss";
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+
+  button {
+    border: none;
+    border-radius: 6px;
+    background: $green-dark;
+
+    color: $white;
+    font-size: 20px;
+
+    cursor: pointer;
+    padding: 10px 18px;
+
+    transition: background 0.2s ease;
+
+    &:hover:not(:disabled) {
+    background: $green-darker;
+    }
+
+    &:disabled {
+    background: $grey-light;
+    cursor: not-allowed;
+    }
+  }
+
+  span {
+    font-weight: 600;
+  }
+}

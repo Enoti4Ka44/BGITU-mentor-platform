@@ -1,6 +1,7 @@
 import { articlesAPI } from "../../services";
 import styles from "./AllArticles.module.scss";
 import { toast } from "react-toastify";
+import Pagination from "../../components/ui/pagination/Pagination";
 import Layout from "../../components/layout/Layout";
 import ArticleCard from "../../components/layout/articleCard/ArticleCard";
 import ArticleModal from "./components/articleModal/ArticleModal";
@@ -11,6 +12,7 @@ function AllArticles() {
   const [allArticles, setAllArticles] = useState([]);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
   const [filters, setFilters] = useState({
     specialityId: null,
     query: "",
@@ -22,14 +24,9 @@ function AllArticles() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await articlesAPI.getAllArticles({
-          specialityId: null,
-          query: filters.query,
-          page: 0,
-          size: 10,
-          sort: "",
-        });
+        const data = await articlesAPI.getAllArticles(filters);
         setAllArticles(data.content);
+        setTotalPages(data.page.totalPages);
       } catch (error) {
         console.log("Ошибка", error);
       }
@@ -56,6 +53,8 @@ function AllArticles() {
     }));
   };
 
+  console.log(filters);
+
   return (
     <Layout>
       {isModalOpen && selectedArticle && (
@@ -72,6 +71,14 @@ function AllArticles() {
           <ArticleCard key={card.id} {...card} onClick={handleCardClick} />
         ))}
       </div>
+
+      <Pagination
+        currentPage={filters.page}
+        totalPages={totalPages}
+        onChange={(newPage) =>
+          setFilters((prev) => ({ ...prev, page: newPage }))
+        }
+      />
     </Layout>
   );
 }

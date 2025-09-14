@@ -6,9 +6,7 @@ function SearchBar({ placeholder, onSearch }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (query.trim()) {
-      onSearch(query);
-    }
+    onSearch(query);
   };
 
   return (

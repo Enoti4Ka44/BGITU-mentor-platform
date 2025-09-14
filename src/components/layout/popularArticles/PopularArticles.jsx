@@ -1,4 +1,4 @@
-// src/pages/studentHome/components/PopularArticles.jsx
+import NotFoundText from "../../ui/notFoundText/NotFoundText";
 import styles from "./PopularArticles.module.scss";
 import ArticleCard from "../articleCard/ArticleCard";
 import { articlesAPI } from "../../../services";
@@ -30,9 +30,7 @@ function PopularArticles({ onArticleClick }) {
             <ArticleCard {...card} key={card.id} onClick={onArticleClick} />
           ))
         ) : (
-          <p style={{ fontWeight: "500", fontSize: "28px" }}>
-            Рекомендуемые статьи не найдены
-          </p>
+          <NotFoundText>Рекомендуемые статьи не найдены</NotFoundText>
         )}
       </div>
     </div>
