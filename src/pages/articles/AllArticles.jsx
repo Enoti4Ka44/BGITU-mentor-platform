@@ -53,8 +53,6 @@ function AllArticles() {
     }));
   };
 
-  console.log(filters);
-
   return (
     <Layout>
       {isModalOpen && selectedArticle && (

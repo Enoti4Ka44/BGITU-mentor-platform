@@ -4,33 +4,29 @@ import { toast } from "react-toastify";
 import Layout from "../../../components/layout/Layout";
 import MentorCard from "../components/mentorCard/MentorCard";
 import MentorModal from "../components/MentorModal/MentorModal";
-import Sidebar from "../../../components/layout/sidebar/Sidebar";
 import SearchBar from "../../../components/ui/searchBar/SearchBar";
 import { useEffect, useState } from "react";
+import Pagination from "../../../components/ui/pagination/Pagination";
 
 function AllMentors() {
   const [allMentors, setAllMentors] = useState([]);
   const [selectedMentor, setSelectedMentor] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
   const [filters, setFilters] = useState({
     specialityId: null,
     query: "",
     page: 0,
-    size: 10,
+    size: 6,
     sort: "",
   });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await mentorAPI.getAllMentors({
-          specialityId: null,
-          query: filters.query,
-          page: 0,
-          size: 10,
-          sort: "",
-        });
+        const data = await mentorAPI.getAllMentors(filters);
         setAllMentors(data.content);
+        setTotalPages(data.page.totalPages);
       } catch (error) {
         console.log("Ошибка", error);
       }
@@ -73,6 +69,14 @@ function AllMentors() {
           <MentorCard key={card.id} {...card} onClick={handleCardClick} />
         ))}
       </div>
+
+      <Pagination
+        totalPages={totalPages}
+        currentPage={filters.page}
+        onChange={(newPage) =>
+          setFilters((prev) => ({ ...prev, page: newPage }))
+        }
+      />
     </Layout>
   );
 }
