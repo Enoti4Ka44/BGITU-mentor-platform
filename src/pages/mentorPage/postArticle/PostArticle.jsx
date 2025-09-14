@@ -43,6 +43,8 @@ function PostArticle({ props, specialities }) {
     }));
   };
 
+  console.log(articleData.speciality);
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {

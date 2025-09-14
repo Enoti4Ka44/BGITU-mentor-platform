@@ -4,8 +4,9 @@ import Textarea from "../../../components/ui/textarea/Textarea";
 import styles from "./MentorProfile.module.scss";
 import InputFile from "../../../components/ui/inputFile/InputFile";
 import ImageWrapper from "../../../components/ui/imageWrapper/ImageWrapper";
+import InputSelect from "../../../components/ui/inputSelect/InputSelect";
 import Button from "../../../components/ui/button/Button";
-import { mentorProfileAPI } from "../../../services";
+import { mentorProfileAPI, specialitiesAPI } from "../../../services";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import StarIcon from "../../../assets/images/icons/star-icon.png";
@@ -13,6 +14,7 @@ import StarIcon from "../../../assets/images/icons/star-icon.png";
 function MentorProfile() {
   const [avatarFile, setAvatarFile] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState("");
+  const [allSpecialities, setAllSpecialities] = useState([]);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -22,28 +24,45 @@ function MentorProfile() {
     speciality: "",
     rank: null,
   });
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await mentorProfileAPI.getMentorSummary();
-        setFormData({
-          firstName: data.firstName || "",
-          lastName: data.lastName || "",
-          description: data.description || "",
-          vkUrl: data.vkUrl || "",
-          telegramUrl: data.telegramUrl || "",
-          speciality: data.speciality || "",
-          rank: data.rank || null,
-        });
-        if (data.avatarUrl) {
-          setAvatarUrl(data.avatarUrl);
-        }
-      } catch (error) {
-        console.log("Ошибка при загрузке данных", error);
+
+  const fetchData = async () => {
+    try {
+      const data = await mentorProfileAPI.getMentorSummary();
+      setFormData({
+        firstName: data.firstName || "",
+        lastName: data.lastName || "",
+        description: data.description || "",
+        vkUrl: data.vkUrl || "",
+        telegramUrl: data.telegramUrl || "",
+        speciality: data.speciality || "",
+        rank: data.rank || null,
+      });
+      if (data.avatarUrl) {
+        setAvatarUrl(data.avatarUrl);
       }
-    };
+    } catch (error) {
+      console.log("Ошибка при загрузке данных", error);
+    }
+  };
+
+  const fetchSpecialities = async () => {
+    try {
+      const data = await specialitiesAPI.getAllSpecialities();
+      setAllSpecialities(data);
+    } catch (error) {
+      console.log("Ошибка при загрузке доступных специальностей", error);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
+    fetchSpecialities();
   }, []);
+
+  const specialityOptions = allSpecialities.map((spec) => ({
+    value: spec.id,
+    label: spec.name,
+  }));
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -74,7 +93,7 @@ function MentorProfile() {
             description: formData.description,
             vkUrl: formData.vkUrl,
             telegramUrl: formData.telegramUrl,
-            speciality: formData.speciality,
+            specialityId: Number(formData.speciality),
             rank: Number(formData.rank),
           }),
         ],
@@ -122,12 +141,15 @@ function MentorProfile() {
               onChange={handleInputChange}
             />
 
-            <p className={styles.rank}>
-              Мой рейтинг:{" "}
-              <span>
-                {formData.rank} <img src={StarIcon} alt="" />
-              </span>
-            </p>
+            <InputSelect
+              value={formData.speciality}
+              options={specialityOptions}
+              name="speciality"
+              required={true}
+              label="Специальность"
+              placeholder="Выберите специальность"
+              onChange={handleInputChange}
+            />
           </div>
 
           <div className={styles.inputContainer}>
@@ -140,6 +162,7 @@ function MentorProfile() {
               placeholder="Телеграм тег"
               onChange={handleInputChange}
             />
+
             <Input
               value={formData.vkUrl}
               name="vkUrl"
@@ -149,6 +172,13 @@ function MentorProfile() {
               placeholder="Профиль ВК"
               onChange={handleInputChange}
             />
+
+            <p className={styles.rank}>
+              Мой рейтинг:{" "}
+              <span>
+                {formData.rank} <img src={StarIcon} alt="" />
+              </span>
+            </p>
           </div>
 
           <div className={styles.imageWrapper}>

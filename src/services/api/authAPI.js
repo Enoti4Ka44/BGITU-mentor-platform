@@ -1,6 +1,7 @@
 import {BASE_URL} from '../../config'
 
 export const authAPI = {
+    //Вход
     login: async (email, password) => {
         try {
             const response = await fetch(`${BASE_URL}/api/auth/login`, {
@@ -23,7 +24,7 @@ export const authAPI = {
             throw error
         }
 },
-
+    //Регистрация
     register: async (firstName, lastName, email, password, role) => {
         try {
             const response = await fetch(`${BASE_URL}/api/auth/register`, {

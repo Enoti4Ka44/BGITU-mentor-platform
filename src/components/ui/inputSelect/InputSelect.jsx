@@ -20,11 +20,12 @@ function InputSelect(props) {
               {props.placeholder}
             </option>
           )}
-          {props.options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
+          {props.options &&
+            props.options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
         </select>
       </div>
     </div>

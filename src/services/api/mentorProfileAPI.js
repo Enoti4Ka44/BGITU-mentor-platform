@@ -4,7 +4,6 @@ import { toast } from "react-toastify"
 import { handleResponse } from "../handleResponse"
 
 export const mentorProfileAPI = {
-
     //Получение карточки ментора (личная) 
     getMentorSummary: async() => {
         const response = await fetch(`${BASE_URL}/api/profiles/mentor`,{ 

@@ -5,6 +5,7 @@ import { handleResponse } from "../handleResponse"
 
 
 export const voteAPI = {
+    //Проголосовать за ментора
     postMentorVote: async (id, upvote) => {
         const response = await fetch(`${BASE_URL}/api/mentors/${id}/vote?upvote=${upvote}`, {
             method: "POST",
@@ -14,6 +15,7 @@ export const voteAPI = {
         return handleResponse(response)
     },
 
+    //Проголосовать за статью
     postArticleVote: async (id, upvote) => {
         const response = await fetch(`${BASE_URL}/api/articles/${id}/vote?like=${upvote}`, {
             method: "POST",
@@ -23,14 +25,3 @@ export const voteAPI = {
         return handleResponse(response)
     },
 }
-
-// const handleResponse = async (response) => {
-//   if(!response.ok) {
-//     const errorData = await response.json().catch(() => ({}));
-//     console.error('Server error:', errorData);
-//     toast.error(`${errorData.message}`)
-//     throw new Error(errorData.message || response.statusText);
-//   }
-//     const text = await response.text();
-//     return text ? JSON.parse(text) : {}; 
-// }
