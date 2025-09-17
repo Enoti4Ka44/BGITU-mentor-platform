@@ -1,8 +1,12 @@
-import InputSelect from "../inputSelect/InputSelect";
+import styles from "./PageSize.module.scss";
 
 function PageSize({ pageSizes, onChange }) {
   return (
-    <select name="size" onChange={(e) => onChange(Number(e.target.value))}>
+    <select
+      className={styles.select}
+      name="size"
+      onChange={(e) => onChange(Number(e.target.value))}
+    >
       {pageSizes &&
         pageSizes.map((option) => (
           <option key={option} value={option}>

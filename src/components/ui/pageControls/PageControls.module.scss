@@ -1,0 +1,10 @@
+.wrapper {
+    width: 100%;
+    position: relative;
+
+    & select {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}

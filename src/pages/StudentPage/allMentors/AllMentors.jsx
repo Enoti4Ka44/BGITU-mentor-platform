@@ -1,12 +1,12 @@
+import { useEffect, useState } from "react";
 import { mentorAPI } from "../../../services";
-import styles from "./AllMentors.module.scss";
 import { toast } from "react-toastify";
+import styles from "./AllMentors.module.scss";
 import Layout from "../../../components/layout/Layout";
 import MentorCard from "../components/mentorCard/MentorCard";
 import MentorModal from "../components/MentorModal/MentorModal";
 import SearchBar from "../../../components/ui/searchBar/SearchBar";
-import { useEffect, useState } from "react";
-import Pagination from "../../../components/ui/pagination/Pagination";
+import PageControls from "../../../components/ui/pageControls/PageControls";
 
 function AllMentors() {
   const [allMentors, setAllMentors] = useState([]);
@@ -17,7 +17,7 @@ function AllMentors() {
     specialityId: null,
     query: "",
     page: 0,
-    size: 6,
+    size: 10,
     sort: "",
   });
 
@@ -70,11 +70,15 @@ function AllMentors() {
         ))}
       </div>
 
-      <Pagination
+      <PageControls
         totalPages={totalPages}
         currentPage={filters.page}
-        onChange={(newPage) =>
+        pageSizes={[10, 25, 50]}
+        onPageChange={(newPage) =>
           setFilters((prev) => ({ ...prev, page: newPage }))
+        }
+        onSizeChange={(newSize) =>
+          setFilters((prev) => ({ ...prev, size: newSize }))
         }
       />
     </Layout>

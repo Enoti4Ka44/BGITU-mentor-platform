@@ -1,13 +1,12 @@
+import { useEffect, useState } from "react";
 import { articlesAPI } from "../../services";
-import styles from "./AllArticles.module.scss";
 import { toast } from "react-toastify";
-import Pagination from "../../components/ui/pagination/Pagination";
+import styles from "./AllArticles.module.scss";
 import Layout from "../../components/layout/Layout";
 import ArticleCard from "../../components/layout/articleCard/ArticleCard";
 import ArticleModal from "./components/articleModal/ArticleModal";
 import SearchBar from "../../components/ui/searchBar/SearchBar";
-import { useEffect, useState } from "react";
-import PageSize from "../../components/ui/pageSize/PageSize";
+import PageControls from "../../components/ui/pageControls/PageControls";
 
 function AllArticles() {
   const [allArticles, setAllArticles] = useState([]);
@@ -71,17 +70,14 @@ function AllArticles() {
         ))}
       </div>
 
-      <Pagination
-        currentPage={filters.page}
+      <PageControls
         totalPages={totalPages}
-        onChange={(newPage) =>
+        currentPage={filters.page}
+        pageSizes={[10, 25, 50]}
+        onPageChange={(newPage) =>
           setFilters((prev) => ({ ...prev, page: newPage }))
         }
-      />
-
-      <PageSize
-        pageSizes={[10, 25, 50]}
-        onChange={(newSize) =>
+        onSizeChange={(newSize) =>
           setFilters((prev) => ({ ...prev, size: newSize }))
         }
       />
