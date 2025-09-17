@@ -1,7 +1,6 @@
 import styles from "./InputSelect.module.scss";
 
 function InputSelect(props) {
-  console.log(props.options);
   return (
     <div>
       <label className={styles.label} htmlFor={props.name}>
