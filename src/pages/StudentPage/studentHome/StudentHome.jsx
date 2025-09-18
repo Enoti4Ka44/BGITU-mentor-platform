@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 function StudentHome() {
   const [popularMentors, setPopularMentors] = useState([]);
   const [popularArticles, setPopularArticles] = useState([]);
-  const [studentMentor, setStudentMentor] = useState([]);
+  const [studentMentor, setStudentMentor] = useState(null);
   const [selectedMentor, setSelectedMentor] = useState(null);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isMentorModalOpen, setIsMentorModalOpen] = useState(false);
@@ -87,7 +87,7 @@ function StudentHome() {
         <div className={styles.featureMentors}>
           <h3 className={styles.sectionTitle}>Рекомендуемые менторы</h3>
           <div className={styles.mentorsCards}>
-            {popularMentors ? (
+            {popularMentors.length > 0 ? (
               popularMentors.map((card) => (
                 <MentorCard
                   id={card.id}
@@ -117,7 +117,7 @@ function StudentHome() {
 
         <div className={styles.popularArticles}>
           <h3 className={styles.sectionTitle}>Популярные статьи</h3>
-          {popularArticles ? (
+          {popularArticles.length > 0 ? (
             <PopularArticles onArticleClick={handleArticleCardClick} />
           ) : (
             <NotFoundText>Рекомендуемые статьи не найдены</NotFoundText>

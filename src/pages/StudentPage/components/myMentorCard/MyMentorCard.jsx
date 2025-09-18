@@ -3,9 +3,21 @@ import StarIcon from "../../../../assets/images/icons/star-icon.png";
 import ImageWrapper from "../../../../components/ui/imageWrapper/ImageWrapper";
 import Button from "../../../../components/ui/button/Button";
 import Socials from "../../../../components/ui/socials/Socials";
+import { studentAPI } from "../../../../services";
+import { toast } from "react-toastify";
 
 function MyMentorCard({ studentMentor, onClick }) {
   const name = `${studentMentor.firstName} ${studentMentor.lastName}`;
+
+  const handleStopMentorship = async () => {
+    try {
+      const response = await studentAPI.deleteStudentMentor();
+      toast.success("Вы успешно отказались от ментора");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className={styles.card}>
       <div className={styles.cardContent}>
@@ -28,7 +40,7 @@ function MyMentorCard({ studentMentor, onClick }) {
             <img src={StarIcon} alt="" />
           </span>
         </p>
-        <Button onClick={onClick} color="red">
+        <Button onClick={handleStopMentorship} color="red">
           Отказаться от ментора
         </Button>
       </div>
