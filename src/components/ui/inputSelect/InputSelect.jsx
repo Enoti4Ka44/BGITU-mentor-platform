@@ -3,9 +3,13 @@ import styles from "./InputSelect.module.scss";
 function InputSelect(props) {
   return (
     <div>
-      <label className={styles.label} htmlFor={props.name}>
-        {props.label}
-      </label>
+      {props.label ? (
+        <label className={styles.label} htmlFor={props.name}>
+          {props.label}
+        </label>
+      ) : (
+        ""
+      )}
       <div className={styles.customSelect}>
         <select
           className={styles.select}

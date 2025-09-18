@@ -6,6 +6,7 @@ import Layout from "../../../components/layout/Layout";
 import MentorCard from "../components/mentorCard/MentorCard";
 import MentorModal from "../components/MentorModal/MentorModal";
 import SearchBar from "../../../components/ui/searchBar/SearchBar";
+import Button from "../../../components/ui/button/Button";
 import PageControls from "../../../components/ui/pageControls/PageControls";
 import FilterSpecialities from "../../../components/ui/filterSpecialities/filterSpecialities";
 
@@ -69,10 +70,18 @@ function AllMentors() {
       <h2 style={{ marginBottom: "20px" }}>Все менторы</h2>
 
       <SearchBar placeholder="Поиск менторов..." onSearch={handleSearch} />
-      <FilterSpecialities
-        value={filters.specialityId}
-        onChange={handleFilterInputChange}
-      />
+      <div className={styles.sorting}>
+        <FilterSpecialities
+          value={filters.specialityId}
+          onChange={handleFilterInputChange}
+        />
+        <Button
+          color="black"
+          onClick={() => setFilters((prev) => ({ ...prev, specialityId: "" }))}
+        >
+          Очистить
+        </Button>
+      </div>
 
       <div className={styles.mentorsCards}>
         {allMentors.map((card) => (

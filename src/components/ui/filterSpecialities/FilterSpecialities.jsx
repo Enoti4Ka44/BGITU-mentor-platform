@@ -27,8 +27,7 @@ function FilterSpecialities({ value, onChange }) {
       value={value}
       options={specialityOptions}
       name="speciality"
-      label="Специальность:"
-      placeholder="Выберите категорию"
+      placeholder="Выберите специальность"
       onChange={onChange}
     />
   );

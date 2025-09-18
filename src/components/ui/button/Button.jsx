@@ -1,25 +1,21 @@
 import { useNavigate } from "react-router";
 import styles from "./Button.module.scss";
 
-function Button(props) {
-  const btnClass = `${styles.btn} ${styles[`btn--${props.color}`]}`;
+function Button({ color, onClick, route, disabled, children }) {
+  const btnClass = `${styles.btn} ${styles[`btn--${color}`]}`;
   const navigate = useNavigate();
 
   const handleClick = (e) => {
-    if (props.onClick) {
-      props.onClick(e);
-    } else if (props.route) {
-      navigate(`/${props.route}`);
+    if (onClick) {
+      onClick(e);
+    } else if (route) {
+      navigate(`/${route}`);
     }
   };
 
   return (
-    <button
-      disabled={props.disabled}
-      onClick={handleClick}
-      className={btnClass}
-    >
-      {props.children}
+    <button disabled={disabled} onClick={handleClick} className={btnClass}>
+      {children}
     </button>
   );
 }

@@ -9,9 +9,9 @@ import SearchBar from "../../components/ui/searchBar/SearchBar";
 import PageControls from "../../components/ui/pageControls/PageControls";
 import InputSelect from "../../components/ui/inputSelect/InputSelect";
 import FilterSpecialities from "../../components/ui/filterSpecialities/filterSpecialities";
+import Button from "../../components/ui/button/Button";
 
 function AllArticles() {
-  const [allSpecialities, setAllSpecialities] = useState([]);
   const [allArticles, setAllArticles] = useState([]);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -70,14 +70,21 @@ function AllArticles() {
       )}
 
       <h2>Все статьи</h2>
+      <SearchBar placeholder="Поиск статей..." onSearch={handleSearch} />
+      <div className={styles.sorting}>
+        <FilterSpecialities
+          value={filters.specialityId}
+          onChange={handleFilterInputChange}
+        />
+        <Button
+          color="black"
+          onClick={() => setFilters((prev) => ({ ...prev, specialityId: "" }))}
+        >
+          Очистить
+        </Button>
+      </div>
+
       <div className={styles.articlesCard}>
-        <div>
-          <SearchBar placeholder="Поиск статей..." onSearch={handleSearch} />
-          <FilterSpecialities
-            value={filters.specialityId}
-            onChange={handleFilterInputChange}
-          />
-        </div>
         {allArticles.map((card) => (
           <ArticleCard key={card.id} {...card} onClick={handleCardClick} />
         ))}
