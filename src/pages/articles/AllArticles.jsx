@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { articlesAPI } from "../../services";
+import { articlesAPI, specialitiesAPI } from "../../services";
 import { toast } from "react-toastify";
 import styles from "./AllArticles.module.scss";
 import Layout from "../../components/layout/Layout";
@@ -7,14 +7,17 @@ import ArticleCard from "../../components/layout/articleCard/ArticleCard";
 import ArticleModal from "./components/articleModal/ArticleModal";
 import SearchBar from "../../components/ui/searchBar/SearchBar";
 import PageControls from "../../components/ui/pageControls/PageControls";
+import InputSelect from "../../components/ui/inputSelect/InputSelect";
+import FilterSpecialities from "../../components/ui/filterSpecialities/filterSpecialities";
 
 function AllArticles() {
+  const [allSpecialities, setAllSpecialities] = useState([]);
   const [allArticles, setAllArticles] = useState([]);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [filters, setFilters] = useState({
-    specialityId: null,
+    specialityId: "",
     query: "",
     page: 0,
     size: 10,
@@ -22,7 +25,7 @@ function AllArticles() {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchArticlesData = async () => {
       try {
         const data = await articlesAPI.getAllArticles(filters);
         setAllArticles(data.content);
@@ -31,7 +34,7 @@ function AllArticles() {
         console.log("Ошибка", error);
       }
     };
-    fetchData();
+    fetchArticlesData();
   }, [filters]);
 
   const handleCardClick = async (articleId) => {
@@ -53,6 +56,10 @@ function AllArticles() {
     }));
   };
 
+  const handleFilterInputChange = (e) => {
+    setFilters((prev) => ({ ...prev, specialityId: Number(e.target.value) }));
+  };
+
   return (
     <Layout>
       {isModalOpen && selectedArticle && (
@@ -64,7 +71,13 @@ function AllArticles() {
 
       <h2>Все статьи</h2>
       <div className={styles.articlesCard}>
-        <SearchBar placeholder="Поиск статей..." onSearch={handleSearch} />
+        <div>
+          <SearchBar placeholder="Поиск статей..." onSearch={handleSearch} />
+          <FilterSpecialities
+            value={filters.specialityId}
+            onChange={handleFilterInputChange}
+          />
+        </div>
         {allArticles.map((card) => (
           <ArticleCard key={card.id} {...card} onClick={handleCardClick} />
         ))}

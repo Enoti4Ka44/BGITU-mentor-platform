@@ -19,14 +19,14 @@ function Pagination({ totalPages, currentPage, onChange }) {
       </span>
 
       <button
-        disabled={currentPage === totalPages - 1}
+        disabled={currentPage === totalPages - 1 || !totalPages}
         onClick={() => onChange(currentPage + 1)}
       >
         »
       </button>
 
       <button
-        disabled={currentPage === totalPages - 1}
+        disabled={currentPage === totalPages - 1 || !totalPages}
         onClick={() => onChange(totalPages - 1)}
       >
         Последняя »

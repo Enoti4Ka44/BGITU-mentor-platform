@@ -1,6 +1,6 @@
-import styles from "./PageSize.module.scss";
+import styles from "./PageSizeSelect.module.scss";
 
-function PageSize({ pageSizes, onChange }) {
+function PageSizeSelect({ pageSizes, onChange }) {
   return (
     <select
       className={styles.select}
@@ -17,4 +17,4 @@ function PageSize({ pageSizes, onChange }) {
   );
 }
 
-export default PageSize;
+export default PageSizeSelect;

@@ -1,4 +1,4 @@
-import PageSize from "../pageSize/PageSize";
+import PageSizeSelect from "../pageSizeSelect/PageSizeSelect";
 import Pagination from "../pagination/Pagination";
 import styles from "./PageControls.module.scss";
 
@@ -16,7 +16,7 @@ function PageControls({
         currentPage={currentPage}
         onChange={onPageChange}
       />
-      <PageSize pageSizes={pageSizes} onChange={onSizeChange} />
+      <PageSizeSelect pageSizes={pageSizes} onChange={onSizeChange} />
     </div>
   );
 }

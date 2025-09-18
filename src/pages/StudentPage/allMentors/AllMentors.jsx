@@ -7,6 +7,7 @@ import MentorCard from "../components/mentorCard/MentorCard";
 import MentorModal from "../components/MentorModal/MentorModal";
 import SearchBar from "../../../components/ui/searchBar/SearchBar";
 import PageControls from "../../../components/ui/pageControls/PageControls";
+import FilterSpecialities from "../../../components/ui/filterSpecialities/filterSpecialities";
 
 function AllMentors() {
   const [allMentors, setAllMentors] = useState([]);
@@ -14,7 +15,7 @@ function AllMentors() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [filters, setFilters] = useState({
-    specialityId: null,
+    specialityId: "",
     query: "",
     page: 0,
     size: 10,
@@ -53,6 +54,10 @@ function AllMentors() {
     }));
   };
 
+  const handleFilterInputChange = (e) => {
+    setFilters((prev) => ({ ...prev, specialityId: Number(e.target.value) }));
+  };
+
   return (
     <Layout>
       {isModalOpen && selectedMentor && (
@@ -64,6 +69,11 @@ function AllMentors() {
       <h2 style={{ marginBottom: "20px" }}>Все менторы</h2>
 
       <SearchBar placeholder="Поиск менторов..." onSearch={handleSearch} />
+      <FilterSpecialities
+        value={filters.specialityId}
+        onChange={handleFilterInputChange}
+      />
+
       <div className={styles.mentorsCards}>
         {allMentors.map((card) => (
           <MentorCard key={card.id} {...card} onClick={handleCardClick} />
