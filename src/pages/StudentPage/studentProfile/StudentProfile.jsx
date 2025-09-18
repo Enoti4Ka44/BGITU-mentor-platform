@@ -1,13 +1,13 @@
-import Layout from "../../../components/layout/Layout";
-import Input from "../../../components/ui/input/Input";
-import Textarea from "../../../components/ui/textarea/Textarea";
-import styles from "./StudentProfile.module.scss";
-import InputFile from "../../../components/ui/inputFile/InputFile";
-import ImageWrapper from "../../../components/ui/imageWrapper/ImageWrapper";
-import Button from "../../../components/ui/button/Button";
 import { useEffect, useState } from "react";
 import { studentAPI } from "../../../services";
 import { toast } from "react-toastify";
+import styles from "./StudentProfile.module.scss";
+import Layout from "../../../components/layout/Layout";
+import Input from "../../../components/ui/input/Input";
+import Textarea from "../../../components/ui/textarea/Textarea";
+import InputFile from "../../../components/ui/inputFile/InputFile";
+import ImageWrapper from "../../../components/ui/imageWrapper/ImageWrapper";
+import Button from "../../../components/ui/button/Button";
 
 function StudentProfile() {
   const [avatarFile, setAvatarFile] = useState(null);

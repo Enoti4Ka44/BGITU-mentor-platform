@@ -1,7 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import ProtectedRoute from "./pages/auth/ProtectedRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Welcome from "./pages/welcome/Welcome";

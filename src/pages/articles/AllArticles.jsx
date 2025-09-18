@@ -78,7 +78,7 @@ function AllArticles() {
           setFilters((prev) => ({ ...prev, page: newPage }))
         }
         onSizeChange={(newSize) =>
-          setFilters((prev) => ({ ...prev, size: newSize }))
+          setFilters((prev) => ({ ...prev, page: 0, size: newSize }))
         }
       />
     </Layout>

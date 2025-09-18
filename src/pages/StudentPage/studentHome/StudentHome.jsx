@@ -8,7 +8,7 @@ import MyMentorCard from "../components/myMentorCard/MyMentorCard";
 import MentorModal from "../components/MentorModal/MentorModal";
 import PopularArticles from "../../../components/layout/popularArticles/PopularArticles";
 import ArticleModal from "../../articles/components/articleModal/ArticleModal";
-import ArticleCard from "../../../components/layout/articleCard/ArticleCard";
+import NotFoundText from "../../../components/ui/notFoundText/NotFoundText";
 import { toast } from "react-toastify";
 
 function StudentHome() {
@@ -87,7 +87,7 @@ function StudentHome() {
         <div className={styles.featureMentors}>
           <h3 className={styles.sectionTitle}>Рекомендуемые менторы</h3>
           <div className={styles.mentorsCards}>
-            {popularMentors.length > 0 ? (
+            {popularMentors ? (
               popularMentors.map((card) => (
                 <MentorCard
                   id={card.id}
@@ -101,27 +101,27 @@ function StudentHome() {
                 />
               ))
             ) : (
-              <p style={{ fontWeight: "500", fontSize: "28px" }}>
-                Рекомендуемые менторы не найдены
-              </p>
+              <NotFoundText>Рекомендуемые менторы не найдены</NotFoundText>
             )}
           </div>
         </div>
 
         <div className={styles.myMentor}>
           <h3 className={styles.sectionTitle}>Мой ментор</h3>
-          {studentMentor.length > 0 ? (
+          {studentMentor ? (
             <MyMentorCard studentMentor={studentMentor} />
           ) : (
-            <p style={{ fontWeight: "500", fontSize: "28px" }}>
-              Ваш ментор не найден
-            </p>
+            <NotFoundText>У вас еще нет ментора</NotFoundText>
           )}
         </div>
 
         <div className={styles.popularArticles}>
           <h3 className={styles.sectionTitle}>Популярные статьи</h3>
-          <PopularArticles onArticleClick={handleArticleCardClick} />
+          {popularArticles ? (
+            <PopularArticles onArticleClick={handleArticleCardClick} />
+          ) : (
+            <NotFoundText>Рекомендуемые статьи не найдены</NotFoundText>
+          )}
         </div>
       </>
 

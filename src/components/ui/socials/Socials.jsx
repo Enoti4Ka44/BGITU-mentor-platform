@@ -6,10 +6,18 @@ function Socials({ vkUrl, telegramUrl }) {
   return (
     <div className={styles.socials}>
       <a href={vkUrl}>
-        <img src={VkIcon} alt="icon of vk" />
+        <img
+          src={VkIcon}
+          alt="icon of vk"
+          style={{ width: "30px", height: "30px" }}
+        />
       </a>
       <a href={telegramUrl}>
-        <img src={TelegramIcon} alt="icon of telegram" />
+        <img
+          src={TelegramIcon}
+          alt="icon of telegram"
+          style={{ width: "30px", height: "30px" }}
+        />
       </a>
     </div>
   );

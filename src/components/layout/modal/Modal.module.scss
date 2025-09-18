@@ -18,14 +18,15 @@
 .modal {
     background: white;
     border-radius: 8px;
-    width: 1200px;
 
-    min-width: 800px;
-    height: 800px;
+    min-width: 300px;
+    max-width: 1000px;
+    width: 90%;
+    height: 700px;
     overflow-y: auto;
     position: relative;
 
-    padding: 60px 40px;
+    padding: 60px 40px 30px 40px;
 
     .closeBtn {
         position: absolute;

@@ -8,10 +8,10 @@ import TelegramIcon from "../../../../assets/images/icons/telegram-icon.png";
 import { applicationsAPI, voteAPI } from "../../../../services";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import Socials from "../../../../components/ui/socials/Socials";
 
 function MentorModal({ mentor, onClose }) {
   const [rank, setRank] = useState(mentor.rank);
-  const [activeVote, setActiveVote] = useState(null);
   const name = `${mentor.firstName} ${mentor.lastName}`;
 
   const handleSubmit = async () => {
@@ -45,23 +45,16 @@ function MentorModal({ mentor, onClose }) {
         <div className={styles.modalContent}>
           <h3 className={styles.modalName}>
             {name}
-            <span className={styles.socials}>
-              <a href={mentor.vkUrl} target="_blank">
-                <img src={VkIcon} alt="" />
-              </a>
-              <a href={mentor.telegramUrl} target="_blank">
-                <img src={TelegramIcon} alt="" />
-              </a>
-            </span>
+            <Socials />
           </h3>
-          <p className={styles.modalSpeciality}>
+          <p className={styles.modalText}>
             <span>Специальность:</span>{" "}
             {mentor.speciality ? mentor.speciality : "Не указано"}
           </p>
-          <p className={styles.modalDescription}>
+          <p className={styles.modalText}>
             <span>Описание:</span> {mentor.description}
           </p>
-          <p className={styles.modalRank}>
+          <p className={styles.modalText}>
             <span>Рейтинг:</span> {rank}
           </p>
         </div>
@@ -71,14 +64,12 @@ function MentorModal({ mentor, onClose }) {
       </div>
 
       <div className={styles.btnWrapper}>
-        <Button onClick={handleSubmit} color="green">
-          Отправить запрос
-        </Button>
-      </div>
-      <div className={styles.vote}>
         <Vote onClick={handleVote} value={rank}>
           {rank}
         </Vote>
+        <Button onClick={handleSubmit} color="green">
+          Отправить запрос
+        </Button>
       </div>
     </Modal>
   );
