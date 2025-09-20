@@ -1,6 +1,4 @@
 import InputSelect from "../inputSelect/InputSelect";
-import { specialitiesAPI } from "../../../services";
-import { useEffect, useState } from "react";
 
 function FilterRank({ onChange, value }) {
   const options = [

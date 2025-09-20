@@ -6,7 +6,7 @@ import InputFile from "../../../components/ui/inputFile/InputFile";
 import ImageWrapper from "../../../components/ui/imageWrapper/ImageWrapper";
 import InputSelect from "../../../components/ui/inputSelect/InputSelect";
 import Button from "../../../components/ui/button/Button";
-import { mentorProfileAPI, specialitiesAPI } from "../../../services";
+import { mentorProfileAPI, specialitiesAPI, filesAPI } from "../../../services";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import StarIcon from "../../../assets/images/icons/star-icon.png";
@@ -38,7 +38,8 @@ function MentorProfile() {
         rank: data.rank || null,
       });
       if (data.avatarUrl) {
-        setAvatarUrl(data.avatarUrl);
+        const blob = await filesAPI.getFiles(data.avatarUrl);
+        setAvatarUrl(URL.createObjectURL(blob));
       }
     } catch (error) {
       console.log("Ошибка при загрузке данных", error);

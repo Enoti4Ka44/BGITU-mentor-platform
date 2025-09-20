@@ -5,24 +5,7 @@ import { authHeader } from "../../../services/authHeader";
 import { BASE_URL } from "../../../config";
 
 function ImageWrapper({ imageUrl }) {
-  const [imageSrc, setImageSrc] = useState("");
-
-  useEffect(() => {
-    if (!imageUrl) return;
-
-    const url = new URL(`${BASE_URL}${imageUrl}`);
-    const headers = authHeader();
-
-    if (headers.Authorization) {
-      url.searchParams.append(
-        "token",
-        headers.Authorization.replace("Bearer ", "")
-      );
-    }
-
-    setImageSrc(url.toString());
-  }, [imageUrl]);
-
+  console.log(imageUrl);
   return (
     <div className={styles.imageWrapper}>
       {!imageUrl ? (
@@ -34,7 +17,7 @@ function ImageWrapper({ imageUrl }) {
       ) : (
         <img
           className={styles.userAvatar}
-          src={imageSrc}
+          src={imageUrl}
           alt="image"
           crossOrigin="anonymous"
         />

@@ -19,6 +19,8 @@ function StudentProfile() {
     vkUrl: "",
     telegramUrl: "",
   });
+
+  console.log(formData);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,6 +35,18 @@ function StudentProfile() {
         if (data.avatarUrl) {
           setAvatarUrl(data.avatarUrl);
         }
+      } catch (error) {
+        console.log("Ошибка при загрузке данных", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await filesAPI.getFiles(avatarUrl);
+        console.log(data);
       } catch (error) {
         console.log("Ошибка при загрузке данных", error);
       }
