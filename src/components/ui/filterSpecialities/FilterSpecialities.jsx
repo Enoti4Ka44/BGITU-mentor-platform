@@ -26,7 +26,7 @@ function FilterSpecialities({ value, onChange }) {
     <InputSelect
       value={value}
       options={specialityOptions}
-      name="speciality"
+      name="specialityId"
       placeholder="Выберите специальность"
       onChange={onChange}
     />

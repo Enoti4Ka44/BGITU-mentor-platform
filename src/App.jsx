@@ -6,6 +6,7 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Welcome from "./pages/welcome/Welcome";
 import AllArticles from "./pages/articles/AllArticles";
+import SettingsPage from "./pages/settingsPage/SettingsPage";
 
 import mentorRoutes from "./routes/mentorRoutes";
 import studentRoutes from "./routes/studentRoutes";
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/articles" element={<AllArticles />} />
+          <Route path="/settings" element={<SettingsPage />} />
 
           {/* Для роли MENTOR */}
           {mentorRoutes.map(({ path, element }) => (

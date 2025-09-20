@@ -115,7 +115,7 @@ function Sidebar() {
           </div>
         </div>
         <div className={styles.btnWrapper}>
-          <SidebarButton icon={<img src={SettingsIcon} />}>
+          <SidebarButton icon={<img src={SettingsIcon} />} route={"settings"}>
             Настройки
           </SidebarButton>
           <SidebarButton logout={logout} icon={<img src={LogoutIcon} />}>

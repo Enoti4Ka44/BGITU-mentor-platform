@@ -7,7 +7,7 @@ import ArticleCard from "../../components/layout/articleCard/ArticleCard";
 import ArticleModal from "./components/articleModal/ArticleModal";
 import SearchBar from "../../components/ui/searchBar/SearchBar";
 import PageControls from "../../components/ui/pageControls/PageControls";
-import InputSelect from "../../components/ui/inputSelect/InputSelect";
+import FilterRank from "../../components/ui/filterRank/FilterRank";
 import FilterSpecialities from "../../components/ui/filterSpecialities/filterSpecialities";
 import Button from "../../components/ui/button/Button";
 
@@ -56,8 +56,12 @@ function AllArticles() {
     }));
   };
 
-  const handleFilterInputChange = (e) => {
-    setFilters((prev) => ({ ...prev, specialityId: Number(e.target.value) }));
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return (
@@ -74,11 +78,18 @@ function AllArticles() {
       <div className={styles.sorting}>
         <FilterSpecialities
           value={filters.specialityId}
-          onChange={handleFilterInputChange}
+          onChange={handleInputChange}
         />
+        <FilterRank value={filters.sort} onChange={handleInputChange} />
         <Button
           color="black"
-          onClick={() => setFilters((prev) => ({ ...prev, specialityId: "" }))}
+          onClick={() =>
+            setFilters((prev) => ({
+              ...prev,
+              specialityId: "",
+              sort: "",
+            }))
+          }
         >
           Очистить
         </Button>
