@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { articlesAPI, specialitiesAPI } from "../../../services";
 import { useState, useEffect } from "react";
 
-function PostArticle({ props, specialities }) {
+function PostArticle() {
   const [allSpecialities, setAllSpecialities] = useState([]);
   const [articleImage, setArticleImage] = useState(null);
   const [articleData, setArticleData] = useState({

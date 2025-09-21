@@ -37,8 +37,11 @@ export const mentorProfileAPI = {
     patchMentorProfile: async(data) => {
         const response = await fetch(`${BASE_URL}/api/profiles/mentor/credentials`,{ 
             method: "PATCH",
-            headers: authHeader(),
-            body: data
+            headers: {
+                ...authHeader(),
+                "Content-Type": "application/json",
+                },
+            body: JSON.stringify(data),
         })
 
         return handleResponse(response)

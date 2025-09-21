@@ -33,15 +33,18 @@ export const studentAPI = {
         return handleResponse(response)
     },
 
-    //Изменить карточку студента
+    //Изменить профиль студента
     patchStudentProfile: async (data) => {
-        const response = await fetch(`${BASE_URL}/api/profiles/student/credentials`, {
-            method: "PATCH",
-            headers: authHeader(),
-            body: data
-        }) 
+    const response = await fetch(`${BASE_URL}/api/profiles/student/credentials`, {
+        method: "PATCH",
+        headers: {
+        ...authHeader(),
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
 
-        return handleResponse(response)
+    return handleResponse(response);
     },
 
     //Получить ментора студента
