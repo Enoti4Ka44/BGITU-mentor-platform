@@ -5,7 +5,7 @@ import { authHeader } from "../../../services/authHeader";
 import { BASE_URL } from "../../../config";
 
 function ImageWrapper({ imageUrl }) {
-  console.log(imageUrl);
+  const src = `${BASE_URL}${imageUrl}`;
   return (
     <div className={styles.imageWrapper}>
       {!imageUrl ? (
@@ -15,12 +15,7 @@ function ImageWrapper({ imageUrl }) {
           alt="profile holder"
         />
       ) : (
-        <img
-          className={styles.userAvatar}
-          src={imageUrl}
-          alt="image"
-          crossOrigin="anonymous"
-        />
+        <img className={styles.userAvatar} src={src} alt="image" />
       )}
     </div>
   );

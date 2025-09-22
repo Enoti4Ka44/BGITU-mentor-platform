@@ -38,8 +38,7 @@ function MentorProfile() {
         rank: data.rank || null,
       });
       if (data.avatarUrl) {
-        const blob = await filesAPI.getFiles(data.avatarUrl);
-        setAvatarUrl(URL.createObjectURL(blob));
+        setAvatarUrl(data.avatarUrl);
       }
     } catch (error) {
       console.log("Ошибка при загрузке данных", error);

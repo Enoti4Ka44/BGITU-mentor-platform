@@ -4,7 +4,6 @@ import ImageWrapper from "../../../../components/ui/imageWrapper/ImageWrapper";
 
 function MentorCard({ onClick, ...props }) {
   const name = `${props.firstName} ${props.lastName}`;
-
   return (
     <div className={styles.card}>
       <div className={styles.imgWrapper} onClick={() => onClick(props.id)}>
