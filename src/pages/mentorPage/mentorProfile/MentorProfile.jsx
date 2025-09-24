@@ -102,7 +102,7 @@ function MentorProfile() {
 
       const response = await mentorProfileAPI.patchMentorSummary(dataToSend);
       toast.success("Данные успешно обновлены");
-      console.log("Данные успешно обновлены:", response);
+      console.log("Данные успешно обновлены");
     } catch (error) {
       console.error("Ошибка при обновлении:", error);
     }
