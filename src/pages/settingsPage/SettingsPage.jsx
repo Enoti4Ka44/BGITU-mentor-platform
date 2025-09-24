@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import Layout from "../../components/layout/Layout";
+import styles from "./SettingPage.module.scss";
+import { toast } from "react-toastify";
 import { profilesAPI } from "../../services";
+import Layout from "../../components/layout/Layout";
 import Input from "../../components/ui/input/Input";
 import Button from "../../components/ui/button/Button";
-import { toast } from "react-toastify";
 
 function SettingsPage() {
   const [formData, setFormData] = useState({
@@ -32,7 +33,8 @@ function SettingsPage() {
 
     try {
       const response = await profilesAPI.patchProfile(role, formData);
-      toast.success("Почта успешно изменена");
+      toast.success("Данные успешно изменены");
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +48,7 @@ function SettingsPage() {
   return (
     <Layout>
       <h2>Профиль</h2>
-      <form onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <Input
           value={formData.email}
           name="email"
@@ -63,8 +65,9 @@ function SettingsPage() {
           label="Пароль"
           onChange={handleInputChange}
         />
-
-        <Button color="green">Сохранить</Button>
+        <div className={styles.btnWrapper}>
+          <Button color="green">Сохранить изменения</Button>
+        </div>
       </form>
     </Layout>
   );

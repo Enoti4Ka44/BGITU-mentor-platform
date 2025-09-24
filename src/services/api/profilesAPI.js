@@ -1,14 +1,13 @@
 import { studentAPI } from "./studentAPI";
-import { mentorAPI } from "./mentorAPI";
-
+import { mentorProfileAPI } from "./mentorProfileAPI";
 export const profilesAPI = {
   patchProfile: async (role, data) => {
     if (role === "STUDENT") return studentAPI.patchStudentProfile(data);
-    if (role === "MENTOR") return mentorAPI.patchMentorProfile(data);
+    if (role === "MENTOR") return mentorProfileAPI.patchMentorProfile(data);
   },
   
   getProfile: async (role) => {
     if (role === "STUDENT") return studentAPI.getStudentProfile();
-    if (role === "MENTOR") return mentorAPI.getMentorProfile();
+    if (role === "MENTOR") return mentorProfileAPI.getMentorProfile();
   },
 };
