@@ -25,38 +25,32 @@ function MentorProfile() {
     rank: null,
   });
 
-  const fetchData = async () => {
-    try {
-      const data = await mentorProfileAPI.getMentorSummary();
-      setFormData({
-        firstName: data.firstName || "",
-        lastName: data.lastName || "",
-        description: data.description || "",
-        vkUrl: data.vkUrl || "",
-        telegramUrl: data.telegramUrl || "",
-        speciality: data.speciality || "",
-        rank: data.rank || null,
-      });
-      if (data.avatarUrl) {
-        setAvatarUrl(data.avatarUrl);
-      }
-    } catch (error) {
-      console.log("Ошибка при загрузке данных", error);
-    }
-  };
-
-  const fetchSpecialities = async () => {
-    try {
-      const data = await specialitiesAPI.getAllSpecialities();
-      setAllSpecialities(data);
-    } catch (error) {
-      console.log("Ошибка при загрузке доступных специальностей", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await mentorProfileAPI.getMentorSummary();
+
+        const specs = await specialitiesAPI.getAllSpecialities();
+        const foundSpec = specs.find((s) => s.name == data.specialityName);
+        setAllSpecialities(specs);
+
+        setFormData({
+          firstName: data.firstName || "",
+          lastName: data.lastName || "",
+          description: data.description || "",
+          vkUrl: data.vkUrl || "",
+          telegramUrl: data.telegramUrl || "",
+          speciality: foundSpec ? foundSpec.id : "",
+          rank: data.rank || null,
+        });
+        if (data.avatarUrl) {
+          setAvatarUrl(data.avatarUrl);
+        }
+      } catch (error) {
+        console.log("Ошибка при загрузке данных", error);
+      }
+    };
     fetchData();
-    fetchSpecialities();
   }, []);
 
   const specialityOptions = allSpecialities.map((spec) => ({
