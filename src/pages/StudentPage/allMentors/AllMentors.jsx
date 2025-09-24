@@ -8,7 +8,7 @@ import MentorModal from "../components/MentorModal/MentorModal";
 import SearchBar from "../../../components/ui/searchBar/SearchBar";
 import Button from "../../../components/ui/button/Button";
 import PageControls from "../../../components/ui/pageControls/PageControls";
-import FilterSpecialities from "../../../components/ui/filterSpecialities/filterSpecialities";
+import FilterSpecialities from "../../../components/ui/filterSpecialities/FilterSpecialities";
 
 function AllMentors() {
   const [allMentors, setAllMentors] = useState([]);

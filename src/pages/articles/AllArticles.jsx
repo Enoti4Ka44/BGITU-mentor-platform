@@ -8,7 +8,7 @@ import ArticleModal from "./components/articleModal/ArticleModal";
 import SearchBar from "../../components/ui/searchBar/SearchBar";
 import PageControls from "../../components/ui/pageControls/PageControls";
 import FilterRank from "../../components/ui/filterRank/FilterRank";
-import FilterSpecialities from "../../components/ui/filterSpecialities/filterSpecialities";
+import FilterSpecialities from "../../components/ui/filterSpecialities/FilterSpecialities";
 import Button from "../../components/ui/button/Button";
 
 function AllArticles() {

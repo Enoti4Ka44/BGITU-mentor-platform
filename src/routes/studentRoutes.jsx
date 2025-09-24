@@ -1,5 +1,5 @@
 import StudentHome from "../pages/StudentPage/studentHome/StudentHome";
-import StudentProfile from "../pages/StudentPage/studentProfile/studentProfile";
+import StudentProfile from "../pages/StudentPage/studentProfile/StudentProfile";
 import AllMentors from "../pages/StudentPage/allMentors/AllMentors";
 
 const studentRoutes = [
