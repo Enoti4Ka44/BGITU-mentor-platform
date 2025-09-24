@@ -60,6 +60,7 @@ function AllArticles() {
     const { name, value } = e.target;
     setFilters((prev) => ({
       ...prev,
+      page: 0,
       [name]: value,
     }));
   };
@@ -87,6 +88,7 @@ function AllArticles() {
             setFilters((prev) => ({
               ...prev,
               specialityId: "",
+              page: 0,
               sort: "",
             }))
           }

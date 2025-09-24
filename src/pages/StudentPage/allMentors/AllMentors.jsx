@@ -9,6 +9,7 @@ import SearchBar from "../../../components/ui/searchBar/SearchBar";
 import Button from "../../../components/ui/button/Button";
 import PageControls from "../../../components/ui/pageControls/PageControls";
 import FilterSpecialities from "../../../components/ui/filterSpecialities/FilterSpecialities";
+import FilterRank from "../../../components/ui/filterRank/FilterRank";
 
 function AllMentors() {
   const [allMentors, setAllMentors] = useState([]);
@@ -55,8 +56,13 @@ function AllMentors() {
     }));
   };
 
-  const handleFilterInputChange = (e) => {
-    setFilters((prev) => ({ ...prev, specialityId: Number(e.target.value) }));
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((prev) => ({
+      ...prev,
+      page: 0,
+      [name]: value,
+    }));
   };
 
   return (
@@ -73,11 +79,14 @@ function AllMentors() {
       <div className={styles.sorting}>
         <FilterSpecialities
           value={filters.specialityId}
-          onChange={handleFilterInputChange}
+          onChange={handleInputChange}
         />
+        <FilterRank value={filters.sort} onChange={handleInputChange} />
         <Button
           color="black"
-          onClick={() => setFilters((prev) => ({ ...prev, specialityId: "" }))}
+          onClick={() =>
+            setFilters((prev) => ({ ...prev, page: 0, specialityId: "" }))
+          }
         >
           Очистить
         </Button>
