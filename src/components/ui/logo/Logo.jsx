@@ -1,11 +1,11 @@
-import navigateTo from "../../../services/navigateTo";
+import { useNavigate } from "react-router";
 import styles from "./Logo.module.scss";
 
 function Logo({ route }) {
-  const navigation = navigateTo();
+  const navigate = useNavigate();
 
   return (
-    <a className={styles.logo} onClick={() => navigation(route)}>
+    <a className={styles.logo} onClick={() => navigate(route)}>
       MentorShip
     </a>
   );

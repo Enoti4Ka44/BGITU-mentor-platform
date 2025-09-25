@@ -1,8 +1,6 @@
-import { useState } from "react";
 import SidebarButton from "./components/sidebarButton/SidebarButton";
 import Logo from "../../ui/logo/Logo";
 import styles from "./Sidebar.module.scss";
-import navigateTo from "../../../services/navigateTo";
 
 import HomeIcon from "../../../assets/images/icons/home-icon.svg";
 import ArticlesIcon from "../../../assets/images/icons/articles-icon.svg";
@@ -13,15 +11,16 @@ import MentorsIcon from "../../../assets/images/icons/mentors-icon.svg";
 import WriteArticleIcon from "../../../assets/images/icons/write-icon.png";
 import BlankIcon from "../../../assets/images/icons/blank-icon.png";
 import RequestsIcon from "../../../assets/images/icons/request-icon.svg";
+import { useNavigate } from "react-router";
 
 function Sidebar() {
-  const navigation = navigateTo();
+  const navigate = useNavigate();
   const role = localStorage.getItem("role");
 
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
-    navigation("welcome");
+    navigate("/");
   };
 
   return (
@@ -31,10 +30,10 @@ function Sidebar() {
           <Logo
             route={
               role === "STUDENT"
-                ? "student-home"
+                ? "/student-home"
                 : role === "MENTOR"
-                ? "mentor-home"
-                : "welcome"
+                ? "/mentor-home"
+                : "/"
             }
           />
           <div className={styles.btnWrapper}>
@@ -42,10 +41,10 @@ function Sidebar() {
               icon={<img src={HomeIcon} />}
               route={
                 role === "STUDENT"
-                  ? "student-home"
+                  ? "/student-home"
                   : role === "MENTOR"
-                  ? "mentor-home"
-                  : "welcome"
+                  ? "/mentor-home"
+                  : "/"
               }
             >
               Главная
@@ -54,20 +53,20 @@ function Sidebar() {
             {role === "STUDENT" && (
               <SidebarButton
                 icon={<img src={MentorsIcon} />}
-                route="all-mentors"
+                route="/all-mentors"
               >
                 Менторы
               </SidebarButton>
             )}
 
-            <SidebarButton icon={<img src={ArticlesIcon} />} route="articles">
+            <SidebarButton icon={<img src={ArticlesIcon} />} route="/articles">
               Статьи
             </SidebarButton>
 
             {role === "MENTOR" && (
               <SidebarButton
                 icon={<img src={WriteArticleIcon} />}
-                route="mentor-post-article"
+                route="/mentor-post-article"
               >
                 Написать статью
               </SidebarButton>
@@ -76,7 +75,7 @@ function Sidebar() {
             {role === "MENTOR" && (
               <SidebarButton
                 icon={<img src={BlankIcon} />}
-                route="mentor-articles"
+                route="/mentor-articles"
               >
                 Мои статьи
               </SidebarButton>
@@ -85,7 +84,7 @@ function Sidebar() {
             {role === "MENTOR" && (
               <SidebarButton
                 icon={<img src={RequestsIcon} />}
-                route="mentor-pending-requests"
+                route="/mentor-pending-requests"
               >
                 Входящие заявки
               </SidebarButton>
@@ -94,7 +93,7 @@ function Sidebar() {
             {role === "MENTOR" && (
               <SidebarButton
                 icon={<img src={MentorsIcon} />}
-                route="mentor-students"
+                route="/mentor-students"
               >
                 Мои студенты
               </SidebarButton>
@@ -104,10 +103,10 @@ function Sidebar() {
               icon={<img src={ProfileIcon} />}
               route={
                 role === "STUDENT"
-                  ? "student-profile"
+                  ? "/student-profile"
                   : role === "MENTOR"
-                  ? "mentor-profile"
-                  : "welcome"
+                  ? "/mentor-profile"
+                  : "/"
               }
             >
               Профиль
@@ -115,7 +114,7 @@ function Sidebar() {
           </div>
         </div>
         <div className={styles.btnWrapper}>
-          <SidebarButton icon={<img src={SettingsIcon} />} route={"settings"}>
+          <SidebarButton icon={<img src={SettingsIcon} />} route={"/settings"}>
             Настройки
           </SidebarButton>
           <SidebarButton logout={logout} icon={<img src={LogoutIcon} />}>

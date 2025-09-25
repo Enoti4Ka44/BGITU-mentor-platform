@@ -5,9 +5,9 @@ import Logo from "../../components/ui/logo/Logo";
 import InputSelect from "../../components/ui/inputSelect/InputSelect";
 import styles from "./AuthForm.module.scss";
 import { useNavigate } from "react-router";
-import navigateTo from "../../services/navigateTo";
 import icon from "../../assets/images/icons/auth-icon.svg";
 import { toast } from "react-toastify";
+import { use } from "react";
 
 const AuthForm = ({ isLoading, isLogin, onSubmit }) => {
   const [authData, setAuthData] = useState({
@@ -24,7 +24,7 @@ const AuthForm = ({ isLoading, isLogin, onSubmit }) => {
   ];
 
   const [showPassword, setShowPassword] = useState(false);
-  const navigation = navigateTo();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,15 +45,15 @@ const AuthForm = ({ isLoading, isLogin, onSubmit }) => {
       <div className={styles.container}>
         <div className={styles.formContainer}>
           <div className={styles.formContainerHeader}>
-            <Logo route="welcome" />
+            <Logo route="/" />
             {isLogin ? (
               <p className={styles.links}>
                 Нет аккаунта ?{" "}
-                <a onClick={() => navigation("register")}>Зарегистрироваться</a>
+                <a onClick={() => navigate("/register")}>Зарегистрироваться</a>
               </p>
             ) : (
               <p className={styles.links}>
-                Есть аккаунт ? <a onClick={() => navigation("login")}>Войти</a>
+                Есть аккаунт ? <a onClick={() => navigate("/login")}>Войти</a>
               </p>
             )}
           </div>

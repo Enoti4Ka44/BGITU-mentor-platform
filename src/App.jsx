@@ -17,7 +17,7 @@ function App() {
       <Router>
         <Routes>
           {/* Публичные */}
-          <Route path="/welcome" element={<Welcome />} />
+          <Route path="/" element={<Welcome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/articles" element={<AllArticles />} />

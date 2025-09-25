@@ -11,7 +11,7 @@ function Welcome() {
   return (
     <div style={{ paddingBottom: "10px" }}>
       <div className={styles.container}>
-        <Logo route="welcome" />
+        <Logo route="/" />
         <div className={styles.hero}>
           <h1>Делись мудростью, формируй успех</h1>
           <div className={styles.content}>
