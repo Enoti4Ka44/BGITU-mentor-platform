@@ -50,7 +50,9 @@ function ArticleModal({ article, onClose, button, onDelete }) {
             {article.authorFullName} <span>{article.specialityName}</span>
           </p>
           <div className={styles.vote}>
-            <Vote onClick={handleVote}>{rank}</Vote>
+            <Vote voteResult={article.voteResult} onClick={handleVote}>
+              {rank}
+            </Vote>
           </div>
         </div>
         {button && (

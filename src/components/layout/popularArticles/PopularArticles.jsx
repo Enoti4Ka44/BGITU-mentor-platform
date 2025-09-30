@@ -8,17 +8,16 @@ import { toast } from "react-toastify";
 function PopularArticles({ onArticleClick }) {
   const [popularArticles, setPopularArticles] = useState([]);
 
-  const fetchArticles = async () => {
-    try {
-      const data = await articlesAPI.getPopularArticles();
-      setPopularArticles(data);
-    } catch (error) {
-      console.error("Ошибка загрузки статей", error);
-      toast.error("Не удалось загрузить статьи");
-    }
-  };
-
   useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const data = await articlesAPI.getPopularArticles();
+        setPopularArticles(data);
+      } catch (error) {
+        console.error("Ошибка загрузки статей", error);
+        toast.error("Не удалось загрузить статьи");
+      }
+    };
     fetchArticles();
   }, []);
 

@@ -80,8 +80,6 @@ function StudentHome() {
     }
   };
 
-  console.log(popularMentors);
-
   return (
     <Layout>
       <>
