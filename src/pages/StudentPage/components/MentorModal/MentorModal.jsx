@@ -62,7 +62,7 @@ function MentorModal({ mentor, onClose }) {
       </div>
 
       <div className={styles.btnWrapper}>
-        <Vote onClick={handleVote} value={rank}>
+        <Vote voteResult={mentor.voteResult} onClick={handleVote} value={rank}>
           {rank}
         </Vote>
         <Button onClick={handleSubmit} color="green">
