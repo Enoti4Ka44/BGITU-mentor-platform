@@ -3,8 +3,6 @@ import Button from "../../../../components/ui/button/Button";
 import Modal from "../../../../components/layout/modal/Modal";
 import Vote from "../../../../components/ui/vote/Vote";
 import ImageWrapper from "../../../../components/ui/imageWrapper/ImageWrapper";
-import VkIcon from "../../../../assets/images/icons/vk-icon.png";
-import TelegramIcon from "../../../../assets/images/icons/telegram-icon.png";
 import { applicationsAPI, voteAPI } from "../../../../services";
 import { toast } from "react-toastify";
 import { useState } from "react";
